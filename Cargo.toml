@@ -1,0 +1,24 @@
+[package]
+name = "SimpleGameTest"
+version = "0.1.0"
+authors = ["Dimitri Bobkov <bobkov.dimitri@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+image = "0.23.12"
+winit = "0.24.0"
+cgmath = "0.17"
+log = "0.4.11"
+wgpu = "0.6.2"
+futures = "0.3.8"
+bytemuck = { version = "1.4", features = [ "derive" ] }
+anyhow = "1.0"
+
+# NEW!
+[build-dependencies]
+anyhow = "1.0"
+fs_extra = "1.2.0"
+glob = "0.3"
+shaderc = "0.7.0"
