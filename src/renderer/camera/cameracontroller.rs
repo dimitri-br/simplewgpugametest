@@ -73,9 +73,6 @@ impl CameraController {
     }
 
     pub fn update_camera(&self, camera: &mut Camera) {
-        use cgmath::InnerSpace;
-        let forward = cgmath::Vector3::<f32> { x: 0.0, y: 1.0, z: 0.0};
-        ;
         let right = cgmath::Vector3::<f32> { x: 1.0, y: 0.0, z: 0.0};
 
         // Prevents glitching when camera gets too close to the

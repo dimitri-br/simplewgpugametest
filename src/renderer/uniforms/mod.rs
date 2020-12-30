@@ -1,7 +1,6 @@
 pub mod camera_uniform;
 
-use camera_uniform::CameraUniform;
-use crate::{Rc, RefCell, Renderer};
+use crate::{Renderer};
 
 pub struct UniformUtils{
     pub uniforms: Vec<Box<dyn UniformBuffer>>,
@@ -16,7 +15,7 @@ impl UniformUtils{
             buffers: Vec::<Box<Vec::<wgpu::Buffer>>>::new(),
         }
     }
-    pub fn create_bind_group_layout(renderer_reference: &Renderer, binding: u32, visibility: wgpu::ShaderStage) -> wgpu::BindGroupLayout{
+    pub fn create_bind_group_layout(renderer_reference: &Renderer, binding: u32, visibility: wgpu::ShaderStage, label: Option<&str>) -> wgpu::BindGroupLayout{
         renderer_reference.device.create_bind_group_layout(&wgpu::BindGroupLayoutDescriptor {
             entries: &[
                 wgpu::BindGroupLayoutEntry {
@@ -29,11 +28,11 @@ impl UniformUtils{
                     count: None,
                 }
             ],
-            label: Some("uniform_bind_group_layout"),
+            label,
         })
     }
 
-    pub fn create_bind_group(renderer_reference: &Renderer, uniform_buffer: &wgpu::Buffer, uniform_bind_group_layout: &wgpu::BindGroupLayout, binding: u32) -> wgpu::BindGroup{
+    pub fn create_bind_group(renderer_reference: &Renderer, uniform_buffer: &wgpu::Buffer, uniform_bind_group_layout: &wgpu::BindGroupLayout, binding: u32, label: Option<&str>) -> wgpu::BindGroup{
         renderer_reference.device.create_bind_group(&wgpu::BindGroupDescriptor {
             layout: uniform_bind_group_layout,
             entries: &[
@@ -42,7 +41,7 @@ impl UniformUtils{
                     resource: wgpu::BindingResource::Buffer(uniform_buffer.slice(..))
                 }
             ],
-            label: Some("uniform_bind_group"),
+            label,
         })
     }
     pub fn add<T: UniformBuffer>(&mut self, k: T, v: Vec::<wgpu::Buffer>) where T: UniformBuffer + 'static{
@@ -58,4 +57,6 @@ impl UniformUtils{
     }
 }
 
-pub trait UniformBuffer{}
+pub trait UniformBuffer{
+    
+}

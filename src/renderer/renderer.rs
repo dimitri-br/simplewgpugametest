@@ -1,12 +1,8 @@
-use crate::{Vertex, RenderMesh};
-
-use std::convert::TryInto;
+use crate::{Vertex, RenderMesh, Entity, ComponentBase};
+use std::any::Any;
 use winit::{
-    event::*,
-    event_loop::{ControlFlow, EventLoop},
-    window::{WindowBuilder, Window},
+    window::Window,
 };
-
 
 pub struct Renderer {
     pub surface: wgpu::Surface,
@@ -206,7 +202,7 @@ impl Renderer {
         
     }
 
-    pub fn render(&mut self, clear_color: wgpu::Color, meshes: &Vec::<RenderMesh>) -> Result<(), wgpu::SwapChainError> {
+    pub fn render(&mut self, clear_color: wgpu::Color, entities: &Vec::<Entity>) -> Result<(), wgpu::SwapChainError> {
         let frame = self
         .swap_chain
         .get_current_frame()?
@@ -231,7 +227,14 @@ impl Renderer {
             });
 
             render_pass.set_pipeline(&self.render_pipeline); // 2.
-            for mesh in meshes{
+            let mut meshes = Vec::<&RenderMesh>::new();
+            for entity in entities.iter(){
+                match entity.get_component::<RenderMesh>(RenderMesh::get_component_id()){
+                    Ok(rm) => { meshes.push(rm) }
+                    Err(e) => panic!("{:?}", e)
+                }
+            }
+            for mesh in meshes.iter(){
                 // 0 - texture count is reserved for textures
                 render_pass.set_bind_group(0, &mesh.borrow_material().borrow_texture().get_texture_group(), &[]);
                 let mut i: u32 = 1;

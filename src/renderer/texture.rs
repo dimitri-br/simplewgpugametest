@@ -1,8 +1,8 @@
 use image::GenericImageView;
 use anyhow::*;
-use crate::{Rc, RefCell, Renderer};
+use crate::{Renderer};
 
-
+#[derive(std::fmt::Debug)]
 pub struct Texture {
     pub texture: wgpu::Texture,
     pub view: wgpu::TextureView,
@@ -61,7 +61,7 @@ impl Texture {
         let mut buf_reader = BufReader::new(file);
         let mut contents = Vec::<u8>::new();
         buf_reader.read_to_end(&mut contents).unwrap();
-        
+
         let img = image::load_from_memory(&contents)?;
         Self::from_image(renderer_reference, &img, Some(path))
     }

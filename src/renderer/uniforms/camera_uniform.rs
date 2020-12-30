@@ -1,6 +1,6 @@
 use cgmath::SquareMatrix;
 use wgpu::util::DeviceExt;
-use crate::{Rc, RefCell, Renderer, Camera, UniformBuffer};
+use crate::{Renderer, Camera, UniformBuffer};
 
 // We need this for Rust to store our data correctly for the shaders
 #[repr(C)]
@@ -21,7 +21,7 @@ impl CameraUniform{
         self.view_proj = camera.build_view_projection_matrix().into();
     }
 
-    pub fn create_uniform_buffer(&mut self, renderer_reference:&Renderer) -> wgpu::Buffer{
+    pub fn create_uniform_buffer(&self, renderer_reference:&Renderer) -> wgpu::Buffer{
         renderer_reference.device.create_buffer_init(
             &wgpu::util::BufferInitDescriptor {
                 label: Some("Uniform Buffer"),

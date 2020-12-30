@@ -1,19 +1,25 @@
-#![windows_subsystem = "windows"] // Disable console
+//#![windows_subsystem = "windows"] // Disable console
 
 mod renderer;
+mod component;
+mod transform;
 mod input_manager;
 
 
 use renderer::renderer::Renderer;
 use renderer::vertex::Vertex;
 use renderer::texture::Texture;
-use renderer::material::Material;
+use renderer::material::{Material, MaterialUniform};
 use input_manager::input_manager::InputManager;
 use renderer::entity::rendermesh::RenderMesh;
+use renderer::entity::entity::Entity;
 use renderer::camera::camera::Camera;
 use renderer::camera::cameracontroller::CameraController;
 use renderer::uniforms::camera_uniform::CameraUniform;
 use renderer::uniforms::{UniformUtils, UniformBuffer};
+use component::ComponentBase;
+use transform::{Translation, TranslationUniform, Rotation, RotationUniform, NonUniformScale, NonUniformScaleUniform, Transform, TransformUniform};
+
 
 
 use std::rc::Rc;
@@ -41,7 +47,8 @@ fn main() {
     let window = WindowBuilder::new()
     .with_inner_size(winit::dpi::Size::from(winit::dpi::LogicalSize{ width: 1280, height: 720}))
     .with_title("WGPU TEST APP")        
-    .with_decorations(true)
+    .with_decorations(false)
+    .with_maximized(true)
     .with_transparent(false)
     .build(&event_loop)
     .unwrap();
@@ -49,10 +56,12 @@ fn main() {
     let renderer = block_on(Renderer::new(&window));
     let mut input_manager = InputManager::new();
     let renderer = Rc::new(RefCell::new(renderer));
+
+    /* User Defined */
     let mut uniform_utils = UniformUtils::new();
 
 
-    let mut meshes = Vec::<RenderMesh>::new();
+    let mut entities = Vec::<Entity>::new();
     // Camera
     let mut camera_controller = CameraController::new(0.1);
     let temp = Rc::clone(&renderer);
@@ -83,33 +92,117 @@ fn main() {
     // Since we share the renderer around, borrow it mutably
     let mut temp_renderer = renderer.borrow_mut();
 
-    
+    let label = Some("camera");
     // Create our camera layout and bind group
-    let camera_layout = UniformUtils::create_bind_group_layout(&temp_renderer, 0, wgpu::ShaderStage::VERTEX);
-    let camera_uniform = Rc::new(UniformUtils::create_bind_group(&temp_renderer, &uniform_utils.get_buffer_by_index(0)[0], &camera_layout, 0));
+    let camera_layout = UniformUtils::create_bind_group_layout(&temp_renderer, 0, wgpu::ShaderStage::VERTEX, label);
+    let camera_uniform = Rc::new(UniformUtils::create_bind_group(&temp_renderer, &uniform_utils.get_buffer_by_index(0)[0], &camera_layout, 0, label));
 
     // load texture
-    let diffuse_texture = Texture::load_texture(&temp_renderer, "./data/textures/smiley.png").unwrap();
+    let diffuse_texture = Rc::new(Texture::load_texture(&temp_renderer, "./data/textures/smiley.png").unwrap());
+    let diffuse_texture_layout = Texture::generate_texture_layout(&temp_renderer);
     
+    // Create transform layout
+    let transform_layout = UniformUtils::create_bind_group_layout(&temp_renderer, 0, wgpu::ShaderStage::VERTEX, label);
+
 
     // define the array with layouts we want to use in our pipeline
-    let layouts = &[diffuse_texture.get_texture_layout(), &camera_layout];
-    // recreate pipeline with layouts (needs mut)
-    temp_renderer.recreate_pipeline(layouts);
+    let mut layouts = vec!(&diffuse_texture_layout, &camera_layout);
+
+    
+
+
+    let mut components = Vec::<Box<dyn ComponentBase>>::new();
     // create material
-    let material = Material::new(diffuse_texture, 0.5, 0.0);
+    let material = Material::new(Rc::clone(&diffuse_texture), 1.0, 0.0);
+
     // create new mesh (TODO - mesh loading) and assign material
-    let render_mesh = RenderMesh::new(&temp_renderer, material);
-    // add to global mesh vec
-    meshes.push(render_mesh);
-    // add a camera uniform pointer to each mesh
-    for mesh in meshes.iter_mut(){
-        mesh.add_new_uniform(Rc::clone(&camera_uniform));
-    }
+    let mut mesh = RenderMesh::new(&temp_renderer, material);
+    let (bind_group, layout, material_uniform, buffer) = mesh.generate_material_uniforms(&temp_renderer);
+    let bind_group = Rc::new(bind_group);
+    mesh.add_new_uniform(Rc::clone(&camera_uniform));
+    mesh.add_new_uniform(Rc::clone(&bind_group));
+    uniform_utils.add(material_uniform, vec!(buffer));
+    layouts.push(&layout);
+    layouts.push(&transform_layout);
+
+    let translation = Translation::new(cgmath::Vector3::<f32> { x: 2.0, y: 1.0, z: 0.0});
+
+
+    let rotation = Rotation::new(cgmath::Quaternion::from(cgmath::Euler {
+        x: cgmath::Deg(0.0),
+        y: cgmath::Deg(0.0),
+        z: cgmath::Deg(0.0),
+    }));
+
+
+    let scale = NonUniformScale::new(cgmath::Vector3::<f32> { x: 1.0, y: 1.0, z: 1.0});
+
+
+    let transform = Transform::new(translation.value, rotation.value, scale.value);
+    let transform_uniform = transform.create_uniforms(&temp_renderer);
+    let label = Some("transform");
+    
+    let transform_bind = UniformUtils::create_bind_group(&temp_renderer, &transform_uniform.create_uniform_buffer(&temp_renderer), &transform_layout, 0, label);
+    
+    mesh.add_new_uniform(Rc::new(transform_bind));
+
+    components.push(Box::new(transform));
+
+    components.push(Box::new(mesh));
+        
+    entities.push(Entity::new(components));
+
+
+
+
+    let mut components = Vec::<Box<dyn ComponentBase>>::new();
+    // create material
+    let material = Material::new(Rc::clone(&diffuse_texture), 1.0, 0.5);
+
+    // create new mesh (TODO - mesh loading) and assign material
+    let mut mesh = RenderMesh::new(&temp_renderer, material);
+    let (bind_group, layout, material_uniform, buffer) = mesh.generate_material_uniforms(&temp_renderer);
+    let bind_group = Rc::new(bind_group);
+    mesh.add_new_uniform(Rc::clone(&camera_uniform));
+    mesh.add_new_uniform(Rc::clone(&bind_group));
+    uniform_utils.add(material_uniform, vec!(buffer));
+
+    let translation = Translation::new(cgmath::Vector3::<f32> { x: -2.0, y: 0.0, z: 0.0});
+
+
+    let rotation = Rotation::new(cgmath::Quaternion::from(cgmath::Euler {
+        x: cgmath::Deg(0.0),
+        y: cgmath::Deg(0.0),
+        z: cgmath::Deg(45.0),
+    }));
+
+
+    let scale = NonUniformScale::new(cgmath::Vector3::<f32> { x: 1.0, y: 1.0, z: 1.0});
+
+
+    let transform = Transform::new(translation.value, rotation.value, scale.value);
+    let transform_uniform = transform.create_uniforms(&temp_renderer);
+    let label = Some("transform");
+    
+    let transform_bind = UniformUtils::create_bind_group(&temp_renderer, &transform_uniform.create_uniform_buffer(&temp_renderer), &transform_layout, 0, label);
+    
+    mesh.add_new_uniform(Rc::new(transform_bind));
+
+    components.push(Box::new(transform));
+
+    components.push(Box::new(mesh));
+        
+    entities.push(Entity::new(components));
+
+
+
+
+    // recreate pipeline with layouts (needs mut)
+    temp_renderer.recreate_pipeline(&layouts);
     // drop the borrowed mut reference (to stay safe)
     drop(temp_renderer);
 
-
+    /* Game Loop Defined */
 
     event_loop.run(move |event, _, control_flow|  
         match event {
@@ -117,7 +210,6 @@ fn main() {
             ref event,
             window_id,
         } if window_id == window.id() =>  {
-            input_manager.update(event);
             camera_controller.process_events(event);
             let mut renderer = renderer.borrow_mut();
             match event{
@@ -170,7 +262,7 @@ fn main() {
                 a: 0.5,
             };
 
-            match renderer.render(clear_color, &meshes) {
+            match renderer.render(clear_color, &entities) {
                 Ok(_) => {}
                 // Recreate the swap_chain if lost
                 Err(wgpu::SwapChainError::Lost) => renderer.resize(window_size),
