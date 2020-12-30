@@ -52,7 +52,7 @@ fn main() {
     .with_transparent(false)
     .build(&event_loop)
     .unwrap();
-
+    println!("~~~Starting~~~");
     let renderer = block_on(Renderer::new(&window));
     let mut input_manager = InputManager::new();
     let renderer = Rc::new(RefCell::new(renderer));
@@ -62,6 +62,9 @@ fn main() {
 
 
     let mut entities = Vec::<Entity>::new();
+
+    println!("~~~Pre-Setup finished~~~");
+
     // Camera
     let mut camera_controller = CameraController::new(0.1);
     let temp = Rc::clone(&renderer);
@@ -203,7 +206,7 @@ fn main() {
     drop(temp_renderer);
 
     /* Game Loop Defined */
-
+    println!("~~~Setup finished~~~");
     event_loop.run(move |event, _, control_flow|  
         match event {
         Event::WindowEvent {

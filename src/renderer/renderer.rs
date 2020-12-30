@@ -21,12 +21,12 @@ impl Renderer {
 
         // The instance is a handle to our GPU
         // BackendBit::PRIMARY => Vulkan + Metal + DX12 + Browser WebGPU
-        let instance = wgpu::Instance::new(wgpu::BackendBit::PRIMARY);
+        let instance = wgpu::Instance::new(wgpu::BackendBit::DX12);
         let surface = unsafe { instance.create_surface(window) };
         
         let adapter = instance.request_adapter(
             &wgpu::RequestAdapterOptions {
-                power_preference: wgpu::PowerPreference::Default,
+                power_preference: wgpu::PowerPreference::HighPerformance,
                 compatible_surface: Some(&surface),
             },
         ).await.unwrap();
@@ -52,9 +52,10 @@ impl Renderer {
 
         
 
-        // Create shader modules (Kind of like a link to the shaders)
-        let vs_module = device.create_shader_module(wgpu::include_spirv!("../shaders/shader.vert.spv"));
-        let fs_module = device.create_shader_module(wgpu::include_spirv!("../shaders/shader.frag.spv"));
+        // Create shader modules (Kind of like a link to the shaders). This links to a dummy shader (which will be changed after all uniform layouts have been gathered.)
+        // The dummy shader also acts as a fallback shader
+        let vs_module = device.create_shader_module(wgpu::include_spirv!("../shaders/dummy.vert.spv"));
+        let fs_module = device.create_shader_module(wgpu::include_spirv!("../shaders/dummy.frag.spv"));
         let render_pipeline = Renderer::create_pipeline(&device, &sc_desc, vs_module, fs_module, &[]);
 
 
@@ -82,62 +83,7 @@ impl Renderer {
            push_constant_ranges: &[],
        });
 
-       
-       device.create_render_pipeline(&wgpu::RenderPipelineDescriptor {
-           label: Some("Render Pipeline"),
-           layout: Some(&render_pipeline_layout),
-           vertex_stage: wgpu::ProgrammableStageDescriptor {
-               module: &vs_module,
-               entry_point: "main", // 1.
-           },
-           fragment_stage: Some(wgpu::ProgrammableStageDescriptor { // 2.
-               module: &fs_module,
-               entry_point: "main",
-           }),
-           rasterization_state: Some(
-               wgpu::RasterizationStateDescriptor {
-                   front_face: wgpu::FrontFace::Ccw,
-                   cull_mode: wgpu::CullMode::Back,
-                   depth_bias: 0,
-                   depth_bias_slope_scale: 0.0,
-                   depth_bias_clamp: 0.0,
-                   clamp_depth: false,
-               }
-           ),
-           color_states: &[
-               wgpu::ColorStateDescriptor {
-                   format: sc_desc.format,
-                   color_blend: wgpu::BlendDescriptor::REPLACE,
-                   alpha_blend: wgpu::BlendDescriptor::REPLACE,
-                   write_mask: wgpu::ColorWrite::ALL,
-               },
-           ],
-           primitive_topology: wgpu::PrimitiveTopology::TriangleList, // 1.
-           depth_stencil_state: None, // 2.
-           vertex_state: wgpu::VertexStateDescriptor {
-               index_format: wgpu::IndexFormat::Uint32,
-               vertex_buffers: &[
-                   Vertex::desc(), // Set our vertex buffer description here (Description defines the things like texcoords and normals)
-               ],
-           },
-           sample_count: 1, // 5.
-           sample_mask: !0, // 6.
-           alpha_to_coverage_enabled: false, // 7.
-       })
-   }
-
-   pub fn recreate_pipeline(&mut self, bind_group_layouts: &[&wgpu::BindGroupLayout]){
-    let vs_module = self.device.create_shader_module(wgpu::include_spirv!("../shaders/shader.vert.spv"));
-    let fs_module = self.device.create_shader_module(wgpu::include_spirv!("../shaders/shader.frag.spv"));
-    let render_pipeline_layout =
-    self.device.create_pipeline_layout(&wgpu::PipelineLayoutDescriptor {
-        label: Some("Render Pipeline Layout"),
-        bind_group_layouts: bind_group_layouts,
-        push_constant_ranges: &[],
-    });
-
-    
-    self.render_pipeline = self.device.create_render_pipeline(&wgpu::RenderPipelineDescriptor {
+        device.create_render_pipeline(&wgpu::RenderPipelineDescriptor {
         label: Some("Render Pipeline"),
         layout: Some(&render_pipeline_layout),
         vertex_stage: wgpu::ProgrammableStageDescriptor {
@@ -160,7 +106,7 @@ impl Renderer {
         ),
             color_states: &[
                 wgpu::ColorStateDescriptor {
-                    format: self.sc_desc.format,
+                    format: sc_desc.format,
                     color_blend: wgpu::BlendDescriptor {
                         src_factor: wgpu::BlendFactor::SrcAlpha,
                         dst_factor: wgpu::BlendFactor::OneMinusSrcAlpha,
@@ -188,7 +134,13 @@ impl Renderer {
         sample_count: 1, // 5.
         sample_mask: !0, // 6.
         alpha_to_coverage_enabled: false, // 7.
-    });
+    })
+   }
+
+   pub fn recreate_pipeline(&mut self, bind_group_layouts: &[&wgpu::BindGroupLayout]){
+    let vs_module = self.device.create_shader_module(wgpu::include_spirv!("../shaders/shader.vert.spv"));
+    let fs_module = self.device.create_shader_module(wgpu::include_spirv!("../shaders/shader.frag.spv"));
+    self.render_pipeline = Renderer::create_pipeline(&self.device, &self.sc_desc, vs_module, fs_module, bind_group_layouts);
    }
 
     pub fn resize(&mut self, new_size: winit::dpi::PhysicalSize<u32>) {
@@ -199,7 +151,7 @@ impl Renderer {
     }
 
     pub fn update(&mut self) {
-        
+        // Not sure what to run here, maybe pipeline switching for multishader support?
     }
 
     pub fn render(&mut self, clear_color: wgpu::Color, entities: &Vec::<Entity>) -> Result<(), wgpu::SwapChainError> {
