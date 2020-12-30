@@ -14,4 +14,8 @@ impl Material{
             metallic
         }
     }
+
+    pub fn borrow_texture(&self) -> &Texture{
+        &self.texture
+    }
 }
