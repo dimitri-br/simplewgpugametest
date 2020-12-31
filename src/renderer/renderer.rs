@@ -16,12 +16,20 @@ pub struct Renderer {
 
 impl Renderer {
     // Creating some of the wgpu types requires async code
-    pub async fn new(window: &Window) -> Self {
+    pub async fn new(window: &Window, backend: &str) -> Self {
         let size = window.inner_size();
 
         // The instance is a handle to our GPU
         // BackendBit::PRIMARY => Vulkan + Metal + DX12 + Browser WebGPU
-        let instance = wgpu::Instance::new(wgpu::BackendBit::PRIMARY);
+
+        let instance = match backend{
+            "primary" => wgpu::Instance::new(wgpu::BackendBit::PRIMARY),
+            "dx12" => wgpu::Instance::new(wgpu::BackendBit::DX12),
+            "dx11" => wgpu::Instance::new(wgpu::BackendBit::DX11),
+            "vulkan" => wgpu::Instance::new(wgpu::BackendBit::VULKAN),
+            "metal" => wgpu::Instance::new(wgpu::BackendBit::METAL),
+            _ => wgpu::Instance::new(wgpu::BackendBit::PRIMARY),
+        };
         let surface = unsafe { instance.create_surface(window) };
         
         let adapter = instance.request_adapter(
@@ -214,7 +222,7 @@ impl Renderer {
         self.size
     }
 
-    pub fn write_buffer<T: bytemuck::Pod>(&self, buffer: &wgpu::Buffer, offset: u64, uniforms: &[T]){
+    pub fn write_buffer<T>(&self, buffer: &wgpu::Buffer, offset: u64, uniforms: &[T]) where T: bytemuck::Pod{
         self.queue.write_buffer(buffer, offset, bytemuck::cast_slice(uniforms));
     }
 }

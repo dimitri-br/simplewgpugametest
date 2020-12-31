@@ -1,4 +1,4 @@
-use crate::{ComponentBase, UniformBuffer, Renderer, UniformUtils, Rc};
+use crate::{ComponentBase, UniformBuffer, Renderer, UniformUtils, Rc, RefCell};
 use wgpu::util::DeviceExt;
 use cgmath::{InnerSpace, SquareMatrix};
 use std::any::Any;
@@ -19,6 +19,7 @@ pub struct Transform{
     pub scale: cgmath::Vector3::<f32>,
     pub value: cgmath::Matrix4::<f32>,
     buffer: wgpu::Buffer,
+    uniform: TransformUniform,
     id: u32
 }
 impl ComponentBase for Transform{
@@ -35,12 +36,14 @@ impl ComponentBase for Transform{
 impl Transform{
     pub fn new(renderer_reference: &Renderer, position: cgmath::Vector3::<f32>, rotation: cgmath::Quaternion::<f32>, scale: cgmath::Vector3::<f32>) -> Self{
         let value = cgmath::Matrix4::from_translation(position) * cgmath::Matrix4::from(rotation) * cgmath::Matrix4::from_nonuniform_scale(scale.x, scale.y, scale.z);
+        let uniform = TransformUniform::new();
         Self{
             position,
             rotation,
             scale,
             value,
             buffer: UniformUtils::generate_empty_buffer(renderer_reference),
+            uniform,
             id: ID
         }
     }
@@ -48,13 +51,12 @@ impl Transform{
         ID
     }
 
-    pub fn create_uniforms(&mut self, renderer_reference: &Renderer) -> (wgpu::BindGroup, wgpu::BindGroupLayout, TransformUniform){
-        let mut translation_uniform = TransformUniform::new();
-        translation_uniform.update(OPENGL_TO_WGPU_MATRIX * self.value);
-        let buffer = translation_uniform.create_uniform_buffer(renderer_reference);
+    pub fn create_uniforms(&mut self, renderer_reference: &Renderer) -> (wgpu::BindGroup, wgpu::BindGroupLayout, &TransformUniform){
+        self.uniform.update(OPENGL_TO_WGPU_MATRIX * self.value);
+        let buffer = self.uniform.create_uniform_buffer(renderer_reference);
         let layout = UniformUtils::create_bind_group_layout(renderer_reference, 0, wgpu::ShaderStage::VERTEX, Some("Transform"));
         self.buffer = buffer;
-        (UniformUtils::create_bind_group(&renderer_reference, &self.buffer, &layout, 0, Some("Transform")), layout, translation_uniform)
+        (UniformUtils::create_bind_group(&renderer_reference, &self.buffer, &layout, 0, Some("Transform")), layout, &self.uniform)
     }
 
     pub fn get_buffer_reference(&self) -> &wgpu::Buffer{
@@ -66,6 +68,10 @@ impl Transform{
         cgmath::Matrix4::from(self.rotation) * cgmath::Matrix4::from_nonuniform_scale(self.scale.x, self.scale.y, self.scale.z);
 
         OPENGL_TO_WGPU_MATRIX * self.value
+    }
+
+    pub fn get_uniform(&self) -> Rc<RefCell<TransformUniform>>{
+        Rc::new(RefCell::new(self.uniform))
     }
 }
 

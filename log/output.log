@@ -1,0 +1,34 @@
+INFO - Hello, world!
+INFO - Creating a pipeline layout with 0 sets and 0 root constants
+INFO - create_descriptor_pool with 64 max sets
+INFO - total 64 views and 0 samplers
+INFO - allocate_set
+INFO - create_descriptor_pool with 64 max sets
+INFO - total 64 views and 64 samplers
+INFO - allocate_set
+INFO - allocate_set
+INFO - allocate_set
+INFO - allocate_set
+INFO - allocate_set
+INFO - allocate_set
+INFO - Creating a pipeline layout with 4 sets and 0 root constants
+INFO - Hello, world!
+INFO - App is running in release mode
+INFO - Window created
+INFO - Creating a pipeline layout with 0 sets and 0 root constants
+INFO - Renderer created
+INFO - create_descriptor_pool with 64 max sets
+INFO - total 64 views and 0 samplers
+INFO - allocate_set
+INFO - create_descriptor_pool with 64 max sets
+INFO - total 64 views and 64 samplers
+INFO - allocate_set
+INFO - allocate_set
+INFO - allocate_set
+INFO - allocate_set
+INFO - Entity created with 2 components
+INFO - allocate_set
+INFO - allocate_set
+INFO - Entity created with 2 components
+INFO - Creating a pipeline layout with 4 sets and 0 root constants
+INFO - Starting main loop

@@ -76,7 +76,11 @@ impl Entity{
     }
 
     pub fn get_component_mut<T: ComponentBase + 'static>(&mut self, component_id: u32) -> Result<&mut T, &str>{
-        let index = self.get_index(component_id).unwrap();
+        let index = match self.get_index(component_id){
+            Ok(v) => v,
+            Err(e) => return Err("Component Not In Entity"),
+        };
+
         let mut component = self.components[index].deref_mut();
         
         // Try and convert the rendermesh component we have (Which is currently a trait object) into a rendermesh struct so we can use it

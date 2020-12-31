@@ -1,30 +1,7 @@
 //#![windows_subsystem = "windows"] // Disable console
+extern crate clap;
+use clap::{Arg, App, SubCommand};
 
-mod renderer;
-mod component;
-mod transform;
-mod input_manager;
-
-
-use renderer::renderer::Renderer;
-use renderer::vertex::Vertex;
-use renderer::texture::Texture;
-use renderer::material::{Material, MaterialUniform};
-use input_manager::input_manager::InputManager;
-use renderer::entity::rendermesh::RenderMesh;
-use renderer::entity::entity::Entity;
-use renderer::camera::camera::{Camera, CameraUniform};
-use renderer::camera::cameracontroller::CameraController;
-use renderer::uniforms::{UniformUtils, UniformBuffer};
-use component::ComponentBase;
-use transform::{Translation, Rotation, NonUniformScale, Transform, TransformUniform};
-
-
-
-use std::rc::Rc;
-use std::cell::RefCell;
-
-use futures::executor::block_on;
 
 use winit::{
     event::*,
@@ -32,37 +9,102 @@ use winit::{
     window::WindowBuilder,
 };
 
+use log::LevelFilter;
+use log4rs::append::file::FileAppender;
+use log4rs::encode::pattern::PatternEncoder;
+use log4rs::config::{Appender, Config, Root};
 
+mod renderer;
+mod component;
+mod transform;
+mod input_manager;
+mod entity;
+mod system;
+
+
+use renderer::renderer::Renderer;
+use renderer::vertex::Vertex;
+use renderer::texture::Texture;
+use renderer::material::{Material, MaterialUniform};
+use input_manager::input_manager::InputManager;
+use entity::rendermesh::RenderMesh;
+use entity::entity::Entity;
+use renderer::camera::camera::{Camera, CameraUniform};
+use renderer::camera::cameracontroller::CameraController;
+use renderer::uniforms::{UniformUtils, UniformBuffer};
+use component::ComponentBase;
+use transform::{Translation, Rotation, NonUniformScale, Transform, TransformUniform};
+use system::System;
+use system::movement_system::MovementSystem;
+
+
+use std::rc::Rc;
+use std::cell::RefCell;
+
+use futures::executor::block_on;
+
+
+const TITLE: &str = "WGPU APP";
 
 fn main() {
+
+    let matches = App::new(TITLE)
+                          .version("1.0")
+                          .author("Dimitri Bobkov <bobkov.dimitri@gmail.com>")
+                          .about("Simple game renderer")
+                          .arg(Arg::with_name("backend")
+                               .short("b")
+                               .long("backend")
+                               .help("Sets a custom backend")
+                               .takes_value(true))
+                          .get_matches();
+
+    let backend = matches.value_of("backend").unwrap_or("primary");
+    backend.to_lowercase();
+
+    let logfile = FileAppender::builder()
+    .encoder(Box::new(PatternEncoder::new("{l} - {m}\n")))
+    .build("log/output.log").unwrap();
+
+    let config = Config::builder()
+        .appender(Appender::builder().build("logfile", Box::new(logfile)))
+        .build(Root::builder()
+                .appender("logfile")
+                .build(LevelFilter::Info)).unwrap();
+
+    log4rs::init_config(config).unwrap();
+
+    log::info!("Hello, world!");
+
     if cfg!(debug_assertions) {
         println!("RUNNING: Debug");
+        log::info!("App is running in debug mode");
     }else{
         println!("RUNNING: Release");
+        log::info!("App is running in release mode");
     }
-
     let event_loop = EventLoop::new();
     
     let window = WindowBuilder::new()
-    .with_inner_size(winit::dpi::Size::from(winit::dpi::LogicalSize{ width: 1280, height: 720}))
-    .with_title("WGPU TEST APP")        
-    .with_decorations(false)
-    .with_maximized(true)
-    .with_transparent(false)
-    .build(&event_loop)
-    .unwrap();
-    println!("~~~Starting~~~");
-    let renderer = block_on(Renderer::new(&window));
-    let mut input_manager = InputManager::new();
+        .with_inner_size(winit::dpi::Size::from(winit::dpi::LogicalSize{ width: 1280, height: 720}))
+        .with_title(TITLE)        
+        .with_decorations(false)
+        .with_maximized(true)
+        .with_transparent(false)
+        .build(&event_loop)
+        .unwrap();
+
+    log::info!("Window created");
+    let renderer = block_on(Renderer::new(&window, &backend));
     let renderer = Rc::new(RefCell::new(renderer));
+    log::info!("Renderer created");
 
     /* User Defined */
-    let mut uniform_utils = UniformUtils::new();
-
 
     let mut entities = Vec::<Entity>::new();
 
-    println!("~~~Pre-Setup finished~~~");
+    let mut movement_system = MovementSystem::new();
+
 
     // Since we share the renderer around, borrow it mutably
     let mut temp_renderer = renderer.borrow_mut();
@@ -131,7 +173,7 @@ fn main() {
     let scale = NonUniformScale::new(cgmath::Vector3::<f32> { x: 1.0, y: 1.0, z: 1.0});
 
     let mut transform = Transform::new(&temp_renderer, translation.value, rotation.value, scale.value);
-    let (transform_group, _, transform_uniform) = transform.create_uniforms(&temp_renderer);
+    let (transform_group, _, _) = transform.create_uniforms(&temp_renderer);
     let transform_group = Rc::new(transform_group);
 
     uniforms.push(Rc::clone(&camera_bind_group));
@@ -141,7 +183,7 @@ fn main() {
     components.push(Box::new(mesh));
     components.push(Box::new(transform));
 
-    entities.push(create_entity(&temp_renderer, &mut uniform_utils, components, uniforms));
+    entities.push(create_entity(components, uniforms));
 
 
     let mut uniforms = Vec::<Rc<wgpu::BindGroup>>::new();
@@ -167,7 +209,7 @@ fn main() {
 
 
     let mut transform = Transform::new(&temp_renderer, translation.value, rotation.value, scale.value);
-    let (transform_group, _, mut transform_uniform) = transform.create_uniforms(&temp_renderer);
+    let (transform_group, _, _) = transform.create_uniforms(&temp_renderer);
     let transform_group = Rc::new(transform_group);
 
     uniforms.push(Rc::clone(&camera_bind_group));
@@ -177,7 +219,7 @@ fn main() {
     components.push(Box::new(mesh));
     components.push(Box::new(transform));
 
-    entities.push(create_entity(&temp_renderer, &mut uniform_utils, components, uniforms));
+    entities.push(create_entity(components, uniforms));
 
     // recreate pipeline with layouts (needs mut)
     temp_renderer.recreate_pipeline(&layouts);
@@ -185,8 +227,9 @@ fn main() {
     drop(temp_renderer);
 
     /* Game Loop Defined */
-    println!("~~~Setup finished~~~");
-    let mut x = 0.0;
+
+    log::info!("Starting main loop");
+
     event_loop.run(move |event, _, control_flow|  
         match event {
         Event::WindowEvent {
@@ -235,25 +278,15 @@ fn main() {
             cam_uniform.update_view_proj(&camera);
             renderer.write_buffer(camera.get_buffer_reference(), 0, &[cam_uniform]);
 
-            let transform = entities[0].get_component_mut::<Transform>(Transform::get_component_id()).unwrap();
-            transform.position += cgmath::Vector3::<f32> { x: 0.001, y: 0.001, z: 0.0};
-            transform.rotation = cgmath::Quaternion::from(cgmath::Euler {
-                x: cgmath::Deg(0.0),
-                y: cgmath::Deg(0.0),
-                z: cgmath::Deg(x),
-            });
-            x += 0.6;
-            transform_uniform.update(transform.generate_matrix());
+            movement_system.execute(&renderer, &mut entities);
 
-            renderer.write_buffer(transform.get_buffer_reference(), 0, &[transform_uniform]);
+
             renderer.update();
-
-            let mouse_pos = input_manager.get_mouse_position();
             
             let clear_color = wgpu::Color {
-                r: 0.5,
-                g: 0.3,
-                b: 0.6,
+                r: 0.0,
+                g: 0.0,
+                b: 0.0,
                 a: 0.5,
             };
 
@@ -262,9 +295,9 @@ fn main() {
                 // Recreate the swap_chain if lost
                 Err(wgpu::SwapChainError::Lost) => renderer.resize(window_size),
                 // The system is out of memory, we should probably quit
-                Err(wgpu::SwapChainError::OutOfMemory) => *control_flow = ControlFlow::Exit,
+                Err(wgpu::SwapChainError::OutOfMemory) => {*control_flow = ControlFlow::Exit; log::error!("Device out of memory!")},
                 // All other errors (Outdated, Timeout) should be resolved by the next frame
-                Err(e) => eprintln!("{:?}", e),
+                Err(e) => {eprintln!("{:?}", e); log::error!("{:?}", e)},
             }
             
         }
@@ -280,7 +313,9 @@ fn main() {
 );
 }
 
-fn create_entity(temp_renderer: &Renderer, uniform_utils: &mut UniformUtils, mut components: Vec::<Box<dyn ComponentBase>>, mut uniforms: Vec::<Rc<wgpu::BindGroup>>) -> Entity{
+fn create_entity(components: Vec::<Box<dyn ComponentBase>>, uniforms: Vec::<Rc<wgpu::BindGroup>>) -> Entity{
+    let component_count = format!("Entity created with {:?} components", components.len());
+    log::info!("{}", &component_count);
     let mut entity = Entity::new(components);
     entity.set_uniforms(uniforms);
     entity
