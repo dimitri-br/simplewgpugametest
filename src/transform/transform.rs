@@ -1,4 +1,4 @@
-use crate::{ComponentBase, UniformBuffer, Renderer};
+use crate::{ComponentBase, UniformBuffer, Renderer, UniformUtils, Rc};
 use wgpu::util::DeviceExt;
 use cgmath::{InnerSpace, SquareMatrix};
 use std::any::Any;
@@ -14,10 +14,11 @@ pub const OPENGL_TO_WGPU_MATRIX: cgmath::Matrix4<f32> = cgmath::Matrix4::new(
 const ID: u32 = 4;
 
 pub struct Transform{
-    position: cgmath::Vector3::<f32>,
-    rotation: cgmath::Quaternion::<f32>,
-    scale: cgmath::Vector3::<f32>,
+    pub position: cgmath::Vector3::<f32>,
+    pub rotation: cgmath::Quaternion::<f32>,
+    pub scale: cgmath::Vector3::<f32>,
     pub value: cgmath::Matrix4::<f32>,
+    buffer: wgpu::Buffer,
     id: u32
 }
 impl ComponentBase for Transform{
@@ -27,15 +28,19 @@ impl ComponentBase for Transform{
     fn as_any(&self) -> &dyn Any {
         self
     }
+    fn as_any_mut(&mut self) -> &mut Any {
+        self
+    }
 }
 impl Transform{
-    pub fn new(position: cgmath::Vector3::<f32>, rotation: cgmath::Quaternion::<f32>, scale: cgmath::Vector3::<f32>) -> Self{
+    pub fn new(renderer_reference: &Renderer, position: cgmath::Vector3::<f32>, rotation: cgmath::Quaternion::<f32>, scale: cgmath::Vector3::<f32>) -> Self{
         let value = cgmath::Matrix4::from_translation(position) * cgmath::Matrix4::from(rotation) * cgmath::Matrix4::from_nonuniform_scale(scale.x, scale.y, scale.z);
         Self{
             position,
             rotation,
             scale,
             value,
+            buffer: UniformUtils::generate_empty_buffer(renderer_reference),
             id: ID
         }
     }
@@ -43,11 +48,24 @@ impl Transform{
         ID
     }
 
-    pub fn create_uniforms(&self, renderer_reference: &Renderer) -> TransformUniform{
+    pub fn create_uniforms(&mut self, renderer_reference: &Renderer) -> (wgpu::BindGroup, wgpu::BindGroupLayout, TransformUniform){
         let mut translation_uniform = TransformUniform::new();
         translation_uniform.update(OPENGL_TO_WGPU_MATRIX * self.value);
-        translation_uniform.create_uniform_buffer(renderer_reference);
-        translation_uniform
+        let buffer = translation_uniform.create_uniform_buffer(renderer_reference);
+        let layout = UniformUtils::create_bind_group_layout(renderer_reference, 0, wgpu::ShaderStage::VERTEX, Some("Transform"));
+        self.buffer = buffer;
+        (UniformUtils::create_bind_group(&renderer_reference, &self.buffer, &layout, 0, Some("Transform")), layout, translation_uniform)
+    }
+
+    pub fn get_buffer_reference(&self) -> &wgpu::Buffer{
+        &self.buffer
+    }
+
+    pub fn generate_matrix(&mut self) -> cgmath::Matrix4::<f32>{
+        self.value = cgmath::Matrix4::from_translation(self.position) * 
+        cgmath::Matrix4::from(self.rotation) * cgmath::Matrix4::from_nonuniform_scale(self.scale.x, self.scale.y, self.scale.z);
+
+        OPENGL_TO_WGPU_MATRIX * self.value
     }
 }
 

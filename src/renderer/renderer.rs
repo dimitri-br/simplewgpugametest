@@ -21,7 +21,7 @@ impl Renderer {
 
         // The instance is a handle to our GPU
         // BackendBit::PRIMARY => Vulkan + Metal + DX12 + Browser WebGPU
-        let instance = wgpu::Instance::new(wgpu::BackendBit::DX12);
+        let instance = wgpu::Instance::new(wgpu::BackendBit::PRIMARY);
         let surface = unsafe { instance.create_surface(window) };
         
         let adapter = instance.request_adapter(
@@ -179,18 +179,16 @@ impl Renderer {
             });
 
             render_pass.set_pipeline(&self.render_pipeline); // 2.
-            let mut meshes = Vec::<&RenderMesh>::new();
+
             for entity in entities.iter(){
-                match entity.get_component::<RenderMesh>(RenderMesh::get_component_id()){
-                    Ok(rm) => { meshes.push(rm) }
+                let mesh = match entity.get_component::<RenderMesh>(RenderMesh::get_component_id()){
+                    Ok(rm) => { rm }
                     Err(e) => panic!("{:?}", e)
-                }
-            }
-            for mesh in meshes.iter(){
+                };
                 // 0 - texture count is reserved for textures
                 render_pass.set_bind_group(0, &mesh.borrow_material().borrow_texture().get_texture_group(), &[]);
                 let mut i: u32 = 1;
-                for uniform in mesh.get_uniforms().iter(){
+                for uniform in entity.get_uniforms().iter(){
                     render_pass.set_bind_group(i, &uniform, &[]);
                     i += 1;
                 }
@@ -201,8 +199,8 @@ impl Renderer {
                     render_pass.set_index_buffer(mesh.get_index_buffer().slice(..));
                     render_pass.draw_indexed(0..mesh.get_num_indices(), 0, 0..1);
                 }
-
             }
+
         }
         
         

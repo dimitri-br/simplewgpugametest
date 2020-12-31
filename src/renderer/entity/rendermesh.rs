@@ -1,5 +1,5 @@
 use wgpu::util::DeviceExt;
-use crate::{Renderer, Vertex, Material, MaterialUniform, Rc, ComponentBase};
+use crate::{Renderer, Vertex, Material, MaterialUniform, Rc, ComponentBase, UniformUtils};
 use std::any::Any;
 
 const ID: u32 = 0;
@@ -11,7 +11,6 @@ pub struct RenderMesh{
     num_vertices: u32,
     num_indices: u32,
     material: Material,
-    uniforms: Vec::<Rc::<wgpu::BindGroup>>,
     pub id: u32,
 }
 impl ComponentBase for RenderMesh{
@@ -19,6 +18,9 @@ impl ComponentBase for RenderMesh{
         self.id
     }
     fn as_any(&self) -> &dyn Any {
+        self
+    }
+    fn as_any_mut(&mut self) -> &mut Any {
         self
     }
 }
@@ -60,7 +62,6 @@ impl RenderMesh{
         let num_vertices = VERTICES.len() as u32;
         let num_indices = INDICES.len() as u32;
 
-        let uniforms = Vec::<Rc::<wgpu::BindGroup>>::new();
 
         Self{
             vertex_buffer,
@@ -68,7 +69,6 @@ impl RenderMesh{
             num_vertices,
             num_indices,
             material,
-            uniforms,
             id: ID
         }
     }
@@ -96,16 +96,7 @@ impl RenderMesh{
         &self.material
     }
 
-    pub fn add_new_uniform(&mut self, uniform: Rc<wgpu::BindGroup>){
-        self.uniforms.push(uniform);
-    }
-
-    pub fn get_uniforms(&self) -> Rc<&Vec::<Rc<wgpu::BindGroup>>>{
-        Rc::new(&self.uniforms)
-    }
-
-    pub fn generate_material_uniforms(&mut self, renderer_reference: &Renderer) -> (wgpu::BindGroup, wgpu::BindGroupLayout, MaterialUniform, wgpu::Buffer){
-        let (bind_group, layout, material_uniform, buffer) = self.material.create_uniform_group(renderer_reference);
-        (bind_group, layout, material_uniform, buffer)
+    pub fn generate_material_uniforms(&mut self, renderer_reference: &Renderer) -> (wgpu::BindGroup, wgpu::BindGroupLayout, MaterialUniform){
+        self.material.create_uniform_group(renderer_reference)
     }
 }

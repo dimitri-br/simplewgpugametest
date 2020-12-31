@@ -1,18 +1,18 @@
-pub mod camera_uniform;
-
-use crate::{Renderer};
+use crate::{Renderer, Rc};
+use wgpu::util::DeviceExt;
 
 pub struct UniformUtils{
-    pub uniforms: Vec<Box<dyn UniformBuffer>>,
-    pub buffers: Vec<Box<Vec::<wgpu::Buffer>>>,
-
+    pub uniforms: Vec<Rc<dyn UniformBuffer>>,
+    pub buffers: Vec<Rc<Vec::<Rc<wgpu::Buffer>>>>,
+    idx: u32,
 }
 
 impl UniformUtils{
     pub fn new() -> Self{
         Self{
-            uniforms: Vec::<Box<dyn UniformBuffer>>::new(),
-            buffers: Vec::<Box<Vec::<wgpu::Buffer>>>::new(),
+            uniforms: Vec::<Rc<dyn UniformBuffer>>::new(),
+            buffers: Vec::<Rc<Vec::<Rc<wgpu::Buffer>>>>::new(),
+            idx: 0
         }
     }
     pub fn create_bind_group_layout(renderer_reference: &Renderer, binding: u32, visibility: wgpu::ShaderStage, label: Option<&str>) -> wgpu::BindGroupLayout{
@@ -44,19 +44,19 @@ impl UniformUtils{
             label,
         })
     }
-    pub fn add<T: UniformBuffer>(&mut self, k: T, v: Vec::<wgpu::Buffer>) where T: UniformBuffer + 'static{
-        self.uniforms.push(Box::new(k));
-        self.buffers.push(Box::new(v));
+
+    // Meant ONLY for initializing components!!!!
+    pub fn generate_empty_buffer(renderer_reference: &Renderer) -> wgpu::Buffer{
+        renderer_reference.device.create_buffer_init(
+            &wgpu::util::BufferInitDescriptor {
+                label: Some("Rotation Uniform Buffer"),
+                contents: bytemuck::cast_slice(&[0]),
+                usage: wgpu::BufferUsage::UNIFORM | wgpu::BufferUsage::COPY_DST,
+            }
+        )
     }
 
-    pub fn get_buffer_by_index(&self, index: usize) -> &Box<Vec::<wgpu::Buffer>>{
-        &self.buffers[index]
-    }
-    pub fn get_uniform_by_index(&self, index: usize) -> &Box<dyn UniformBuffer>{
-        &self.uniforms[index]
-    }
 }
 
 pub trait UniformBuffer{
-    
 }

@@ -6,15 +6,16 @@ pub struct Material{
     texture: Rc<Texture>,
     shininess: f32,
     metallic: f32,
+    buffer: wgpu::Buffer,
 }
 
 impl Material{
-    pub fn new(texture: Rc<Texture>, shininess: f32, metallic: f32) -> Self{
+    pub fn new(renderer_reference: &Renderer, texture: Rc<Texture>, shininess: f32, metallic: f32) -> Self{
         Self{
             texture,
             shininess,
             metallic,
-
+            buffer: UniformUtils::generate_empty_buffer(renderer_reference)
         }
     }
 
@@ -22,18 +23,23 @@ impl Material{
         &self.texture
     }
 
-    fn create_uniform_layout(&self, renderer_reference: &Renderer) -> wgpu::BindGroupLayout{
 
+
+    pub fn create_uniform_group(&mut self, renderer_reference: &Renderer) -> (wgpu::BindGroup, wgpu::BindGroupLayout, MaterialUniform){
+        let material_uniform = MaterialUniform::new(self.shininess, self.metallic);
+        let buffer = material_uniform.create_uniform_buffer(renderer_reference);
+        let layout = Material::create_uniform_layout(renderer_reference);
+        self.buffer = buffer;
+        (UniformUtils::create_bind_group(renderer_reference, &self.buffer, &layout, 0, Some("material")), layout, material_uniform)
+    }
+
+    pub fn create_uniform_layout(renderer_reference: &Renderer) -> wgpu::BindGroupLayout{
         UniformUtils::create_bind_group_layout(renderer_reference, 0, wgpu::ShaderStage::FRAGMENT, Some("material"))
     }
 
-    pub fn create_uniform_group(&mut self, renderer_reference: &Renderer) -> (wgpu::BindGroup, wgpu::BindGroupLayout, MaterialUniform, wgpu::Buffer){
-        let material_uniform = MaterialUniform::new(self.shininess, self.metallic);
-        let buffer = material_uniform.create_uniform_buffer(renderer_reference);
-        let layout = self.create_uniform_layout(renderer_reference);
-        (UniformUtils::create_bind_group(renderer_reference, &buffer, &layout, 0, Some("material")), layout, material_uniform, buffer)
+    pub fn get_buffer_reference(&self) -> &wgpu::Buffer{
+        &self.buffer
     }
-
 }
 
 
@@ -44,6 +50,7 @@ impl Material{
 pub struct MaterialUniform{
     shininess: f32,
     metallic: f32,
+
 }
 impl MaterialUniform{
     pub fn new(shininess: f32, metallic: f32) -> Self{
@@ -64,5 +71,4 @@ impl MaterialUniform{
 
 }
 impl crate::UniformBuffer for MaterialUniform{
-
 }
