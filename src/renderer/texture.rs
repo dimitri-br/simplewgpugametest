@@ -147,7 +147,7 @@ impl Texture {
                 label: label,
             }
         );
-        
+        log::info!("Texture {:?} loaded", label);
         
         Ok(Self { texture, view, sampler, texture_bind_group, texture_bind_group_layout })
     }

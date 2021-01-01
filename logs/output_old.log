@@ -1,0 +1,21 @@
+2021-01-01 15:27:43| game_test: INFO - Hello, world!
+2021-01-01 15:27:43| game_test: INFO - App is running in release mode
+2021-01-01 15:27:44| game_test: INFO - Window created
+2021-01-01 15:27:44| game_test: INFO - Renderer created
+2021-01-01 15:27:44| game_test::entity::entitymanager: INFO - Entity Manager Initialized
+2021-01-01 15:27:44| game_test::renderer::texture: INFO - Texture Some("./data/textures/smiley.png") loaded
+2021-01-01 15:27:44| game_test::renderer::texture: INFO - Texture Some("./data/textures/happy-tree.png") loaded
+2021-01-01 15:27:44| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
+2021-01-01 15:27:44| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
+2021-01-01 15:27:44| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
+2021-01-01 15:27:44| game_test::entity::entitymanager: INFO - Entity created with 3 components
+2021-01-01 15:27:44| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
+2021-01-01 15:27:44| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
+2021-01-01 15:27:44| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
+2021-01-01 15:27:44| game_test::entity::entitymanager: INFO - Entity created with 2 components
+2021-01-01 15:27:44| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
+2021-01-01 15:27:44| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
+2021-01-01 15:27:44| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
+2021-01-01 15:27:44| game_test::entity::entitymanager: INFO - Entity created with 2 components
+2021-01-01 15:27:44| game_test: INFO - Starting main loop
+2021-01-01 15:27:50| game_test: INFO - User Quit Application

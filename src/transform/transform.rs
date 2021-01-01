@@ -73,6 +73,12 @@ impl Transform{
     pub fn get_uniform(&self) -> Rc<RefCell<TransformUniform>>{
         Rc::new(RefCell::new(self.uniform))
     }
+
+    pub fn update_uniform_buffers(&mut self, renderer_reference: &Renderer){
+        let matrix = self.generate_matrix();
+        self.uniform.update(matrix);
+        renderer_reference.write_buffer(self.get_buffer_reference(), 0, &[self.uniform]);
+    }
 }
 
 // We need this for Rust to store our data correctly for the shaders

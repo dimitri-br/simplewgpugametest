@@ -24,6 +24,7 @@ impl ComponentBase for Translation{
 
 impl Translation{
     pub fn new(value: cgmath::Vector3::<f32>) -> Self{
+        log::warn!("Make sure to add this data to a Transform component");
         Self{
             value,
             id: ID

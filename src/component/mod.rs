@@ -1,4 +1,8 @@
 //Component Base
+pub mod movement_component;
+pub mod player_movement_component;
+
+
 use std::any::Any;
 
 trait Component {}

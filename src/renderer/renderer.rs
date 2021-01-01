@@ -1,4 +1,4 @@
-use crate::{Vertex, RenderMesh, Entity, ComponentBase};
+use crate::{Vertex, RenderMesh, EntityManager};
 use std::any::Any;
 use winit::{
     window::Window,
@@ -61,7 +61,7 @@ impl Renderer {
         
 
         // Create shader modules (Kind of like a link to the shaders). This links to a dummy shader (which will be changed after all uniform layouts have been gathered.)
-        // The dummy shader also acts as a fallback shader
+        // The dummy shader also acts as a fallback shader. Required for DX12
         let vs_module = device.create_shader_module(wgpu::include_spirv!("../shaders/dummy.vert.spv"));
         let fs_module = device.create_shader_module(wgpu::include_spirv!("../shaders/dummy.frag.spv"));
         let render_pipeline = Renderer::create_pipeline(&device, &sc_desc, vs_module, fs_module, &[]);
@@ -162,7 +162,7 @@ impl Renderer {
         // Not sure what to run here, maybe pipeline switching for multishader support?
     }
 
-    pub fn render(&mut self, clear_color: wgpu::Color, entities: &Vec::<Entity>) -> Result<(), wgpu::SwapChainError> {
+    pub fn render(&mut self, clear_color: wgpu::Color, entities: &EntityManager) -> Result<(), wgpu::SwapChainError> {
         let frame = self
         .swap_chain
         .get_current_frame()?
@@ -188,7 +188,7 @@ impl Renderer {
 
             render_pass.set_pipeline(&self.render_pipeline); // 2.
 
-            for entity in entities.iter(){
+            for entity in entities.get_entities_with_type(RenderMesh::get_component_id()){
                 let mesh = match entity.get_component::<RenderMesh>(RenderMesh::get_component_id()){
                     Ok(rm) => { rm }
                     Err(e) => panic!("{:?}", e)

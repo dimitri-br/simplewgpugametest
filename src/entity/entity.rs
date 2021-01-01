@@ -11,17 +11,18 @@ fn downcast_mut<T: ComponentBase + 'static>(this: &mut dyn ComponentBase) -> Opt
 
 pub struct Entity{
     pub components: Vec<Box<dyn ComponentBase>>,
-    pub 
-    uniforms: Vec::<Rc::<wgpu::BindGroup>>,
+    pub uniforms: Vec::<Rc::<wgpu::BindGroup>>,
+    pub id: usize,
 }
 
 impl Entity{
-    pub fn new(components: Vec<Box<dyn ComponentBase>>) -> Self{
+    pub fn new(components: Vec<Box<dyn ComponentBase>>, id: usize) -> Self{
         let uniforms = Vec::<Rc::<wgpu::BindGroup>>::new();
 
         Self{
             components,
-            uniforms
+            uniforms,
+            id
         }
     }
 
@@ -29,8 +30,8 @@ impl Entity{
         self.components.push(component);
     }
 
-    pub fn try_remove_component(&mut self, component: Box<dyn ComponentBase>) -> Result<(), &str>{
-        let index = self.components.iter().position(|x| x.get_id() == component.get_id());// Compare ID to find the component
+    pub fn try_remove_component(&mut self, component_id: u32) -> Result<(), &str>{
+        let index = self.components.iter().position(|x| x.get_id() == component_id);// Compare ID to find the component
         let index = match index{
             Some(v) => v,
             None => {return Err("Component not in entity");} 

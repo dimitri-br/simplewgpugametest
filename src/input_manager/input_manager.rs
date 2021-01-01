@@ -1,8 +1,10 @@
 use winit::event::WindowEvent;
+use winit::event::VirtualKeyCode;
+use winit::event::ElementState;
+use std::collections::HashMap;
 
 pub struct InputManager{
-    keycode: u32,
-    key: winit::event::VirtualKeyCode,
+    keys: HashMap::<VirtualKeyCode,ElementState>,
     mouse_pos: cgmath::Vector2::<f64>,
     mouse_button: winit::event::MouseButton
 }
@@ -10,8 +12,7 @@ pub struct InputManager{
 impl InputManager{
     pub fn new() -> Self{
         Self{
-            keycode: 0,
-            key: winit::event::VirtualKeyCode::End,
+            keys: HashMap::<VirtualKeyCode,ElementState>::new(),
             mouse_pos: cgmath::Vector2::<f64> { x: 0.0, y: 0.0 },
             mouse_button: winit::event::MouseButton::Left
         }
@@ -19,9 +20,16 @@ impl InputManager{
 
     pub fn update(&mut self, input_event: &WindowEvent){
         match input_event{
-            WindowEvent::KeyboardInput {input, ..} => { 
-                self.keycode = input.scancode;
-                self.key = input.virtual_keycode.unwrap();
+            WindowEvent::KeyboardInput {
+                input: winit::event::KeyboardInput {
+                    state,
+                    virtual_keycode: Some(keycode),
+                    ..
+                },
+                ..
+            } => { 
+                let val = self.keys.entry(*keycode).or_insert(*state);
+                *val = *state;
             },
             WindowEvent::MouseInput {button, ..} => {
                 self.mouse_button = *button;
@@ -34,12 +42,15 @@ impl InputManager{
         }
     }
 
-    pub fn get_key(&self) -> winit::event::VirtualKeyCode{
-        self.key
+    pub fn get_key_value(&self, key: VirtualKeyCode) -> ElementState{
+        self.keys[&key]
     }
 
-    pub fn get_keycode(&self) -> u32{
-        self.keycode
+    pub fn try_get_key_value(&self, key: VirtualKeyCode) -> Result<ElementState, ()>{
+        match self.keys.get_key_value(&key){
+            Some(v) => Ok(*v.1),
+            None => Err(())
+        }
     }
 
     pub fn get_mouse_position(&self) -> cgmath::Vector2::<f64>{

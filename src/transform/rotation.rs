@@ -25,6 +25,7 @@ impl ComponentBase for Rotation{
 
 impl Rotation{
     pub fn new(value: cgmath::Quaternion::<f32>) -> Self{
+        log::warn!("Make sure to add this data to a Transform component");
         Self{
             value,
             id: ID

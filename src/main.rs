@@ -10,9 +10,15 @@ use winit::{
 };
 
 use log::LevelFilter;
-use log4rs::append::file::FileAppender;
-use log4rs::encode::pattern::PatternEncoder;
-use log4rs::config::{Appender, Config, Root};
+use log4rs::{
+    append::{
+        console::{ConsoleAppender, Target},
+        file::FileAppender,
+    },
+    config::{Appender, Config, Root},
+    encode::pattern::PatternEncoder,
+    filter::threshold::ThresholdFilter,
+};
 
 mod renderer;
 mod component;
@@ -29,13 +35,18 @@ use renderer::material::{Material, MaterialUniform};
 use input_manager::input_manager::InputManager;
 use entity::rendermesh::RenderMesh;
 use entity::entity::Entity;
+use entity::entitymanager::EntityManager;
 use renderer::camera::camera::{Camera, CameraUniform};
 use renderer::camera::cameracontroller::CameraController;
 use renderer::uniforms::{UniformUtils, UniformBuffer};
 use component::ComponentBase;
 use transform::{Translation, Rotation, NonUniformScale, Transform, TransformUniform};
-use system::System;
+use system::SystemBase;
 use system::movement_system::MovementSystem;
+use system::player_movement_system::PlayerMovementSystem;
+use system::systemmanager::SystemManager;
+use component::movement_component::MovementComponent;
+use component::player_movement_component::PlayerMovementComponent;
 
 
 use std::rc::Rc;
@@ -47,7 +58,6 @@ use futures::executor::block_on;
 const TITLE: &str = "WGPU APP";
 
 fn main() {
-
     let matches = App::new(TITLE)
                           .version("1.0")
                           .author("Dimitri Bobkov <bobkov.dimitri@gmail.com>")
@@ -57,22 +67,69 @@ fn main() {
                                .long("backend")
                                .help("Sets a custom backend")
                                .takes_value(true))
+                          .arg(Arg::with_name("debug")
+                                        .short("d")
+                                        .long("debug")
+                                        .help("Enable debug logging [full, info, warn, err, off]")
+                                        .takes_value(true)
+                                        .value_name("DEBUG_LEVEL"))
                           .get_matches();
 
     let backend = matches.value_of("backend").unwrap_or("primary");
     backend.to_lowercase();
+    
+    let mut level = log::LevelFilter::Info;
 
+    if matches.is_present("debug") {
+        level = match matches.value_of("debug").unwrap_or("info"){
+            "full" => log::LevelFilter::Trace,
+            "info" => log::LevelFilter::Info,
+            "warn" => log::LevelFilter::Warn,
+            "err" => log::LevelFilter::Error,
+            "off" => {log::LevelFilter::Off},
+            _ => log::LevelFilter::Info,
+        };
+    }
+
+
+
+
+    let file_path = "./logs/output.log";
+    let file_path_copy = "./logs/output_old.log";
+
+    match std::fs::copy(file_path, file_path_copy){
+        Ok(_) => {},
+        Err(_) => {},
+    };
+
+    match std::fs::remove_file(file_path){
+        Ok(_) => {},
+        Err(_) => {},
+    };
+
+    // Logging to log file.
     let logfile = FileAppender::builder()
-    .encoder(Box::new(PatternEncoder::new("{l} - {m}\n")))
-    .build("log/output.log").unwrap();
+        // Pattern: https://docs.rs/log4rs/*/log4rs/encode/pattern/index.html
+        .encoder(Box::new(PatternEncoder::new("{d(%Y-%m-%d %H:%M:%S)}| {t}: {l} - {m}\n")))
+        .build(file_path)
+        .unwrap();
 
+    // Log Trace level output to file where trace is the default level
+    // and the programmatically specified level to stderr.
     let config = Config::builder()
         .appender(Appender::builder().build("logfile", Box::new(logfile)))
-        .build(Root::builder()
+        .build(
+            Root::builder()
                 .appender("logfile")
-                .build(LevelFilter::Info)).unwrap();
+                .build(level),
+        )
+        .unwrap();
 
-    log4rs::init_config(config).unwrap();
+    // Use this to change log levels at runtime.
+    // This means you can change the default log level to trace
+    // if you are trying to debug an issue and need more logs on then turn it off
+    // once you are done.
+    let _handle = log4rs::init_config(config).unwrap();
 
     log::info!("Hello, world!");
 
@@ -83,6 +140,10 @@ fn main() {
         println!("RUNNING: Release");
         log::info!("App is running in release mode");
     }
+
+
+    // Actual program starts here
+
     let event_loop = EventLoop::new();
     
     let window = WindowBuilder::new()
@@ -100,10 +161,15 @@ fn main() {
     log::info!("Renderer created");
 
     /* User Defined */
+    let mut system_manager = SystemManager::new();
+    let mut entity_manager = EntityManager::new();
+    let mut input_manager = InputManager::new();
 
-    let mut entities = Vec::<Entity>::new();
+    let movement_system = MovementSystem::new();
+    let player_movement_system = PlayerMovementSystem::new();
 
-    let mut movement_system = MovementSystem::new();
+    system_manager.add_system(Box::new(movement_system));
+    system_manager.add_system(Box::new(player_movement_system));
 
 
     // Since we share the renderer around, borrow it mutably
@@ -175,6 +241,7 @@ fn main() {
     let mut transform = Transform::new(&temp_renderer, translation.value, rotation.value, scale.value);
     let (transform_group, _, _) = transform.create_uniforms(&temp_renderer);
     let transform_group = Rc::new(transform_group);
+    let pmc = PlayerMovementComponent::new(0.1);
 
     uniforms.push(Rc::clone(&camera_bind_group));
     uniforms.push(Rc::clone(&material_group));
@@ -182,9 +249,11 @@ fn main() {
 
     components.push(Box::new(mesh));
     components.push(Box::new(transform));
+    components.push(Box::new(pmc));
 
-    entities.push(create_entity(components, uniforms));
-
+    {
+        entity_manager.create_entity(components, uniforms);
+    }
 
     let mut uniforms = Vec::<Rc<wgpu::BindGroup>>::new();
     let mut components = Vec::<Box<dyn ComponentBase>>::new();
@@ -219,7 +288,61 @@ fn main() {
     components.push(Box::new(mesh));
     components.push(Box::new(transform));
 
-    entities.push(create_entity(components, uniforms));
+    {
+        entity_manager.create_entity(components, uniforms);
+    }
+
+    let mut uniforms = Vec::<Rc<wgpu::BindGroup>>::new();
+    let mut components = Vec::<Box<dyn ComponentBase>>::new();
+
+    // create material
+    let material = Material::new(&temp_renderer, Rc::clone(&diffuse_texture2), 1.0, 0.0);
+
+    // create new mesh (TODO - mesh loading) and assign material
+    let mut mesh = RenderMesh::new(&temp_renderer, material);
+    let (material_group, _, _) = mesh.generate_material_uniforms(&temp_renderer);
+    let material_group = Rc::new(material_group);
+
+    let translation = Translation::new(cgmath::Vector3::<f32> { x: -2.0, y: 1.0, z: 0.0});
+
+    let rotation = Rotation::new(cgmath::Quaternion::from(cgmath::Euler {
+        x: cgmath::Deg(0.0),
+        y: cgmath::Deg(0.0),
+        z: cgmath::Deg(0.0),
+    }));
+
+    let scale = NonUniformScale::new(cgmath::Vector3::<f32> { x: 1.0, y: 1.0, z: 1.0});
+
+
+    let mut transform = Transform::new(&temp_renderer, translation.value, rotation.value, scale.value);
+    let (transform_group, _, _) = transform.create_uniforms(&temp_renderer);
+    let transform_group = Rc::new(transform_group);
+
+    uniforms.push(Rc::clone(&camera_bind_group));
+    uniforms.push(Rc::clone(&material_group));
+    uniforms.push(Rc::clone(&transform_group));
+
+    components.push(Box::new(mesh));
+    components.push(Box::new(transform));
+
+    {
+
+        entity_manager.create_entity(components, uniforms);
+        let new_entity = entity_manager.find_entity(2).unwrap();
+        entity_manager.add_component_data(&new_entity, Box::new(MovementComponent::new(0.002)));
+        let component = entity_manager.get_component_data::<Transform>(new_entity, Transform::get_component_id()).unwrap();
+        component.position = cgmath::Vector3::<f32> { x: 0.0, y: -2.0, z: 0.0 };
+        let transform_uniform_ref = component.get_uniform();
+        let mut transform_uniform = transform_uniform_ref.borrow_mut();
+        transform_uniform.update(component.generate_matrix());
+        temp_renderer.write_buffer(component.get_buffer_reference(), 0, &[*transform_uniform]);
+        drop(component);
+
+        let new_entity = entity_manager.find_entity(1).unwrap();
+        entity_manager.add_component_data(&new_entity, Box::new(MovementComponent::new(0.001)));
+    }
+
+
 
     // recreate pipeline with layouts (needs mut)
     temp_renderer.recreate_pipeline(&layouts);
@@ -229,7 +352,6 @@ fn main() {
     /* Game Loop Defined */
 
     log::info!("Starting main loop");
-
     event_loop.run(move |event, _, control_flow|  
         match event {
         Event::WindowEvent {
@@ -237,6 +359,7 @@ fn main() {
             window_id,
         } if window_id == window.id() =>  {
             camera_controller.process_events(event);
+            input_manager.update(event);
             let mut renderer = renderer.borrow_mut();
             match event{
             WindowEvent::CloseRequested => *control_flow = ControlFlow::Exit,
@@ -249,7 +372,7 @@ fn main() {
                         state: ElementState::Pressed,
                         virtual_keycode: Some(VirtualKeyCode::Escape),
                         ..
-                    } => *control_flow = ControlFlow::Exit,
+                    } => {    log::info!("User Quit Application"); *control_flow = ControlFlow::Exit},
                     _ => {}
                 }
             },
@@ -257,13 +380,14 @@ fn main() {
                 renderer.resize(*physical_size);
                 let sc_desc = &renderer.sc_desc;
                 camera.aspect = sc_desc.width as f32 / sc_desc.height as f32;
+                log::info!("User resized screen");
             }
             WindowEvent::ScaleFactorChanged { new_inner_size, .. } => {
                 // new_inner_size is &&mut so we have to dereference it twice
                 renderer.resize(**new_inner_size);
                 let sc_desc = &renderer.sc_desc;
                 camera.aspect = sc_desc.width as f32 / sc_desc.height as f32;
-
+                log::info!("User resized screen");
             },
             
             _ => {}
@@ -274,13 +398,13 @@ fn main() {
 
             let window_size = renderer.borrow().get_window_size();
             let mut renderer = renderer.borrow_mut();
+ 
+
             camera_controller.update_camera(&mut camera);
             cam_uniform.update_view_proj(&camera);
-            renderer.write_buffer(camera.get_buffer_reference(), 0, &[cam_uniform]);
-
-            movement_system.execute(&renderer, &mut entities);
-
-
+            renderer.write_buffer(camera.get_buffer_reference(), 0, &[cam_uniform]);         
+        
+            system_manager.update_systems(&renderer, &mut entity_manager, &input_manager);
             renderer.update();
             
             let clear_color = wgpu::Color {
@@ -290,7 +414,7 @@ fn main() {
                 a: 0.5,
             };
 
-            match renderer.render(clear_color, &entities) {
+            match renderer.render(clear_color, &entity_manager) {
                 Ok(_) => {}
                 // Recreate the swap_chain if lost
                 Err(wgpu::SwapChainError::Lost) => renderer.resize(window_size),
@@ -305,7 +429,6 @@ fn main() {
             // RedrawRequested will only trigger once, unless we manually
             // request it.
             window.request_redraw();
-            
         }
         _ => {}
     }
@@ -313,10 +436,4 @@ fn main() {
 );
 }
 
-fn create_entity(components: Vec::<Box<dyn ComponentBase>>, uniforms: Vec::<Rc<wgpu::BindGroup>>) -> Entity{
-    let component_count = format!("Entity created with {:?} components", components.len());
-    log::info!("{}", &component_count);
-    let mut entity = Entity::new(components);
-    entity.set_uniforms(uniforms);
-    entity
-}
+

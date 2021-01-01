@@ -1,5 +1,5 @@
 [package]
-name = "SimpleGameTest"
+name = "game_test"
 version = "0.1.0"
 authors = ["Dimitri Bobkov <bobkov.dimitri@gmail.com>"]
 edition = "2018"
@@ -17,6 +17,7 @@ bytemuck = { version = "1.4", features = [ "derive" ] }
 anyhow = "1.0"
 clap = "2.33.3"
 log4rs = "1.0.0"
+rand = "0.8.0"
 
 # NEW!
 [build-dependencies]
