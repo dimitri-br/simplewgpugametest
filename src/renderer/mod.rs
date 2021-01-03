@@ -4,3 +4,4 @@ pub mod texture;
 pub mod material;
 pub mod camera;
 pub mod uniforms;
+pub mod postprocessing;

@@ -1,4 +1,5 @@
-use crate::{Vertex, RenderMesh, EntityManager};
+use crate::{Vertex, RenderMesh, EntityManager, PostProcessing, BloomUniform, Texture, Material, Rc};
+use std::collections::HashMap;
 use std::any::Any;
 use winit::{
     window::Window,
@@ -11,7 +12,10 @@ pub struct Renderer {
     pub sc_desc: wgpu::SwapChainDescriptor,
     swap_chain: wgpu::SwapChain,
     size: winit::dpi::PhysicalSize<u32>,
-    pub render_pipeline: wgpu::RenderPipeline,
+    //pub render_pipeline: wgpu::RenderPipeline,
+    pub render_pipelines: HashMap<String, wgpu::RenderPipeline>,
+
+    postprocessing: PostProcessing,
 }
 
 impl Renderer {
@@ -41,7 +45,7 @@ impl Renderer {
 
         let (device, queue) = adapter.request_device(
             &wgpu::DeviceDescriptor {
-                features: wgpu::Features::empty(),
+                features: wgpu::Features::default(),
                 limits: wgpu::Limits::default(),
                 shader_validation: true,
             },
@@ -60,14 +64,10 @@ impl Renderer {
 
         
 
-        // Create shader modules (Kind of like a link to the shaders). This links to a dummy shader (which will be changed after all uniform layouts have been gathered.)
-        // The dummy shader also acts as a fallback shader. Required for DX12
-        let vs_module = device.create_shader_module(wgpu::include_spirv!("../shaders/dummy.vert.spv"));
-        let fs_module = device.create_shader_module(wgpu::include_spirv!("../shaders/dummy.frag.spv"));
-        let render_pipeline = Renderer::create_pipeline(&device, &sc_desc, vs_module, fs_module, &[]);
 
+        let mut render_pipelines = HashMap::<String, wgpu::RenderPipeline>::new();
 
-
+        let postprocessing = PostProcessing::new(&device, &sc_desc);
         Self {
             surface,
             device,
@@ -75,14 +75,15 @@ impl Renderer {
             sc_desc,
             swap_chain,
             size,
-            render_pipeline,
-            
-        }
+            //render_pipeline,
+            render_pipelines,
+            postprocessing
+       }
     }
 
     
-    fn create_pipeline(device: &wgpu::Device, sc_desc: &wgpu::SwapChainDescriptor, vs_module: wgpu::ShaderModule, fs_module: wgpu::ShaderModule,
-        bind_group_layouts: &[&wgpu::BindGroupLayout]) -> wgpu::RenderPipeline {
+    fn generate_pipeline(device: &wgpu::Device, vs_module: wgpu::ShaderModule, fs_module: wgpu::ShaderModule,
+        bind_group_layouts: &[&wgpu::BindGroupLayout], color_states: &[wgpu::ColorStateDescriptor]) -> wgpu::RenderPipeline {
 
        let render_pipeline_layout =
        device.create_pipeline_layout(&wgpu::PipelineLayoutDescriptor {
@@ -112,24 +113,7 @@ impl Renderer {
                 clamp_depth: false,
             }
         ),
-            color_states: &[
-                wgpu::ColorStateDescriptor {
-                    format: sc_desc.format,
-                    color_blend: wgpu::BlendDescriptor {
-                        src_factor: wgpu::BlendFactor::SrcAlpha,
-                        dst_factor: wgpu::BlendFactor::OneMinusSrcAlpha,
-                        operation: wgpu::BlendOperation::Add
-                    },
-                    alpha_blend: wgpu::BlendDescriptor {
-                        src_factor: wgpu::BlendFactor::One,
-                        dst_factor: wgpu::BlendFactor::OneMinusSrcAlpha,
-                        operation: wgpu::BlendOperation::Add
-                    },
-                    //color_blend: wgpu::BlendDescriptor::REPLACE,
-                    //alpha_blend: wgpu::BlendDescriptor::REPLACE,
-                    write_mask: wgpu::ColorWrite::ALL
-                }
-            ]   ,
+        color_states: color_states,
 
         primitive_topology: wgpu::PrimitiveTopology::TriangleList, // 1.
         depth_stencil_state: None, // 2.
@@ -145,10 +129,16 @@ impl Renderer {
     })
    }
 
-   pub fn recreate_pipeline(&mut self, bind_group_layouts: &[&wgpu::BindGroupLayout]){
-    let vs_module = self.device.create_shader_module(wgpu::include_spirv!("../shaders/shader.vert.spv"));
-    let fs_module = self.device.create_shader_module(wgpu::include_spirv!("../shaders/shader.frag.spv"));
-    self.render_pipeline = Renderer::create_pipeline(&self.device, &self.sc_desc, vs_module, fs_module, bind_group_layouts);
+   pub fn create_pipeline(&mut self, name: String, bind_group_layouts: &[&wgpu::BindGroupLayout], vertex_shader: wgpu::ShaderModuleSource, fragment_shader: wgpu::ShaderModuleSource, color_states: &[wgpu::ColorStateDescriptor]){
+    
+    let vs_module = self.device.create_shader_module(vertex_shader);
+    let fs_module = self.device.create_shader_module(fragment_shader);
+    let new_pipeline = Renderer::generate_pipeline(&self.device, vs_module, fs_module, bind_group_layouts, color_states);
+    if !self.render_pipelines.contains_key(&name){
+        self.render_pipelines.insert(name, new_pipeline);
+    }else{
+        *self.render_pipelines.get_mut(&name).unwrap() = new_pipeline;
+    }
    }
 
     pub fn resize(&mut self, new_size: winit::dpi::PhysicalSize<u32>) {
@@ -156,26 +146,42 @@ impl Renderer {
         self.sc_desc.width = new_size.width;
         self.sc_desc.height = new_size.height;
         self.swap_chain = self.device.create_swap_chain(&self.surface, &self.sc_desc);
+        self.postprocessing = PostProcessing::new(&self.device, &self.sc_desc);
     }
 
     pub fn update(&mut self) {
         // Not sure what to run here, maybe pipeline switching for multishader support?
     }
 
-    pub fn render(&mut self, clear_color: wgpu::Color, entities: &EntityManager) -> Result<(), wgpu::SwapChainError> {
+    pub fn render(&mut self, clear_color: wgpu::Color, entities: &EntityManager) -> Result<(), wgpu::SwapChainError> {       
+        let material = Material::new(&self, Rc::new(Texture::from_empty(&self.device).unwrap()), 1.0, 0.0);
+        let framebuffer = RenderMesh::new(&self, material);
+
         let frame = self
         .swap_chain
         .get_current_frame()?
         .output;
 
+        
+
         let mut encoder = self.device.create_command_encoder(&wgpu::CommandEncoderDescriptor {
             label: Some("Render Encoder"),
         });
         {
+            // Pre pass
+            // Main pass
             let mut render_pass = encoder.begin_render_pass(&wgpu::RenderPassDescriptor {
                 color_attachments: &[
                     wgpu::RenderPassColorAttachmentDescriptor {
-                        attachment: &frame.view,
+                        attachment: &self.postprocessing.main_pass_draw_texture_view,
+                        resolve_target: None,
+                        ops: wgpu::Operations {
+                            load: wgpu::LoadOp::Clear(clear_color),
+                            store: true,
+                        }
+                    },
+                    wgpu::RenderPassColorAttachmentDescriptor {
+                        attachment: &self.postprocessing.hdr_draw_texture_view,
                         resolve_target: None,
                         ops: wgpu::Operations {
                             load: wgpu::LoadOp::Clear(clear_color),
@@ -186,7 +192,7 @@ impl Renderer {
                 depth_stencil_attachment: None,
             });
 
-            render_pass.set_pipeline(&self.render_pipeline); // 2.
+            render_pass.set_pipeline(&self.render_pipelines["main"]); // 2.
 
             for entity in entities.get_entities_with_type(RenderMesh::get_component_id()){
                 let mesh = match entity.get_component::<RenderMesh>(RenderMesh::get_component_id()){
@@ -202,13 +208,88 @@ impl Renderer {
                 }
                 render_pass.set_vertex_buffer(0, mesh.get_vertex_buffer().slice(..));
                 if mesh.get_num_indices() == 0{
-                    render_pass.draw(0..mesh.get_num_vertices(), 0..1)
+                    render_pass.draw(0..mesh.get_num_vertices(), 0..1);
                 }else{
                     render_pass.set_index_buffer(mesh.get_index_buffer().slice(..));
                     render_pass.draw_indexed(0..mesh.get_num_indices(), 0, 0..1);
                 }
             }
+        }
+        {
+            encoder.copy_texture_to_texture(
+                wgpu::TextureCopyView{ texture: &self.postprocessing.main_pass_draw_texture, mip_level: 0, origin: wgpu::Origin3d::ZERO}, 
+                wgpu::TextureCopyView{ texture: &self.postprocessing.framebuffer_render_texture, mip_level: 0, origin: wgpu::Origin3d::ZERO}, 
+                self.postprocessing.size);
+            encoder.copy_texture_to_texture(
+                wgpu::TextureCopyView{ texture: &self.postprocessing.hdr_draw_texture, mip_level: 0, origin: wgpu::Origin3d::ZERO}, 
+                wgpu::TextureCopyView{ texture: &self.postprocessing.hdr_render_texture, mip_level: 0, origin: wgpu::Origin3d::ZERO}, 
+                self.postprocessing.size);
+        }
+        {
+            let mut horizontal = true;
+            let mut bloom_uniform = BloomUniform::new(horizontal as u8);
 
+            let bloom_uniform_uniform = bloom_uniform.create_uniform_group(self);
+            let mut bind_group = bloom_uniform_uniform.0;
+            for _ in 0..10{
+                {
+                    let mut render_pass = encoder.begin_render_pass(&wgpu::RenderPassDescriptor {
+                        color_attachments: &[
+                            wgpu::RenderPassColorAttachmentDescriptor {
+                                attachment: &self.postprocessing.hdr_draw_texture_view,
+                                resolve_target: None,
+                                ops: wgpu::Operations {
+                                    load: wgpu::LoadOp::Clear(clear_color),
+                                    store: true,
+                                }
+                            }
+                        ],
+                        depth_stencil_attachment: None,
+                    });
+        
+                    render_pass.set_pipeline(&self.render_pipelines["bloom"]);
+        
+                    render_pass.set_bind_group(0, &self.postprocessing.hdr_render_texture_group, &[]);
+                    
+    
+                    render_pass.set_bind_group(1, &bind_group, &[]);  
+                    
+                    render_pass.set_vertex_buffer(0, framebuffer.get_vertex_buffer().slice(..));
+                    render_pass.draw(0..framebuffer.get_num_vertices(), 0..1);
+    
+                    horizontal = !horizontal;
+                    bloom_uniform.horizonal = horizontal as u8;
+                }
+    
+                {
+                    encoder.copy_texture_to_texture(
+                        wgpu::TextureCopyView{ texture: &self.postprocessing.hdr_draw_texture, mip_level: 0, origin: wgpu::Origin3d::ZERO}, 
+                        wgpu::TextureCopyView{ texture: &self.postprocessing.hdr_render_texture, mip_level: 0, origin: wgpu::Origin3d::ZERO}, 
+                        self.postprocessing.size);
+                }
+            }
+            
+        }
+        {
+            let mut render_pass = encoder.begin_render_pass(&wgpu::RenderPassDescriptor {
+                color_attachments: &[
+                    wgpu::RenderPassColorAttachmentDescriptor {
+                        attachment: &frame.view,
+                        resolve_target: None,
+                        ops: wgpu::Operations {
+                            load: wgpu::LoadOp::Clear(clear_color),
+                            store: true,
+                        }
+                    }
+                ],
+                depth_stencil_attachment: None,
+            });
+            // Post pass
+            render_pass.set_pipeline(&self.render_pipelines["framebuffer"]);
+            render_pass.set_bind_group(0, &self.postprocessing.framebuffer_render_texture_group, &[]);
+            render_pass.set_bind_group(1, &self.postprocessing.hdr_render_texture_group, &[]);
+            render_pass.set_vertex_buffer(0, framebuffer.get_vertex_buffer().slice(..));
+            render_pass.draw(0..framebuffer.get_num_vertices(), 0..1);
         }
         
         

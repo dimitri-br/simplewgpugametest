@@ -87,10 +87,10 @@ impl CameraController {
 
 
         if self.is_right_pressed {
-            camera.eye += right * self.speed;
+            camera.eye -= right * self.speed;
         }
         if self.is_left_pressed {
-            camera.eye -= right * self.speed;
+            camera.eye += right * self.speed;
         }
 
         camera.target = cgmath::Point3::<f32> { x: camera.eye.x, y: camera.eye.y, z: 0.0};

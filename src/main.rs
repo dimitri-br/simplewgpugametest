@@ -32,6 +32,7 @@ use renderer::renderer::Renderer;
 use renderer::vertex::Vertex;
 use renderer::texture::Texture;
 use renderer::material::{Material, MaterialUniform};
+use renderer::postprocessing::{PostProcessing, BloomUniform};
 use input_manager::input_manager::InputManager;
 use entity::rendermesh::RenderMesh;
 use entity::entity::Entity;
@@ -343,14 +344,111 @@ fn main() {
     }
 
 
+    let mut color_states = Vec::<wgpu::ColorStateDescriptor>::new();
+
+
+    // Define the color states for the main pass render pipeline. We need one per color attachment
+    color_states.push(wgpu::ColorStateDescriptor {
+        format: wgpu::TextureFormat::Rgba8UnormSrgb,
+        color_blend: wgpu::BlendDescriptor {
+            src_factor: wgpu::BlendFactor::SrcAlpha,
+            dst_factor: wgpu::BlendFactor::OneMinusSrcAlpha,
+            operation: wgpu::BlendOperation::Add
+        },
+        alpha_blend: wgpu::BlendDescriptor {
+            src_factor: wgpu::BlendFactor::One,
+            dst_factor: wgpu::BlendFactor::OneMinusSrcAlpha,
+            operation: wgpu::BlendOperation::Add
+        },
+        //color_blend: wgpu::BlendDescriptor::REPLACE,
+        //alpha_blend: wgpu::BlendDescriptor::REPLACE,
+        write_mask: wgpu::ColorWrite::ALL
+    });
+
+    color_states.push(wgpu::ColorStateDescriptor {
+        format: wgpu::TextureFormat::Rgba8UnormSrgb,
+        color_blend: wgpu::BlendDescriptor {
+            src_factor: wgpu::BlendFactor::SrcAlpha,
+            dst_factor: wgpu::BlendFactor::OneMinusSrcAlpha,
+            operation: wgpu::BlendOperation::Add
+        },
+        alpha_blend: wgpu::BlendDescriptor {
+            src_factor: wgpu::BlendFactor::One,
+            dst_factor: wgpu::BlendFactor::OneMinusSrcAlpha,
+            operation: wgpu::BlendOperation::Add
+        },
+        //color_blend: wgpu::BlendDescriptor::REPLACE,
+        //alpha_blend: wgpu::BlendDescriptor::REPLACE,
+        write_mask: wgpu::ColorWrite::ALL
+    });
 
     // recreate pipeline with layouts (needs mut)
-    temp_renderer.recreate_pipeline(&layouts);
+    temp_renderer.create_pipeline("main".to_string(), &layouts, wgpu::include_spirv!("./shaders/shader.vert.spv"), wgpu::include_spirv!("./shaders/shader.frag.spv"), &color_states);
+
+    layouts.clear();
+    let main_tex_layout = &Texture::generate_texture_layout_from_device(&temp_renderer.device);
+    let hdr_tex_layout = &Texture::generate_texture_layout_from_device(&temp_renderer.device);
+    layouts.push(main_tex_layout);
+    layouts.push(hdr_tex_layout);
+
+    layouts.remove(1);
+
+    color_states.clear();
+
+    color_states.push(wgpu::ColorStateDescriptor {
+        format: wgpu::TextureFormat::Rgba8UnormSrgb,
+        color_blend: wgpu::BlendDescriptor {
+            src_factor: wgpu::BlendFactor::SrcAlpha,
+            dst_factor: wgpu::BlendFactor::OneMinusSrcAlpha,
+            operation: wgpu::BlendOperation::Add
+        },
+        alpha_blend: wgpu::BlendDescriptor {
+            src_factor: wgpu::BlendFactor::One,
+            dst_factor: wgpu::BlendFactor::OneMinusSrcAlpha,
+            operation: wgpu::BlendOperation::Add
+        },
+        //color_blend: wgpu::BlendDescriptor::REPLACE,
+        //alpha_blend: wgpu::BlendDescriptor::REPLACE,
+        write_mask: wgpu::ColorWrite::ALL
+    });
+
+    let bloom_u_layout = &BloomUniform::create_uniform_layout(&temp_renderer);
+    layouts.push(bloom_u_layout);
+    
+    temp_renderer.create_pipeline("bloom".to_string(), &layouts, wgpu::include_spirv!("./shaders/dummy.vert.spv"), wgpu::include_spirv!("./shaders/bloom.frag.spv"), &color_states);
+
+    layouts.remove(1);
+
+    layouts.push(hdr_tex_layout);
+
+    color_states.clear();
+
+    // Define the color states for the framebuffer render pipeline. We need one per color attachment
+    color_states.push(wgpu::ColorStateDescriptor {
+        format: wgpu::TextureFormat::Bgra8UnormSrgb,
+        color_blend: wgpu::BlendDescriptor {
+            src_factor: wgpu::BlendFactor::SrcAlpha,
+            dst_factor: wgpu::BlendFactor::OneMinusSrcAlpha,
+            operation: wgpu::BlendOperation::Add
+        },
+        alpha_blend: wgpu::BlendDescriptor {
+            src_factor: wgpu::BlendFactor::One,
+            dst_factor: wgpu::BlendFactor::OneMinusSrcAlpha,
+            operation: wgpu::BlendOperation::Add
+        },
+        //color_blend: wgpu::BlendDescriptor::REPLACE,
+        //alpha_blend: wgpu::BlendDescriptor::REPLACE,
+        write_mask: wgpu::ColorWrite::ALL
+    });
+
+
+    temp_renderer.create_pipeline("framebuffer".to_string(), &layouts, wgpu::include_spirv!("./shaders/dummy.vert.spv"), wgpu::include_spirv!("./shaders/framebuffer.frag.spv"), &color_states);
+    
     // drop the borrowed mut reference (to stay safe)
     drop(temp_renderer);
 
     /* Game Loop Defined */
-
+    println!("MAIN LOOP");
     log::info!("Starting main loop");
     event_loop.run(move |event, _, control_flow|  
         match event {
