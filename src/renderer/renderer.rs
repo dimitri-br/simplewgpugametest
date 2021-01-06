@@ -68,7 +68,7 @@ impl Renderer {
         let render_pipelines = HashMap::<String, wgpu::RenderPipeline>::new();
         let sample_count = 8;
 
-        let postprocessing = PostProcessing::new(&device, &sc_desc, sample_count, 1);
+        let postprocessing = PostProcessing::new(&device, &sc_desc, sample_count, 2);
 
         Self {
             surface,
@@ -158,7 +158,7 @@ impl Renderer {
         // Not sure what to run here, maybe pipeline switching for multishader support?
     }
 
-    pub fn render(&mut self, clear_color: wgpu::Color, entities: &EntityManager, time: &std::time::SystemTime) -> Result<(), wgpu::SwapChainError> {       
+    pub fn render(&mut self, entities: &EntityManager, time: &std::time::SystemTime) -> Result<(), wgpu::SwapChainError> {       
         let material = Material::new(&self, Rc::new(Texture::from_empty(&self.device).unwrap()), 1.0, 0.0, "none".to_string());
         let framebuffer = RenderMesh::new(&self, material);
 
@@ -182,7 +182,12 @@ impl Renderer {
                         attachment: &self.postprocessing.main_pass_draw_texture_view,
                         resolve_target: None,
                         ops: wgpu::Operations {
-                            load: wgpu::LoadOp::Clear(clear_color),
+                            load: wgpu::LoadOp::Clear(wgpu::Color {
+                                r: 0.1,
+                                g: 0.1,
+                                b: 0.1,
+                                a: 1.0,
+                            }),
                             store: true,
                         }
                     },
@@ -190,7 +195,12 @@ impl Renderer {
                         attachment: &self.postprocessing.hdr_draw_texture_view,
                         resolve_target: None,
                         ops: wgpu::Operations {
-                            load: wgpu::LoadOp::Clear(clear_color),
+                            load: wgpu::LoadOp::Clear(wgpu::Color {
+                                r: 0.1,
+                                g: 0.1,
+                                b: 0.1,
+                                a: 1.0,
+                            }),
                             store: true,
                         }
                     }
@@ -250,7 +260,12 @@ impl Renderer {
                                 attachment: &self.postprocessing.hdr_draw_texture_view,
                                 resolve_target: None,
                                 ops: wgpu::Operations {
-                                    load: wgpu::LoadOp::Clear(clear_color),
+                                    load: wgpu::LoadOp::Clear(wgpu::Color {
+                                        r: 0.0,
+                                        g: 0.0,
+                                        b: 0.0,
+                                        a: 1.0,
+                                    }),
                                     store: true,
                                 }
                             }
@@ -299,7 +314,12 @@ impl Renderer {
                         attachment: &self.postprocessing.main_pass_draw_texture_view,
                         resolve_target: None,
                         ops: wgpu::Operations {
-                            load: wgpu::LoadOp::Clear(clear_color),
+                            load: wgpu::LoadOp::Clear(wgpu::Color {
+                                r: 0.0,
+                                g: 0.0,
+                                b: 0.0,
+                                a: 1.0,
+                            }),
                             store: true,
                         }
                     }
@@ -333,7 +353,12 @@ impl Renderer {
                             attachment: &self.postprocessing.msaa_framebuffer_view,
                             resolve_target: Some(&frame.view),
                             ops: wgpu::Operations {
-                                load: wgpu::LoadOp::Clear(clear_color),
+                                load: wgpu::LoadOp::Clear(wgpu::Color {
+                                    r: 0.0,
+                                    g: 0.0,
+                                    b: 0.0,
+                                    a: 1.0,
+                                }),
                                 store: true,
                             }
                         }
@@ -347,7 +372,12 @@ impl Renderer {
                             attachment: &frame.view,
                             resolve_target: None,
                             ops: wgpu::Operations {
-                                load: wgpu::LoadOp::Clear(clear_color),
+                                load: wgpu::LoadOp::Clear(wgpu::Color {
+                                    r: 0.0,
+                                    g: 0.0,
+                                    b: 0.0,
+                                    a: 1.0,
+                                }),
                                 store: true,
                             }
                         }

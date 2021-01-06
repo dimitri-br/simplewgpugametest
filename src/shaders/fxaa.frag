@@ -9,5 +9,5 @@ layout(set = 0, binding = 1) uniform sampler s_diffuse;
 
 void main(void)
 {
-	f_color = vec4(1) - applyFXAA(gl_FragCoord.xy, t_diffuse, s_diffuse);
+	f_color = applyFXAA(gl_FragCoord.xy, t_diffuse, s_diffuse);
 }

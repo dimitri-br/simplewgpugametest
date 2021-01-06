@@ -15,7 +15,7 @@ void main()
 {             
     float weight[5] = float[] (0.2270270270, 0.1945945946, 0.1216216216, 0.0540540541, 0.0162162162);
 
-     vec2 tex_offset = 1.0 / textureSize(t_diffuse, 0); // gets size of single texel
+     vec2 tex_offset = 1.0 / textureSize(sampler2D(t_diffuse, s_diffuse), 0); // gets size of single texel
      vec3 result = texture(sampler2D(t_diffuse, s_diffuse), v_tex_coords).rgb * weight[0];
      if(horizontal)
      {

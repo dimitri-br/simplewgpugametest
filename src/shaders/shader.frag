@@ -24,8 +24,9 @@ void main() {
     
     float brightness = dot(f_color.rgb, vec3(0.2126, 0.7152, 0.0722));
     if(brightness > 1.0)
-        h_color = vec4(f_color.rgb, 1.0);
+        h_color = vec4(f_color.rgba);
     else
-        h_color = vec4(0.0, 0.0, 0.0, 1.0);
-    h_color = vec4(f_color.rgb, 1.0);
+        h_color = vec4(0.0, 0.0, 0.0, 0.0);
+    h_color = vec4(f_color.rgba);
+    
 }

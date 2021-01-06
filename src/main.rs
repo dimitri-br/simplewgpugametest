@@ -1,6 +1,6 @@
-//#![windows_subsystem = "windows"] // Disable console
+#![windows_subsystem = "windows"] // Disable console
 extern crate clap;
-use clap::{Arg, App, SubCommand};
+use clap::{Arg, App};
 
 
 use winit::{
@@ -9,15 +9,13 @@ use winit::{
     window::WindowBuilder,
 };
 
-use log::LevelFilter;
+
 use log4rs::{
     append::{
-        console::{ConsoleAppender, Target},
         file::FileAppender,
     },
     config::{Appender, Config, Root},
     encode::pattern::PatternEncoder,
-    filter::threshold::ThresholdFilter,
 };
 
 mod renderer;
@@ -254,9 +252,9 @@ pub fn main() {
     let texture_layout = Texture::generate_texture_layout(&temp_renderer);
 
 
-    let smiley_texture = Rc::new(Texture::load_texture(&temp_renderer, "./data/textures/smiley.png").unwrap());
+    let smiley_texture = Rc::new(Texture::load_texture(&temp_renderer, "./data/textures/pepe.png").unwrap());
     let happy_tree_texture = Rc::new(Texture::load_texture(&temp_renderer, "./data/textures/happy-tree.png").unwrap());
-    let pepe_texture = Rc::new(Texture::load_texture(&temp_renderer, "./data/textures/pepe.png").unwrap());
+    let pepe_texture = Rc::new(Texture::load_texture(&temp_renderer, "./data/textures/derp.png").unwrap());
     
     // Create transform layout
     let transform_layout = UniformUtils::create_bind_group_layout(&temp_renderer, 0, wgpu::ShaderStage::VERTEX, Some("Transform"));
@@ -453,19 +451,9 @@ pub fn main() {
 
     color_states.push(wgpu::ColorStateDescriptor {
         format: wgpu::TextureFormat::Rgba8UnormSrgb,
-        color_blend: wgpu::BlendDescriptor {
-            src_factor: wgpu::BlendFactor::SrcAlpha,
-            dst_factor: wgpu::BlendFactor::OneMinusSrcAlpha,
-            operation: wgpu::BlendOperation::Add
-        },
-        alpha_blend: wgpu::BlendDescriptor {
-            src_factor: wgpu::BlendFactor::One,
-            dst_factor: wgpu::BlendFactor::OneMinusSrcAlpha,
-            operation: wgpu::BlendOperation::Add
-        },
-        //color_blend: wgpu::BlendDescriptor::REPLACE,
-        //alpha_blend: wgpu::BlendDescriptor::REPLACE,
-        write_mask: wgpu::ColorWrite::ALL
+        color_blend: wgpu::BlendDescriptor::REPLACE,
+        alpha_blend: wgpu::BlendDescriptor::REPLACE,
+        write_mask: wgpu::ColorWrite::ALL,
     });
 
     let bloom_u_layout = &BloomUniform::create_uniform_layout(&temp_renderer);
@@ -488,19 +476,9 @@ pub fn main() {
     // Define the color states for the framebuffer render pipeline. We need one per color attachment
     color_states.push(wgpu::ColorStateDescriptor {
         format: wgpu::TextureFormat::Bgra8UnormSrgb,
-        color_blend: wgpu::BlendDescriptor {
-            src_factor: wgpu::BlendFactor::SrcAlpha,
-            dst_factor: wgpu::BlendFactor::OneMinusSrcAlpha,
-            operation: wgpu::BlendOperation::Add
-        },
-        alpha_blend: wgpu::BlendDescriptor {
-            src_factor: wgpu::BlendFactor::One,
-            dst_factor: wgpu::BlendFactor::OneMinusSrcAlpha,
-            operation: wgpu::BlendOperation::Add
-        },
-        //color_blend: wgpu::BlendDescriptor::REPLACE,
-        //alpha_blend: wgpu::BlendDescriptor::REPLACE,
-        write_mask: wgpu::ColorWrite::ALL
+        color_blend: wgpu::BlendDescriptor::REPLACE,
+        alpha_blend: wgpu::BlendDescriptor::REPLACE,
+        write_mask: wgpu::ColorWrite::ALL,
     });
 
     let sample_count = temp_renderer.sample_count;
@@ -569,14 +547,9 @@ pub fn main() {
             system_manager.update_systems(&renderer, &mut entity_manager, &input_manager);
             renderer.update();
             
-            let clear_color = wgpu::Color {
-                r: 0.0,
-                g: 0.0,
-                b: 0.0,
-                a: 0.5,
-            };
 
-            match renderer.render(clear_color, &entity_manager, &time) {
+
+            match renderer.render(&entity_manager, &time) {
                 Ok(_) => {}
                 // Recreate the swap_chain if lost
                 Err(wgpu::SwapChainError::Lost) => renderer.resize(window_size),

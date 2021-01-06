@@ -1,7 +1,6 @@
 use crate::{SystemBase, EntityManager, PlayerMovementComponent, Transform, Renderer, Rc, RefCell, InputManager};
 
 pub struct PlayerMovementSystem{
-    x: f32,
 }
 
 impl SystemBase for PlayerMovementSystem{
@@ -19,7 +18,7 @@ impl SystemBase for PlayerMovementSystem{
             move_vec.x = match input_manager.try_get_key_value(winit::event::VirtualKeyCode::Left){
                 Ok(v) => {
                     match v{
-                        winit::event::ElementState::Pressed => -1.0,
+                        winit::event::ElementState::Pressed => 1.0,
                         winit::event::ElementState::Released => 0.0,
                     }
                 },
@@ -28,7 +27,7 @@ impl SystemBase for PlayerMovementSystem{
             move_vec.x = match input_manager.try_get_key_value(winit::event::VirtualKeyCode::Right){
                 Ok(v) => {
                     match v{
-                        winit::event::ElementState::Pressed => 1.0,
+                        winit::event::ElementState::Pressed => -1.0,
                         winit::event::ElementState::Released => move_vec.x,
                     }
                 },
@@ -66,12 +65,6 @@ impl SystemBase for PlayerMovementSystem{
 
             
             transform.position += cgmath::Vector3::<f32> { x: move_vec.x * speed * delta_time, y: move_vec.y * speed * delta_time, z: 0.0};
-            transform.rotation = cgmath::Quaternion::from(cgmath::Euler {
-                x: cgmath::Deg(0.0),
-                y: cgmath::Deg(0.0),
-                z: cgmath::Deg(self.x),
-            });
-            self.x += 5.0 * delta_time;
 
             transform.update_uniform_buffers(&renderer);
         }
@@ -81,7 +74,6 @@ impl SystemBase for PlayerMovementSystem{
 impl PlayerMovementSystem{
     pub fn new() -> Self{
         Self{
-            x: 0.0,
         }
     }
 }
