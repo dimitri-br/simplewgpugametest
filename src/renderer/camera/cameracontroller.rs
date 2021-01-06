@@ -14,6 +14,7 @@ pub struct CameraController {
     pub is_backward_pressed: bool,
     pub is_left_pressed: bool,
     pub is_right_pressed: bool,
+    pub delta_time: f32,
 }
 
 impl CameraController {
@@ -26,6 +27,7 @@ impl CameraController {
             is_backward_pressed: false,
             is_left_pressed: false,
             is_right_pressed: false,
+            delta_time: 0.0,
         }
     }
 
@@ -78,19 +80,19 @@ impl CameraController {
         // Prevents glitching when camera gets too close to the
         // center of the scene.
         if self.is_forward_pressed {
-            camera.eye += camera.up * self.speed;
+            camera.eye += camera.up * self.speed * self.delta_time;
         }
         if self.is_backward_pressed {
-            camera.eye -= camera.up * self.speed;
+            camera.eye -= camera.up * self.speed * self.delta_time;
         }
 
 
 
         if self.is_right_pressed {
-            camera.eye -= right * self.speed;
+            camera.eye += right * self.speed * self.delta_time;
         }
         if self.is_left_pressed {
-            camera.eye += right * self.speed;
+            camera.eye -= right * self.speed * self.delta_time;
         }
 
         camera.target = cgmath::Point3::<f32> { x: camera.eye.x, y: camera.eye.y, z: 0.0};

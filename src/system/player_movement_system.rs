@@ -5,7 +5,7 @@ pub struct PlayerMovementSystem{
 }
 
 impl SystemBase for PlayerMovementSystem{
-    fn execute(&mut self, renderer: &Renderer, entity_manager: &mut EntityManager, input_manager: &InputManager){
+    fn execute(&mut self, renderer: &Renderer, entity_manager: &mut EntityManager, input_manager: &InputManager, delta_time: f32){
         for entity_ref in entity_manager.get_entities_with_types_mut(&[PlayerMovementComponent::get_component_id(), Transform::get_component_id()]){
             
 
@@ -19,7 +19,7 @@ impl SystemBase for PlayerMovementSystem{
             move_vec.x = match input_manager.try_get_key_value(winit::event::VirtualKeyCode::Left){
                 Ok(v) => {
                     match v{
-                        winit::event::ElementState::Pressed => 1.0,
+                        winit::event::ElementState::Pressed => -1.0,
                         winit::event::ElementState::Released => 0.0,
                     }
                 },
@@ -28,11 +28,11 @@ impl SystemBase for PlayerMovementSystem{
             move_vec.x = match input_manager.try_get_key_value(winit::event::VirtualKeyCode::Right){
                 Ok(v) => {
                     match v{
-                        winit::event::ElementState::Pressed => -1.0,
+                        winit::event::ElementState::Pressed => 1.0,
                         winit::event::ElementState::Released => move_vec.x,
                     }
                 },
-                Err(_) => 0.0,
+                Err(_) => move_vec.x,
             };
 
             move_vec.y = match input_manager.try_get_key_value(winit::event::VirtualKeyCode::Up){
@@ -51,7 +51,7 @@ impl SystemBase for PlayerMovementSystem{
                         winit::event::ElementState::Released => move_vec.y
                     }
                 },
-                Err(_) => 0.0,
+                Err(_) => move_vec.y,
             };
 
 
@@ -65,13 +65,13 @@ impl SystemBase for PlayerMovementSystem{
 
 
             
-            transform.position += cgmath::Vector3::<f32> { x: move_vec.x * speed, y: move_vec.y * speed, z: 0.0};
+            transform.position += cgmath::Vector3::<f32> { x: move_vec.x * speed * delta_time, y: move_vec.y * speed * delta_time, z: 0.0};
             transform.rotation = cgmath::Quaternion::from(cgmath::Euler {
                 x: cgmath::Deg(0.0),
                 y: cgmath::Deg(0.0),
                 z: cgmath::Deg(self.x),
             });
-            self.x += 0.6;
+            self.x += 5.0 * delta_time;
 
             transform.update_uniform_buffers(&renderer);
         }

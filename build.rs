@@ -37,7 +37,7 @@ impl ShaderData {
 }
 
 fn main() -> Result<()> {
-    // Collect all shaders recursively within /src/
+    /*// Collect all shaders recursively within /src/
     let mut shader_paths = [
         glob("./src/**/*.vert")?,
         glob("./src/**/*.frag")?,
@@ -55,6 +55,10 @@ fn main() -> Result<()> {
 
     let mut compiler = shaderc::Compiler::new().context("Unable to create shader compiler")?;
 
+    let mut options = shaderc::CompileOptions::new().unwrap();
+    options.add_macro_definition("EP", Some("main"));
+
+
     // This can't be parallelized. The [shaderc::Compiler] is not
     // thread safe. Also, it creates a lot of resources. You could
     // spawn multiple processes to handle this, but it would probably
@@ -67,10 +71,10 @@ fn main() -> Result<()> {
             shader.kind,
             &shader.src_path.to_str().unwrap(),
             "main",
-            None,
+            Some(&options),
         )?;
         write(shader.spv_path, compiled.as_binary_u8())?;
     }
-
+    */
     Ok(())
 }

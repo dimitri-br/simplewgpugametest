@@ -5,7 +5,7 @@ pub struct MovementSystem{
 }
 
 impl SystemBase for MovementSystem{
-    fn execute(&mut self, renderer: &Renderer, entity_manager: &mut EntityManager, input_manager: &InputManager){
+    fn execute(&mut self, renderer: &Renderer, entity_manager: &mut EntityManager, input_manager: &InputManager, delta_time: f32){
         for entity_ref in entity_manager.get_entities_with_types_mut(&[MovementComponent::get_component_id(), Transform::get_component_id()]){
 
 
@@ -18,7 +18,7 @@ impl SystemBase for MovementSystem{
             };
             let mut speed = 0.0;
 
-            speed = movement_component.speed;
+            speed = movement_component.speed * delta_time;
             drop(temp);
             
             let mut temp = temp_entity.borrow_mut();
@@ -35,7 +35,7 @@ impl SystemBase for MovementSystem{
                 y: cgmath::Deg(0.0),
                 z: cgmath::Deg(self.x),
             });
-            self.x += 0.6;
+            self.x += 5.0 * delta_time;
 
             transform.update_uniform_buffers(&renderer);
             

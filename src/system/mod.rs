@@ -6,6 +6,6 @@ pub mod systemmanager;
 use crate::{Renderer, EntityManager, Rc, RefCell, InputManager};
 
 pub trait SystemBase{
-    fn execute(&mut self, renderer: &Renderer, entity_manager: &mut EntityManager, input_manager: &InputManager);
+    fn execute(&mut self, renderer: &Renderer, entity_manager: &mut EntityManager, input_manager: &InputManager, delta_time: f32);
 }
 

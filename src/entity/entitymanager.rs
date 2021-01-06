@@ -24,9 +24,11 @@ impl EntityManager{
         self.entities.push(entity);
     }
 
-    pub fn add_component_data(&mut self, entity: &usize, component: Box<dyn ComponentBase>){
-        let entity = &mut self.entities[*entity];
+    pub fn add_component_data<T: ComponentBase + 'static>(&mut self, entity_id: &usize, component: Box<dyn ComponentBase>) -> Result<&mut T, &str>{
+        let entity = &mut self.entities[*entity_id];
+        let component_id = component.get_id();
         entity.add_component(component);
+        self.entities[*entity_id].get_component_mut(component_id)
     }
 
     pub fn remove_component_data(&mut self, entity: &mut Entity, component_id: u32){

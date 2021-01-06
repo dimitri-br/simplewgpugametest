@@ -2,11 +2,15 @@ use crate::{Texture, Renderer, UniformUtils};
 use wgpu::util::DeviceExt;
 
 pub struct PostProcessing{
+    // Texture Info
     pub main_pass_draw_texture: wgpu::Texture, // Texture to draw scene to
     pub main_pass_draw_texture_view: wgpu::TextureView, // View
 
     pub hdr_draw_texture: wgpu::Texture, // Texture to draw bloom to
     pub hdr_draw_texture_view: wgpu::TextureView, // View
+
+    pub msaa_framebuffer: wgpu::Texture, // Texture to sample MSAA to
+    pub msaa_framebuffer_view: wgpu::TextureView, // View
 
     pub framebuffer_render_texture: wgpu::Texture, // Texture to use in postpass
     pub framebuffer_render_texture_group: wgpu::BindGroup,
@@ -15,11 +19,15 @@ pub struct PostProcessing{
     pub hdr_render_texture_group: wgpu::BindGroup,
 
     pub size: wgpu::Extent3d,
+
+
+    // PPS info
+    pub bloom_intensity: u32,
 }
 
 impl PostProcessing{
     // Must be recreated if swapchain is recreated!
-    pub fn new(device: &wgpu::Device, sc_desc: &wgpu::SwapChainDescriptor) -> Self{
+    pub fn new(device: &wgpu::Device, sc_desc: &wgpu::SwapChainDescriptor, sample_count: u32, bloom_intensity: u32) -> Self{
         let size = wgpu::Extent3d {
             width: sc_desc.width,
             height: sc_desc.height,
@@ -27,7 +35,7 @@ impl PostProcessing{
         };
 
 
-
+        
         // The render pipeline renders data into this texture
         let main_pass_draw_texture = device.create_texture(&wgpu::TextureDescriptor {
             size: size,
@@ -40,6 +48,19 @@ impl PostProcessing{
         });
 
         let main_pass_draw_texture_view = main_pass_draw_texture.create_view(&wgpu::TextureViewDescriptor::default());
+
+
+        let msaa_framebuffer = device.create_texture(&wgpu::TextureDescriptor {
+            size: size,
+            mip_level_count: 1,
+            sample_count: sample_count,
+            dimension: wgpu::TextureDimension::D2,
+            format: wgpu::TextureFormat::Bgra8UnormSrgb,
+            usage:  sc_desc.usage | wgpu::TextureUsage::SAMPLED | wgpu::TextureUsage::COPY_DST | wgpu::TextureUsage::COPY_SRC,
+            label: None,
+        });
+
+        let msaa_framebuffer_view = msaa_framebuffer.create_view(&wgpu::TextureViewDescriptor::default());
 
 
         let hdr_draw_texture = device.create_texture(&wgpu::TextureDescriptor {
@@ -101,7 +122,7 @@ impl PostProcessing{
 
         let hdr_render_texture = device.create_texture(
             &wgpu::TextureDescriptor {
-                label: Some("FUCK YOU"),
+                label: Some("HDR render tex"),
                 size,
                 mip_level_count: 1,
                 sample_count: 1,
@@ -149,13 +170,19 @@ impl PostProcessing{
             hdr_draw_texture,
             hdr_draw_texture_view,
 
+            msaa_framebuffer,
+            msaa_framebuffer_view,
+
             framebuffer_render_texture,
             framebuffer_render_texture_group,
 
             hdr_render_texture,
             hdr_render_texture_group,
             
-            size
+            size,
+
+
+            bloom_intensity,
         }
     }
 }

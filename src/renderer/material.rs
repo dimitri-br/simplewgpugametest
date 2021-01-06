@@ -7,15 +7,17 @@ pub struct Material{
     shininess: f32,
     metallic: f32,
     buffer: wgpu::Buffer,
+    shader_name: String
 }
 
 impl Material{
-    pub fn new(renderer_reference: &Renderer, texture: Rc<Texture>, shininess: f32, metallic: f32) -> Self{
+    pub fn new(renderer_reference: &Renderer, texture: Rc<Texture>, shininess: f32, metallic: f32, shader_name: String) -> Self{
         Self{
             texture,
             shininess,
             metallic,
-            buffer: UniformUtils::generate_empty_buffer(renderer_reference)
+            buffer: UniformUtils::generate_empty_buffer(renderer_reference),
+            shader_name
         }
     }
 
@@ -23,7 +25,9 @@ impl Material{
         &self.texture
     }
 
-
+    pub fn get_shader_name(&self) -> &String{
+        &self.shader_name
+    }
 
     pub fn create_uniform_group(&mut self, renderer_reference: &Renderer) -> (wgpu::BindGroup, wgpu::BindGroupLayout, MaterialUniform){
         let material_uniform = MaterialUniform::new(self.shininess, self.metallic);

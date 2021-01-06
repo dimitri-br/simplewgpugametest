@@ -1,3 +1,5 @@
+pub mod base_uniforms;
+
 use crate::{Renderer, Rc};
 use wgpu::util::DeviceExt;
 

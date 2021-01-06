@@ -40,6 +40,7 @@ use entity::entitymanager::EntityManager;
 use renderer::camera::camera::{Camera, CameraUniform};
 use renderer::camera::cameracontroller::CameraController;
 use renderer::uniforms::{UniformUtils, UniformBuffer};
+use renderer::uniforms::base_uniforms::BaseUniforms;
 use component::ComponentBase;
 use transform::{Translation, Rotation, NonUniformScale, Transform, TransformUniform};
 use system::SystemBase;
@@ -58,7 +59,10 @@ use futures::executor::block_on;
 
 const TITLE: &str = "WGPU APP";
 
-fn main() {
+pub fn main() {
+    let mut time = std::time::SystemTime::now();
+
+
     let matches = App::new(TITLE)
                           .version("1.0")
                           .author("Dimitri Bobkov <bobkov.dimitri@gmail.com>")
@@ -67,6 +71,11 @@ fn main() {
                                .short("b")
                                .long("backend")
                                .help("Sets a custom backend")
+                               .takes_value(true))
+                            .arg(Arg::with_name("vsync")
+                               .short("v")
+                               .long("vsync")
+                               .help("Sets vysnc mode [on, off]")
                                .takes_value(true))
                           .arg(Arg::with_name("debug")
                                         .short("d")
@@ -91,10 +100,6 @@ fn main() {
             _ => log::LevelFilter::Info,
         };
     }
-
-
-
-
     let file_path = "./logs/output.log";
     let file_path_copy = "./logs/output_old.log";
 
@@ -132,7 +137,29 @@ fn main() {
     // once you are done.
     let _handle = log4rs::init_config(config).unwrap();
 
-    log::info!("Hello, world!");
+    log::info!("Hello, world - Logger initalized!");
+
+
+    log::info!("Logging Level: {:?}", level);
+
+    let mut vsync_enabled = "true";
+
+    if matches.is_present("vsync") {
+        vsync_enabled = match matches.value_of("vsync").unwrap_or("true"){
+            "on" | "true" => "true",
+            "off" | "false" => "false",
+            _ => "true",
+        };
+    }
+
+    let vsync_mode = match vsync_enabled{
+        "true" => wgpu::PresentMode::Fifo,
+        "false" => wgpu::PresentMode::Immediate,
+        _ => wgpu::PresentMode::Fifo
+    };
+
+    log::info!("Vsync Mode: {:?}", vsync_mode);
+    
 
     if cfg!(debug_assertions) {
         println!("RUNNING: Debug");
@@ -160,7 +187,7 @@ fn main() {
     let mut renderer;
     #[cfg(not(target_arch = "wasm32"))]
     {
-        renderer = block_on(Renderer::new(&window, &backend));
+        renderer = block_on(Renderer::new(&window, &backend, vsync_mode));
     }
     #[cfg(target_arch = "wasm32")]
     {
@@ -189,6 +216,9 @@ fn main() {
     let movement_system = MovementSystem::new();
     let player_movement_system = PlayerMovementSystem::new();
 
+    log::info!("Systems successfully initialized");
+
+
     system_manager.add_system(Box::new(movement_system));
     system_manager.add_system(Box::new(player_movement_system));
 
@@ -197,7 +227,7 @@ fn main() {
     let mut temp_renderer = renderer.borrow_mut();
 
     // Camera
-    let mut camera_controller = CameraController::new(0.1);
+    let mut camera_controller = CameraController::new(2.0);
 
     let sc_desc = &temp_renderer.sc_desc;
 
@@ -220,18 +250,20 @@ fn main() {
     let camera_bind_group = Rc::new(camera_bind_group);
     cam_uniform.update_view_proj(&camera);
 
-    // load texture
-    let diffuse_texture = Rc::new(Texture::load_texture(&temp_renderer, "./data/textures/smiley.png").unwrap());
-    let diffuse_texture_layout = Texture::generate_texture_layout(&temp_renderer);
+    // load textures (Define the texture layout)
+    let texture_layout = Texture::generate_texture_layout(&temp_renderer);
 
-    let diffuse_texture2 = Rc::new(Texture::load_texture(&temp_renderer, "./data/textures/happy-tree.png").unwrap());
+
+    let smiley_texture = Rc::new(Texture::load_texture(&temp_renderer, "./data/textures/smiley.png").unwrap());
+    let happy_tree_texture = Rc::new(Texture::load_texture(&temp_renderer, "./data/textures/happy-tree.png").unwrap());
+    let pepe_texture = Rc::new(Texture::load_texture(&temp_renderer, "./data/textures/pepe.png").unwrap());
     
     // Create transform layout
     let transform_layout = UniformUtils::create_bind_group_layout(&temp_renderer, 0, wgpu::ShaderStage::VERTEX, Some("Transform"));
 
 
     // define the array with layouts we want to use in our pipeline
-    let mut layouts = vec!(&diffuse_texture_layout, &camera_layout);
+    let mut layouts = vec!(&texture_layout, &camera_layout);
     // create material
     let material_layout = Material::create_uniform_layout(&temp_renderer);
     layouts.push(&material_layout);
@@ -242,7 +274,7 @@ fn main() {
     let mut components = Vec::<Box<dyn ComponentBase>>::new();
 
     // create material
-    let material = Material::new(&temp_renderer, Rc::clone(&diffuse_texture), 1.0, 0.0);
+    let material = Material::new(&temp_renderer, Rc::clone(&smiley_texture), 1.0, 0.0, "main".to_string());
 
     // create new mesh (TODO - mesh loading) and assign material
     let mut mesh = RenderMesh::new(&temp_renderer, material);
@@ -262,7 +294,7 @@ fn main() {
     let mut transform = Transform::new(&temp_renderer, translation.value, rotation.value, scale.value);
     let (transform_group, _, _) = transform.create_uniforms(&temp_renderer);
     let transform_group = Rc::new(transform_group);
-    let pmc = PlayerMovementComponent::new(0.1);
+    let pmc = PlayerMovementComponent::new(5.0);
 
     uniforms.push(Rc::clone(&camera_bind_group));
     uniforms.push(Rc::clone(&material_group));
@@ -280,7 +312,7 @@ fn main() {
     let mut components = Vec::<Box<dyn ComponentBase>>::new();
 
     // create material
-    let material = Material::new(&temp_renderer, Rc::clone(&diffuse_texture2), 1.0, 0.0);
+    let material = Material::new(&temp_renderer, Rc::clone(&happy_tree_texture), 1.0, 0.0, "main".to_string());
 
     // create new mesh (TODO - mesh loading) and assign material
     let mut mesh = RenderMesh::new(&temp_renderer, material);
@@ -317,7 +349,7 @@ fn main() {
     let mut components = Vec::<Box<dyn ComponentBase>>::new();
 
     // create material
-    let material = Material::new(&temp_renderer, Rc::clone(&diffuse_texture2), 1.0, 0.0);
+    let material = Material::new(&temp_renderer, Rc::clone(&pepe_texture), 1.0, 0.0, "main".to_string());
 
     // create new mesh (TODO - mesh loading) and assign material
     let mut mesh = RenderMesh::new(&temp_renderer, material);
@@ -350,20 +382,23 @@ fn main() {
 
         entity_manager.create_entity(components, uniforms);
         let new_entity = entity_manager.find_entity(2).unwrap();
-        entity_manager.add_component_data(&new_entity, Box::new(MovementComponent::new(0.002)));
+
+        entity_manager.add_component_data::<MovementComponent>(&new_entity, Box::new(MovementComponent::new(-0.25)));
         let component = entity_manager.get_component_data::<Transform>(new_entity, Transform::get_component_id()).unwrap();
         component.position = cgmath::Vector3::<f32> { x: 0.0, y: -2.0, z: 0.0 };
-        let transform_uniform_ref = component.get_uniform();
-        let mut transform_uniform = transform_uniform_ref.borrow_mut();
-        transform_uniform.update(component.generate_matrix());
-        temp_renderer.write_buffer(component.get_buffer_reference(), 0, &[*transform_uniform]);
-        drop(component);
+        component.update_uniform_buffers(&temp_renderer);
+
+        //drop(component);
 
         let new_entity = entity_manager.find_entity(1).unwrap();
-        entity_manager.add_component_data(&new_entity, Box::new(MovementComponent::new(0.001)));
+        entity_manager.add_component_data::<MovementComponent>(&new_entity, Box::new(MovementComponent::new(-0.25)));
     }
 
+    log::info!("Entities built");
 
+
+    // Create all our render pipelines. Define the color states (This is like instructions to  the GPU on how to blend the color, alpha and color format etc)
+    // Important for render passes. One color state per output.
     let mut color_states = Vec::<wgpu::ColorStateDescriptor>::new();
 
 
@@ -403,7 +438,8 @@ fn main() {
     });
 
     // recreate pipeline with layouts (needs mut)
-    temp_renderer.create_pipeline("main".to_string(), &layouts, wgpu::include_spirv!("./shaders/shader.vert.spv"), wgpu::include_spirv!("./shaders/shader.frag.spv"), &color_states);
+    temp_renderer.create_pipeline("main".to_string(), &layouts, wgpu::include_spirv!("./shaders/shader.vert.spv"), wgpu::include_spirv!("./shaders/shader.frag.spv"), &color_states, 1);
+    temp_renderer.create_pipeline("invert".to_string(), &layouts, wgpu::include_spirv!("./shaders/shader.vert.spv"), wgpu::include_spirv!("./shaders/invert.frag.spv"), &color_states, 1);
 
     layouts.clear();
     let main_tex_layout = &Texture::generate_texture_layout_from_device(&temp_renderer.device);
@@ -435,11 +471,17 @@ fn main() {
     let bloom_u_layout = &BloomUniform::create_uniform_layout(&temp_renderer);
     layouts.push(bloom_u_layout);
     
-    temp_renderer.create_pipeline("bloom".to_string(), &layouts, wgpu::include_spirv!("./shaders/dummy.vert.spv"), wgpu::include_spirv!("./shaders/bloom.frag.spv"), &color_states);
+    temp_renderer.create_pipeline("bloom".to_string(), &layouts, wgpu::include_spirv!("./shaders/dummy.vert.spv"), wgpu::include_spirv!("./shaders/bloom.frag.spv"), &color_states, 1);
 
     layouts.remove(1);
 
+    temp_renderer.create_pipeline("fxaa".to_string(), &layouts, wgpu::include_spirv!("./shaders/dummy.vert.spv"), wgpu::include_spirv!("./shaders/fxaa.frag.spv"), &color_states, 1);
+
+
     layouts.push(hdr_tex_layout);
+    let fb_u_layout = &BaseUniforms::create_uniform_layout(&temp_renderer);
+
+    layouts.push(fb_u_layout);
 
     color_states.clear();
 
@@ -461,14 +503,16 @@ fn main() {
         write_mask: wgpu::ColorWrite::ALL
     });
 
-
-    temp_renderer.create_pipeline("framebuffer".to_string(), &layouts, wgpu::include_spirv!("./shaders/dummy.vert.spv"), wgpu::include_spirv!("./shaders/framebuffer.frag.spv"), &color_states);
+    let sample_count = temp_renderer.sample_count;
+    temp_renderer.create_pipeline("framebuffer".to_string(), &layouts, wgpu::include_spirv!("./shaders/dummy.vert.spv"), wgpu::include_spirv!("./shaders/framebuffer.frag.spv"), &color_states, sample_count);
+   
+    log::info!("Render Pipelines built");
     
     // drop the borrowed mut reference (to stay safe)
     drop(temp_renderer);
 
     /* Game Loop Defined */
-    println!("MAIN LOOP");
+
     log::info!("Starting main loop");
     event_loop.run(move |event, _, control_flow|  
         match event {
@@ -513,7 +557,7 @@ fn main() {
         },
         Event::RedrawRequested(_) => {
 
-
+            let start = std::time::SystemTime::now();
             let window_size = renderer.borrow().get_window_size();
             let mut renderer = renderer.borrow_mut();
  
@@ -532,7 +576,7 @@ fn main() {
                 a: 0.5,
             };
 
-            match renderer.render(clear_color, &entity_manager) {
+            match renderer.render(clear_color, &entity_manager, &time) {
                 Ok(_) => {}
                 // Recreate the swap_chain if lost
                 Err(wgpu::SwapChainError::Lost) => renderer.resize(window_size),
@@ -541,7 +585,11 @@ fn main() {
                 // All other errors (Outdated, Timeout) should be resolved by the next frame
                 Err(e) => {eprintln!("{:?}", e); log::error!("{:?}", e)},
             }
-            
+
+            let delta_time = start.elapsed().unwrap().as_secs_f32();
+            system_manager.delta_time = delta_time;
+            camera_controller.delta_time = delta_time;
+            let framerate = 1.0 / delta_time;
         }
         Event::MainEventsCleared => {
             // RedrawRequested will only trigger once, unless we manually
