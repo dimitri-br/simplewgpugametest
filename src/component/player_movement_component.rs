@@ -1,4 +1,4 @@
-use crate::{ComponentBase};
+use crate::{ComponentBase, Camera};
 use std::any::Any;
 
 pub const ID: u32 = 6;
@@ -6,6 +6,7 @@ pub const ID: u32 = 6;
 pub struct PlayerMovementComponent{
     pub speed: f32,
     pub movement_vector: cgmath::Vector2::<f32>,
+    pub position: cgmath::Vector3::<f32>,
     id: u32
 }
 
@@ -26,6 +27,7 @@ impl PlayerMovementComponent{
         Self{
             speed,
             movement_vector: cgmath::Vector2::<f32> { x: 0.0, y: 0.0 },
+            position: cgmath::Vector3::<f32> { x: 0.0, y: 0.0, z: 0.0 },
             id: ID
         }
     }

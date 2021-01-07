@@ -106,4 +106,42 @@ impl EntityManager{
         let ret_entities : Vec::<&mut Entity> = self.entities.iter_mut().filter(|item| entities.contains_key(&item.id)).collect();
         ret_entities
     }
+
+    pub fn get_entities_with_types(&mut self, ids: &[u32]) -> Vec::<&Entity>{
+        // Create an empty vec to store our entity indexes
+        let mut entities = HashMap::<usize, usize>::new();
+        let mut loop_count = 0;
+        // Iterate through the type ids
+        for id in ids{
+            // Get all entities with the ID
+            let entities_to_add = self.get_entities_with_type(*id);
+            // Vec will act as a buffer to check what entities already exist, so we can filter down
+            let mut contained_entities = HashMap::<usize, usize>::new();
+
+            // Iterate through entities with ID
+            for entity in entities_to_add.iter(){
+                // If we've just started, add entity ID into the array regardless
+                if loop_count == 0{
+                    entities.insert(entity.id, 0);
+                }else{
+
+                    // Otherwise, check that our Vec contains the entity (By checking the ID of the entity is contained in our entity array)
+                    if entities.contains_key(&entity.id){
+                        contained_entities.insert(entity.id, 0);
+                    }else{
+                        // Otherwise, don't add it
+                    }
+                }
+            }
+            // Make sure this isn't our first loop. Save some precious render time
+            if loop_count != 0{
+                // Set our entities to the ones that are contained so we only have the entities we want. Filter it down
+                entities = contained_entities;
+            }
+
+            loop_count += 1;
+        }
+        let ret_entities : Vec::<&Entity> = self.entities.iter().filter(|item| entities.contains_key(&item.id)).collect();
+        ret_entities
+    }
 }

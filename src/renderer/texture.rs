@@ -239,7 +239,16 @@ impl Texture {
         
         Ok(Self { texture, view, sampler, texture_bind_group, texture_bind_group_layout })
     }    
+}
 
+pub struct DepthTexture{
+    pub texture: wgpu::Texture,
+    pub view: wgpu::TextureView,
+    pub sampler: wgpu::Sampler,
+}
+
+impl DepthTexture{
+    
     pub const DEPTH_FORMAT: wgpu::TextureFormat = wgpu::TextureFormat::Depth32Float; // 1.
     
     pub fn create_depth_texture(device: &wgpu::Device, sc_desc: &wgpu::SwapChainDescriptor, label: &str) -> Self {
@@ -276,24 +285,6 @@ impl Texture {
             }
         );
 
-        let texture_bind_group_layout = Texture::generate_texture_layout_from_device(device);
-        let texture_bind_group = device.create_bind_group(
-            &wgpu::BindGroupDescriptor {
-                layout: &texture_bind_group_layout,
-                entries: &[
-                    wgpu::BindGroupEntry {
-                        binding: 0,
-                        resource: wgpu::BindingResource::TextureView(&view),
-                    },
-                    wgpu::BindGroupEntry {
-                        binding: 1,
-                        resource: wgpu::BindingResource::Sampler(&sampler),
-                    }
-                ],
-                label: None,
-            }
-        );
-
-        Self { texture, view, sampler, texture_bind_group, texture_bind_group_layout }
+        Self { texture, view, sampler }
     }
 }

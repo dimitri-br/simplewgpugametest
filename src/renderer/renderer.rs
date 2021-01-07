@@ -1,4 +1,4 @@
-use crate::{Vertex, RenderMesh, EntityManager, PostProcessing, BloomUniform, Texture, Material, Rc, BaseUniforms};
+use crate::{Vertex, RenderMesh, EntityManager, PostProcessing, BloomUniform, Texture, Material, Rc, BaseUniforms, DepthTexture};
 use std::collections::HashMap;
 use std::any::Any;
 use winit::{
@@ -15,6 +15,7 @@ pub struct Renderer {
     //pub render_pipeline: wgpu::RenderPipeline,
     pub render_pipelines: HashMap<String, wgpu::RenderPipeline>,
     postprocessing: PostProcessing,
+    depth_texture: DepthTexture,
     pub sample_count: u32,
 }
 
@@ -70,6 +71,7 @@ impl Renderer {
 
         let postprocessing = PostProcessing::new(&device, &sc_desc, sample_count, 4);
 
+        let depth_texture = DepthTexture::create_depth_texture(&device, &sc_desc, "depth_texture");
 
         Self {
             surface,
@@ -81,7 +83,8 @@ impl Renderer {
             //render_pipeline,
             render_pipelines,
             postprocessing,
-            sample_count
+            depth_texture,
+            sample_count,
        }
     }
 
@@ -122,7 +125,14 @@ impl Renderer {
         color_states: color_states,
 
         primitive_topology: wgpu::PrimitiveTopology::TriangleList, // 1.
-        depth_stencil_state: None, // 2.
+
+        depth_stencil_state: Some(wgpu::DepthStencilStateDescriptor {
+            format: DepthTexture::DEPTH_FORMAT,
+            depth_write_enabled: true,
+            depth_compare: wgpu::CompareFunction::Less, // 1.
+            stencil: wgpu::StencilStateDescriptor::default(), // 2.
+        }),
+
         vertex_state: wgpu::VertexStateDescriptor {
             index_format: wgpu::IndexFormat::Uint32,
             vertex_buffers: &[
@@ -152,6 +162,7 @@ impl Renderer {
         self.sc_desc.width = new_size.width;
         self.sc_desc.height = new_size.height;
         self.swap_chain = self.device.create_swap_chain(&self.surface, &self.sc_desc);
+        self.depth_texture = DepthTexture::create_depth_texture(&self.device, &self.sc_desc, "depth_texture");
         self.postprocessing = PostProcessing::new(&self.device, &self.sc_desc, self.sample_count, 4);
     }
 
@@ -160,7 +171,7 @@ impl Renderer {
     }
 
     pub fn render(&mut self, entities: &EntityManager, time: &std::time::SystemTime) -> Result<(), wgpu::SwapChainError> {       
-        let material = Material::new(&self, Rc::new(Texture::from_empty(&self.device).unwrap()), 1.0, 0.0, "none".to_string());
+        let material = Material::new(&self, Rc::new(Texture::from_empty(&self.device).unwrap()), 1.0, 0.0, 0, "none".to_string());
         let framebuffer = RenderMesh::new(&self, material);
 
         let frame = self
@@ -172,7 +183,7 @@ impl Renderer {
         uniform.iTime = time.elapsed().unwrap().as_secs_f32();
         uniform.iResolution = [self.sc_desc.width as f32, self.sc_desc.height as f32];
         let bind_group = uniform.create_uniform_group(&self);
-
+        
         let mut encoder = self.device.create_command_encoder(&wgpu::CommandEncoderDescriptor {
             label: Some("Render Encoder"),
         });
@@ -208,7 +219,14 @@ impl Renderer {
                         }
                     }
                 ],
-                depth_stencil_attachment: None,
+                depth_stencil_attachment: Some(wgpu::RenderPassDepthStencilAttachmentDescriptor {
+                    attachment: &self.depth_texture.view,
+                    depth_ops: Some(wgpu::Operations {
+                        load: wgpu::LoadOp::Clear(1.0),
+                        store: true,
+                    }),
+                    stencil_ops: None,
+                }),
             });
             for pipeline in self.render_pipelines.iter(){
                 for entity in entities.get_entities_with_type(RenderMesh::get_component_id()){
@@ -273,11 +291,18 @@ impl Renderer {
                                 }
                             }
                         ],
-                        depth_stencil_attachment: None,
+                        depth_stencil_attachment: Some(wgpu::RenderPassDepthStencilAttachmentDescriptor {
+                            attachment: &self.depth_texture.view,
+                            depth_ops: Some(wgpu::Operations {
+                                load: wgpu::LoadOp::Clear(1.0),
+                                store: true,
+                            }),
+                            stencil_ops: None,
+                        }),
                     });
                     let mut bloom_encoder = self.device.create_render_bundle_encoder(&wgpu::RenderBundleEncoderDescriptor{
                         color_formats: &[wgpu::TextureFormat::Rgba8UnormSrgb],
-                        depth_stencil_format: None,
+                        depth_stencil_format: Some(DepthTexture::DEPTH_FORMAT),
                         sample_count: 1,
                         label: Some("Bloom encoder")
                     });
@@ -327,7 +352,14 @@ impl Renderer {
                         }
                     }
                 ],
-                depth_stencil_attachment: None,
+                depth_stencil_attachment: Some(wgpu::RenderPassDepthStencilAttachmentDescriptor {
+                    attachment: &self.depth_texture.view,
+                    depth_ops: Some(wgpu::Operations {
+                        load: wgpu::LoadOp::Clear(1.0),
+                        store: true,
+                    }),
+                    stencil_ops: None,
+                }),
             });
             // Post pass
             render_pass.set_pipeline(&self.render_pipelines["fxaa"]);
@@ -365,7 +397,14 @@ impl Renderer {
                             }
                         }
                     ],
-                    depth_stencil_attachment: None,
+                    depth_stencil_attachment: Some(wgpu::RenderPassDepthStencilAttachmentDescriptor {
+                        attachment: &self.depth_texture.view,
+                        depth_ops: Some(wgpu::Operations {
+                            load: wgpu::LoadOp::Clear(1.0),
+                            store: true,
+                        }),
+                        stencil_ops: None,
+                    }),
                 });
             }else{
                 render_pass = encoder.begin_render_pass(&wgpu::RenderPassDescriptor {
@@ -384,7 +423,14 @@ impl Renderer {
                             }
                         }
                     ],
-                    depth_stencil_attachment: None,
+                    depth_stencil_attachment: Some(wgpu::RenderPassDepthStencilAttachmentDescriptor {
+                        attachment: &self.depth_texture.view,
+                        depth_ops: Some(wgpu::Operations {
+                            load: wgpu::LoadOp::Clear(1.0),
+                            store: true,
+                        }),
+                        stencil_ops: None,
+                    }),
                 });
             }
 

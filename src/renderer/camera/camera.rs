@@ -57,6 +57,11 @@ impl Camera {
     pub fn get_buffer_reference(&self) -> &wgpu::Buffer{
         &self.buffer
     }
+
+    pub fn move_camera(&mut self, new_pos: cgmath::Point3::<f32>){
+        self.eye = new_pos;
+        self.target = lerp(self.target, self.eye, 0.01);
+    }
 }
 
  
@@ -94,3 +99,7 @@ impl CameraUniform{
 
 impl UniformBuffer for CameraUniform{}
  
+// Point3 lerping for camera smoothing
+fn lerp(start: cgmath::Point3::<f32>, end: cgmath::Point3::<f32>, t: f32) -> cgmath::Point3::<f32>{
+    cgmath::Point3::<f32> { x: start.x * (1.0 - t) + end.x * t, y: start.y * (1.0 - t) + end.y * t, z: start.z * (1.0 - t) + end.z * t}
+}

@@ -1,4 +1,4 @@
-use crate::{Entity, ComponentBase, Rc, Renderer, SystemBase, RefCell, EntityManager, InputManager};
+use crate::{Entity, ComponentBase, Rc, Renderer, SystemBase, RefCell, EntityManager, InputManager, Camera};
 use std::collections::HashMap;
 
 pub struct SystemManager{
@@ -17,9 +17,9 @@ impl SystemManager{
         self.systems.push(system);
     }
 
-    pub fn update_systems(&mut self, renderer_reference: &Renderer, entity_manager: &mut EntityManager, input_manager: &InputManager){
+    pub fn update_systems(&mut self, renderer_reference: &Renderer, entity_manager: &mut EntityManager, input_manager: &InputManager, camera: &mut Camera){
         for system in self.systems.iter_mut(){
-            system.execute(renderer_reference, entity_manager, input_manager, self.delta_time);
+            system.execute(renderer_reference, entity_manager, input_manager, self.delta_time, camera);
         }
     }
 }
