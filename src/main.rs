@@ -175,8 +175,6 @@ pub fn main() {
     let window = WindowBuilder::new()
         .with_inner_size(winit::dpi::Size::from(winit::dpi::LogicalSize{ width: 1280, height: 720}))
         .with_title(TITLE)        
-        .with_decorations(false)
-        .with_maximized(true)
         .with_transparent(false)
         .build(&event_loop)
         .unwrap();
@@ -463,13 +461,16 @@ pub fn main() {
 
     layouts.remove(1);
 
+    let fb_u_layout = &BaseUniforms::create_uniform_layout(&temp_renderer);
+
+    layouts.push(hdr_tex_layout);
+    layouts.push(fb_u_layout);
+
     temp_renderer.create_pipeline("fxaa".to_string(), &layouts, wgpu::include_spirv!("./shaders/dummy.vert.spv"), wgpu::include_spirv!("./shaders/fxaa.frag.spv"), &color_states, 1);
 
 
-    layouts.push(hdr_tex_layout);
-    let fb_u_layout = &BaseUniforms::create_uniform_layout(&temp_renderer);
 
-    layouts.push(fb_u_layout);
+
 
     color_states.clear();
 

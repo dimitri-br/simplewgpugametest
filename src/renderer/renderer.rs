@@ -66,9 +66,9 @@ impl Renderer {
 
 
         let render_pipelines = HashMap::<String, wgpu::RenderPipeline>::new();
-        let sample_count = 8;
+        let sample_count = 1;
 
-        let postprocessing = PostProcessing::new(&device, &sc_desc, sample_count, 2);
+        let postprocessing = PostProcessing::new(&device, &sc_desc, sample_count, 4);
 
         Self {
             surface,
@@ -151,7 +151,7 @@ impl Renderer {
         self.sc_desc.width = new_size.width;
         self.sc_desc.height = new_size.height;
         self.swap_chain = self.device.create_swap_chain(&self.surface, &self.sc_desc);
-        self.postprocessing = PostProcessing::new(&self.device, &self.sc_desc, self.sample_count, 1);
+        self.postprocessing = PostProcessing::new(&self.device, &self.sc_desc, self.sample_count, 4);
     }
 
     pub fn update(&mut self) {
@@ -167,7 +167,10 @@ impl Renderer {
         .get_current_frame()?
         .output;
 
-        
+        let mut uniform = BaseUniforms::new();
+        uniform.iTime = time.elapsed().unwrap().as_secs_f32();
+        uniform.iResolution = [self.sc_desc.width as f32, self.sc_desc.height as f32];
+        let bind_group = uniform.create_uniform_group(&self);
 
         let mut encoder = self.device.create_command_encoder(&wgpu::CommandEncoderDescriptor {
             label: Some("Render Encoder"),
@@ -329,6 +332,9 @@ impl Renderer {
             // Post pass
             render_pass.set_pipeline(&self.render_pipelines["fxaa"]);
             render_pass.set_bind_group(0, &self.postprocessing.framebuffer_render_texture_group, &[]);
+            render_pass.set_bind_group(1, &self.postprocessing.framebuffer_render_texture_group, &[]);
+            render_pass.set_bind_group(2, &bind_group.0, &[]);
+
             render_pass.set_vertex_buffer(0, framebuffer.get_vertex_buffer().slice(..));
             render_pass.draw(0..framebuffer.get_num_vertices(), 0..1);
         }
@@ -340,10 +346,6 @@ impl Renderer {
                 self.postprocessing.size);
             
         }
-        let mut uniform = BaseUniforms::new();
-        uniform.iTime = time.elapsed().unwrap().as_secs_f32();
-        uniform.iResolution = [self.sc_desc.width as f32, self.sc_desc.height as f32];
-        let bind_group = uniform.create_uniform_group(&self);
         {
             let mut render_pass;
             if self.sample_count > 1{

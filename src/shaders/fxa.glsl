@@ -19,7 +19,7 @@
 vec4 applyFXAA(vec2 fragCoord, texture2D tex, sampler samp)
 {
     vec4 color;
-    vec2 inverseVP = vec2(1.0 / 1920.0, 1.0 / 1080.0);
+    vec2 inverseVP = vec2(1.0 / iResolution.x, 1.0 / iResolution.y);
     vec3 rgbNW = texture(sampler2D(tex, samp), (fragCoord + vec2(-1.0, -1.0)) * inverseVP).xyz;
     vec3 rgbNE = texture(sampler2D(tex, samp), (fragCoord + vec2(1.0, -1.0)) * inverseVP).xyz;
     vec3 rgbSW = texture(sampler2D(tex, samp), (fragCoord + vec2(-1.0, 1.0)) * inverseVP).xyz;

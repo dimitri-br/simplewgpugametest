@@ -1,6 +1,6 @@
 @echo off
 for %%f in (*.vert) do (
-    if "%%~xf"==".vert" C:\VulkanSDK\1.2.148.1\Bin32\glslc.exe %%f -o %%f.spv
+    if "%%~xf"==".vert" glslc.exe %%f -o %%f.spv
     if errorlevel 1 (
         echo Failed to compile shader %%f. Please read the error message[s] above
         exit /b 1
@@ -9,7 +9,7 @@ for %%f in (*.vert) do (
 )
 
 for %%f in (*.frag) do (
-    if "%%~xf"==".frag" C:\VulkanSDK\1.2.148.1\Bin32\glslc.exe %%f -o %%f.spv
+    if "%%~xf"==".frag" glslc.exe %%f -o %%f.spv
     if errorlevel 1 (
         echo Failed to compile shader %%f. Please read the error message[s] above
         exit /b 1
@@ -17,3 +17,5 @@ for %%f in (*.frag) do (
     if "%%~xf"==".frag" echo Compiled fragment shader: %%f
 
 )
+
+pause

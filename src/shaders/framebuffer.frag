@@ -25,17 +25,24 @@ void main()
 
     // Apply the bloom hdr effect by additive
     hdrColor += bloomColor;
+
+
     vec4 result = vec4(vec3(1.0) - exp(-hdrColor * exposure), 1.0);
 
-    result += film_grain(0.002, v_tex_coords);
+    result += film_grain(0.0015, v_tex_coords);
+
 
     /* Image Correction */
+
     
     result.rgb = adjustContrast(result.rgb, 0.025);
     
     result.rgb = adjustSaturation(result.rgb, 0.5);
 
     result.rgb = adjustExposure(result.rgb, 0.5);
+
+    result.rgb *= chromaticAberration(t_diffuse, s_diffuse, v_tex_coords, 0.5);
+
 
 
     // Color Correct

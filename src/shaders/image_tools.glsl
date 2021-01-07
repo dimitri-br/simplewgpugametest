@@ -16,3 +16,19 @@ vec3 adjustSaturation(vec3 color, float value){
 
     return mix(greyscale, color, 1.0 + value);
 }
+
+vec3 chromaticAberration(texture2D tex, sampler samp, vec2 uv, float intensity){
+	float amount = intensity;
+	amount = pow(amount, 3.0);
+
+	amount *= 0.05;
+	
+    vec3 col;
+    col.r = texture( sampler2D(tex, samp), vec2(uv.x+amount,uv.y) ).r;
+    col.g = texture( sampler2D(tex, samp), uv ).g;
+    col.b = texture( sampler2D(tex, samp), vec2(uv.x-amount,uv.y) ).b;
+
+	col *= (1.0 - amount * 0.5);
+
+    return col;
+}
