@@ -45,7 +45,7 @@ impl SystemBase for MovementSystem{
                     y: cgmath::Deg(0.0),
                     z: cgmath::Deg(self.x),
                 });
-                self.x = lerp(self.x, self.x + 32.0 * delta_time, 0.9);
+                self.x = lerp(self.x, self.x + 32.0 * delta_time, 0.25);
             }
             
             

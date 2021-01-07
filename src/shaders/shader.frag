@@ -28,7 +28,5 @@ void main() {
     if(brightness > 1.0)
         h_color = vec4(f_color.rgba);
     else
-        h_color = vec4(0.0, 0.0, 0.0, 0.0);
-    h_color = vec4(f_color.rgba);
-    
+        h_color = vec4(0.0, 0.0, 0.0, 0.0);    
 }

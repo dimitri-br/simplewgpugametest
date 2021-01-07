@@ -1,4 +1,4 @@
-use crate::{Vertex, RenderMesh, EntityManager, PostProcessing, BloomUniform, Texture, Material, Rc, BaseUniforms, DepthTexture};
+use crate::{Vertex, RenderMesh, EntityManager, PostProcessing, BloomUniform, Texture, Material, Rc, BaseUniforms, DepthTexture, Camera, Transform};
 use std::collections::HashMap;
 use std::any::Any;
 use winit::{
@@ -170,7 +170,7 @@ impl Renderer {
         // Not sure what to run here, maybe pipeline switching for multishader support?
     }
 
-    pub fn render(&mut self, entities: &EntityManager, time: &std::time::SystemTime) -> Result<(), wgpu::SwapChainError> {       
+    pub fn render(&mut self, camera: &mut Camera, entities: &EntityManager, time: &std::time::SystemTime) -> Result<(), wgpu::SwapChainError> {       
         let material = Material::new(&self, Rc::new(Texture::from_empty(&self.device).unwrap()), 1.0, 0.0, 0, "none".to_string());
         let framebuffer = RenderMesh::new(&self, material);
 

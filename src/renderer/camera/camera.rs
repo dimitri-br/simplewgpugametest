@@ -10,7 +10,8 @@ pub struct Camera {
     pub fovy: f32,
     pub znear: f32,
     pub zfar: f32,
-
+    pub width: u32,
+    pub height: u32,
     buffer: wgpu::Buffer
 }
 
@@ -33,15 +34,19 @@ impl Camera {
             fovy,
             znear,
             zfar,
-            buffer: UniformUtils::generate_empty_buffer(renderer_reference)
+            buffer: UniformUtils::generate_empty_buffer(renderer_reference),
+            width: 1920,
+            height: 1080,
         }
     }
-    pub fn build_view_projection_matrix(&self) -> cgmath::Matrix4<f32> {
+    pub fn build_view_projection_matrix(&mut self, sc_desc: &wgpu::SwapChainDescriptor) -> cgmath::Matrix4<f32> {
         // 1.
         let view = cgmath::Matrix4::look_at(self.eye, self.target, self.up);
         // 2.
         let proj = cgmath::perspective(cgmath::Deg(self.fovy), self.aspect, self.znear, self.zfar);
 
+        self.width = sc_desc.width;
+        self.height = sc_desc.height;
         // 3.
         return OPENGL_TO_WGPU_MATRIX * proj * view;
     }
@@ -58,9 +63,10 @@ impl Camera {
         &self.buffer
     }
 
-    pub fn move_camera(&mut self, new_pos: cgmath::Point3::<f32>){
+    pub fn move_camera(&mut self, mut new_pos: cgmath::Point3::<f32>){
         self.eye = new_pos;
-        self.target = lerp(self.target, self.eye, 0.01);
+        new_pos.z = 0.0;
+        self.target = lerp(self.target, new_pos, 0.075);
     }
 }
 
@@ -82,8 +88,8 @@ impl CameraUniform{
         }
     }
 
-    pub fn update_view_proj(&mut self, camera: &Camera) {
-        self.view_proj = camera.build_view_projection_matrix().into();
+    pub fn update_view_proj(&mut self, camera: &mut Camera, sc_desc: &wgpu::SwapChainDescriptor) {
+        self.view_proj = camera.build_view_projection_matrix(sc_desc).into();
     }
 
     pub fn create_uniform_buffer(&self, renderer_reference:&Renderer) -> wgpu::Buffer{

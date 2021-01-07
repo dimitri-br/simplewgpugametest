@@ -51,7 +51,7 @@ impl UniformUtils{
     pub fn generate_empty_buffer(renderer_reference: &Renderer) -> wgpu::Buffer{
         renderer_reference.device.create_buffer_init(
             &wgpu::util::BufferInitDescriptor {
-                label: Some("Rotation Uniform Buffer"),
+                label: Some("Empty Uniform Buffer"),
                 contents: bytemuck::cast_slice(&[0]),
                 usage: wgpu::BufferUsage::UNIFORM | wgpu::BufferUsage::COPY_DST,
             }

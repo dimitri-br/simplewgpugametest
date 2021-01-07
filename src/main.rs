@@ -1,4 +1,4 @@
-#![windows_subsystem = "windows"] // Disable console
+//#![windows_subsystem = "windows"] // Disable console
 extern crate clap;
 extern crate num;
 use clap::{Arg, App};
@@ -245,7 +245,6 @@ pub fn main() {
 
     let (camera_bind_group, camera_layout, mut cam_uniform) = camera.create_uniforms(&temp_renderer);
     let camera_bind_group = Rc::new(camera_bind_group);
-    cam_uniform.update_view_proj(&camera);
 
     // load textures (Define the texture layout)
     let texture_layout = Texture::generate_texture_layout(&temp_renderer);
@@ -393,7 +392,6 @@ pub fn main() {
 
     log::info!("Entities built");
 
-    println!("About to renderpipelien");
     // Create all our render pipelines. Define the color states (This is like instructions to  the GPU on how to blend the color, alpha and color format etc)
     // Important for render passes. One color state per output.
     let mut color_states = Vec::<wgpu::ColorStateDescriptor>::new();
@@ -437,7 +435,6 @@ pub fn main() {
     // recreate pipeline with layouts (needs mut)
     temp_renderer.create_pipeline("main".to_string(), &layouts, wgpu::include_spirv!("./shaders/shader.vert.spv"), wgpu::include_spirv!("./shaders/shader.frag.spv"), &color_states, 1);
     temp_renderer.create_pipeline("invert".to_string(), &layouts, wgpu::include_spirv!("./shaders/shader.vert.spv"), wgpu::include_spirv!("./shaders/invert.frag.spv"), &color_states, 1);
-    println!("LALLA");
     layouts.clear();
     let main_tex_layout = &Texture::generate_texture_layout_from_device(&temp_renderer.device);
     let hdr_tex_layout = &Texture::generate_texture_layout_from_device(&temp_renderer.device);
@@ -457,7 +454,6 @@ pub fn main() {
 
     let bloom_u_layout = &BloomUniform::create_uniform_layout(&temp_renderer);
     layouts.push(bloom_u_layout);
-    println!("LALLA");
     
     temp_renderer.create_pipeline("bloom".to_string(), &layouts, wgpu::include_spirv!("./shaders/dummy.vert.spv"), wgpu::include_spirv!("./shaders/bloom.frag.spv"), &color_states, 1);
 
@@ -467,7 +463,6 @@ pub fn main() {
 
     layouts.push(hdr_tex_layout);
     layouts.push(fb_u_layout);
-    println!("LALLA");
 
     temp_renderer.create_pipeline("fxaa".to_string(), &layouts, wgpu::include_spirv!("./shaders/dummy.vert.spv"), wgpu::include_spirv!("./shaders/fxaa.frag.spv"), &color_states, 1);
 
@@ -484,7 +479,6 @@ pub fn main() {
         alpha_blend: wgpu::BlendDescriptor::REPLACE,
         write_mask: wgpu::ColorWrite::ALL,
     });
-    println!("LALLA");
 
     let sample_count = temp_renderer.sample_count;
     temp_renderer.create_pipeline("framebuffer".to_string(), &layouts, wgpu::include_spirv!("./shaders/dummy.vert.spv"), wgpu::include_spirv!("./shaders/framebuffer.frag.spv"), &color_states, sample_count);
@@ -497,7 +491,6 @@ pub fn main() {
     /* Game Loop Defined */
 
     log::info!("Starting main loop");
-    println!("MAINLOOP");
     event_loop.run(move |event, _, control_flow|  
         match event {
         Event::WindowEvent {
@@ -547,7 +540,7 @@ pub fn main() {
  
 
             //camera_controller.update_camera(&mut camera);
-            cam_uniform.update_view_proj(&camera);
+            cam_uniform.update_view_proj(&mut camera, &renderer.sc_desc);
             renderer.write_buffer(camera.get_buffer_reference(), 0, &[cam_uniform]);         
         
             system_manager.update_systems(&renderer, &mut entity_manager, &input_manager, &mut camera);
@@ -555,7 +548,7 @@ pub fn main() {
             
 
 
-            match renderer.render(&entity_manager, &time) {
+            match renderer.render(&mut camera, &entity_manager, &time) {
                 Ok(_) => {}
                 // Recreate the swap_chain if lost
                 Err(wgpu::SwapChainError::Lost) => renderer.resize(window_size),
