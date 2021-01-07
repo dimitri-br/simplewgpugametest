@@ -11,6 +11,7 @@ pub struct Renderer {
     pub queue: wgpu::Queue,
     pub sc_desc: wgpu::SwapChainDescriptor,
     swap_chain: wgpu::SwapChain,
+    depth_buffer: Texture,
     size: winit::dpi::PhysicalSize<u32>,
     //pub render_pipeline: wgpu::RenderPipeline,
     pub render_pipelines: HashMap<String, wgpu::RenderPipeline>,
@@ -70,12 +71,15 @@ impl Renderer {
 
         let postprocessing = PostProcessing::new(&device, &sc_desc, sample_count, 4);
 
+        let depth_buffer = Texture::create_depth_texture(&device, &sc_desc, "depth_buffer");
+
         Self {
             surface,
             device,
             queue,
             sc_desc,
             swap_chain,
+            depth_buffer,
             size,
             //render_pipeline,
             render_pipelines,
@@ -121,7 +125,12 @@ impl Renderer {
         color_states: color_states,
 
         primitive_topology: wgpu::PrimitiveTopology::TriangleList, // 1.
-        depth_stencil_state: None, // 2.
+        depth_stencil_state: Some(wgpu::DepthStencilStateDescriptor {
+            format: Texture::DEPTH_FORMAT,
+            depth_write_enabled: true,
+            depth_compare: wgpu::CompareFunction::Less, // 1.
+            stencil: wgpu::StencilStateDescriptor::default(), // 2.
+        }), // 2.
         vertex_state: wgpu::VertexStateDescriptor {
             index_format: wgpu::IndexFormat::Uint32,
             vertex_buffers: &[
@@ -151,6 +160,7 @@ impl Renderer {
         self.sc_desc.width = new_size.width;
         self.sc_desc.height = new_size.height;
         self.swap_chain = self.device.create_swap_chain(&self.surface, &self.sc_desc);
+        self.depth_buffer = Texture::create_depth_texture(&self.device, &self.sc_desc, "depth_buffer");
         self.postprocessing = PostProcessing::new(&self.device, &self.sc_desc, self.sample_count, 4);
     }
 
@@ -208,7 +218,14 @@ impl Renderer {
                         }
                     }
                 ],
-                depth_stencil_attachment: None,
+                depth_stencil_attachment: Some(wgpu::RenderPassDepthStencilAttachmentDescriptor {
+                    attachment: &self.depth_buffer.view,
+                    depth_ops: Some(wgpu::Operations {
+                        load: wgpu::LoadOp::Clear(1.0),
+                        store: true,
+                    }),
+                    stencil_ops: None,
+                }),
             });
             for pipeline in self.render_pipelines.iter(){
                 for entity in entities.get_entities_with_type(RenderMesh::get_component_id()){
@@ -327,7 +344,14 @@ impl Renderer {
                         }
                     }
                 ],
-                depth_stencil_attachment: None,
+                depth_stencil_attachment: Some(wgpu::RenderPassDepthStencilAttachmentDescriptor {
+                    attachment: &self.depth_buffer.view,
+                    depth_ops: Some(wgpu::Operations {
+                        load: wgpu::LoadOp::Clear(1.0),
+                        store: true,
+                    }),
+                    stencil_ops: None,
+                }),
             });
             // Post pass
             render_pass.set_pipeline(&self.render_pipelines["fxaa"]);
@@ -365,7 +389,14 @@ impl Renderer {
                             }
                         }
                     ],
-                    depth_stencil_attachment: None,
+                    depth_stencil_attachment: Some(wgpu::RenderPassDepthStencilAttachmentDescriptor {
+                        attachment: &self.depth_buffer.view,
+                        depth_ops: Some(wgpu::Operations {
+                            load: wgpu::LoadOp::Clear(1.0),
+                            store: true,
+                        }),
+                        stencil_ops: None,
+                    }),
                 });
             }else{
                 render_pass = encoder.begin_render_pass(&wgpu::RenderPassDescriptor {
@@ -384,7 +415,14 @@ impl Renderer {
                             }
                         }
                     ],
-                    depth_stencil_attachment: None,
+                    depth_stencil_attachment: Some(wgpu::RenderPassDepthStencilAttachmentDescriptor {
+                        attachment: &self.depth_buffer.view,
+                        depth_ops: Some(wgpu::Operations {
+                            load: wgpu::LoadOp::Clear(1.0),
+                            store: true,
+                        }),
+                        stencil_ops: None,
+                    }),
                 });
             }
 
