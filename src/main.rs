@@ -1,4 +1,4 @@
-#![windows_subsystem = "windows"] // Disable console
+//#![windows_subsystem = "windows"] // Disable console
 extern crate clap;
 use clap::{Arg, App};
 
