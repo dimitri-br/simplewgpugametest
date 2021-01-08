@@ -1,6 +1,6 @@
 use crate::{Entity, ComponentBase, Rc, Renderer, SystemBase, RefCell};
 use std::collections::HashMap;
-
+use rayon::prelude::*;
 
 pub struct EntityManager{
     entities: Vec::<Entity>,
@@ -72,16 +72,15 @@ impl EntityManager{
     pub fn get_entities_with_types_mut(&mut self, ids: &[u32]) -> Vec::<&mut Entity>{
         // Create an empty vec to store our entity indexes
         let mut entities = HashMap::<usize, usize>::new();
+
         let mut loop_count = 0;
         // Iterate through the type ids
         for id in ids{
             // Get all entities with the ID
-            let entities_to_add = self.get_entities_with_type(*id);
-            // Vec will act as a buffer to check what entities already exist, so we can filter down
+            let mut entities_to_add = self.get_entities_with_type(*id);
             let mut contained_entities = HashMap::<usize, usize>::new();
-
             // Iterate through entities with ID
-            for entity in entities_to_add.iter(){
+            for entity in entities_to_add{
                 // If we've just started, add entity ID into the array regardless
                 if loop_count == 0{
                     entities.insert(entity.id, 0);

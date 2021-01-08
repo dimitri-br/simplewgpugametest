@@ -5,6 +5,7 @@ use winit::{
     window::Window,
 };
 
+
 pub struct Renderer {
     pub surface: wgpu::Surface,
     pub device: wgpu::Device,

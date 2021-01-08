@@ -671,6 +671,7 @@ dependencies = [
  "log4rs",
  "num",
  "rand",
+ "rayon",
  "wgpu",
  "winit",
 ]
