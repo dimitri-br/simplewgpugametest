@@ -1,39 +1,26 @@
-2021-01-08 10:55:12| game_test: INFO - Hello, world - Logger initalized!
-2021-01-08 10:55:12| game_test: INFO - Logging Level: Info
-2021-01-08 10:55:12| game_test: INFO - Vsync Mode: Fifo
-2021-01-08 10:55:12| game_test: INFO - App is running in release mode
-2021-01-08 10:55:12| game_test: INFO - Window created
-2021-01-08 10:55:13| game_test: INFO - Renderer created
-2021-01-08 10:55:13| game_test::entity::entitymanager: INFO - Entity Manager Initialized
-2021-01-08 10:55:13| game_test: INFO - Systems successfully initialized
-2021-01-08 10:55:13| game_test::renderer::texture: INFO - Texture Some("./data/textures/pepe.png") loaded
-2021-01-08 10:55:13| game_test::renderer::texture: INFO - Texture Some("./data/textures/happy-tree.png") loaded
-2021-01-08 10:55:13| game_test::renderer::texture: INFO - Texture Some("./data/textures/derp.png") loaded
-2021-01-08 10:55:13| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
-2021-01-08 10:55:13| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
-2021-01-08 10:55:13| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
-2021-01-08 10:55:13| game_test::entity::entitymanager: INFO - Entity created with 3 components
-2021-01-08 10:55:13| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
-2021-01-08 10:55:13| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
-2021-01-08 10:55:13| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
-2021-01-08 10:55:13| game_test::entity::entitymanager: INFO - Entity created with 2 components
-2021-01-08 10:55:13| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
-2021-01-08 10:55:13| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
-2021-01-08 10:55:13| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
-2021-01-08 10:55:13| game_test::entity::entitymanager: INFO - Entity created with 2 components
-2021-01-08 10:55:13| game_test: INFO - Entities built
-2021-01-08 10:55:13| game_test: INFO - Render Pipelines built
-2021-01-08 10:55:13| game_test: INFO - Starting main loop
-2021-01-08 10:55:13| gfx_memory::heaps: ERROR - Heaps not completely freed before drop. Utilization: MemoryHeapUtilization { utilization: MemoryUtilization { used: 55050240, effective: 26809344 }, size: 6270484480 }
-2021-01-08 10:55:13| gfx_memory::heaps: ERROR - Heaps not completely freed before drop. Utilization: MemoryHeapUtilization { utilization: MemoryUtilization { used: 16777216, effective: 2022912 }, size: 8550993920 }
-2021-01-08 10:55:13| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(3932160) is still used
-2021-01-08 10:55:13| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(983040) is still used
-2021-01-08 10:55:13| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(256) is still used
-2021-01-08 10:55:13| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(2048) is still used
-2021-01-08 10:55:13| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(16384) is still used
-2021-01-08 10:55:13| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(1048576) is still used
-2021-01-08 10:55:13| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(262144) is still used
-2021-01-08 10:55:13| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(65536) is still used
-2021-01-08 10:55:13| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(884736) is still used
-2021-01-08 10:55:13| gfx_memory::allocator::linear: ERROR - Not all allocations from LinearAllocator were freed
-2021-01-08 10:55:13| gfx_descriptor::allocator: ERROR - DescriptorAllocator is dropped
+2021-01-08 20:30:35| game_test: INFO - Hello, world - Logger initalized!
+2021-01-08 20:30:35| game_test: INFO - Logging Level: Info
+2021-01-08 20:30:35| game_test: INFO - Vsync Mode: Fifo
+2021-01-08 20:30:35| game_test: INFO - App is running in release mode
+2021-01-08 20:30:35| game_test: INFO - Window created
+2021-01-08 20:30:35| game_test: INFO - Renderer created
+2021-01-08 20:30:35| game_test::entity::entitymanager: INFO - Entity Manager Initialized
+2021-01-08 20:30:35| game_test: INFO - Systems successfully initialized
+2021-01-08 20:30:35| game_test::renderer::texture: INFO - Texture Some("./data/textures/pepe.png") loaded
+2021-01-08 20:30:35| game_test::renderer::texture: INFO - Texture Some("./data/textures/happy-tree.png") loaded
+2021-01-08 20:30:35| game_test::renderer::texture: INFO - Texture Some("./data/textures/derp.png") loaded
+2021-01-08 20:30:35| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
+2021-01-08 20:30:35| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
+2021-01-08 20:30:35| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
+2021-01-08 20:30:35| game_test::entity::entitymanager: INFO - Entity created with 3 components
+2021-01-08 20:30:35| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
+2021-01-08 20:30:35| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
+2021-01-08 20:30:35| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
+2021-01-08 20:30:35| game_test::entity::entitymanager: INFO - Entity created with 2 components
+2021-01-08 20:30:35| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
+2021-01-08 20:30:35| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
+2021-01-08 20:30:35| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
+2021-01-08 20:30:35| game_test::entity::entitymanager: INFO - Entity created with 2 components
+2021-01-08 20:30:35| game_test: INFO - Entities built
+2021-01-08 20:30:35| game_test: INFO - Render Pipelines built
+2021-01-08 20:30:35| game_test: INFO - Starting main loop

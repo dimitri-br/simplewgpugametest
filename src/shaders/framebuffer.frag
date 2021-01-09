@@ -28,13 +28,14 @@ void main()
 
 
     vec4 result = vec4(vec3(1.0) - exp(-hdrColor * exposure), 1.0);
-
     result += film_grain(0.0015, v_tex_coords);
+    result *= vignette(v_tex_coords, 512.0);
 
 
     /* Image Correction */
 
     
+
     result.rgb = adjustContrast(result.rgb, 0.025);
     
     result.rgb = adjustSaturation(result.rgb, 0.5);

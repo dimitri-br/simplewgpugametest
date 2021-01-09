@@ -32,3 +32,13 @@ vec3 chromaticAberration(texture2D tex, sampler samp, vec2 uv, float intensity){
 
     return col;
 }
+
+vec4 vignette(vec2 uv, float intensity){  
+    uv *=  1.0 - uv.yx;   //vec2(1.0)- uv.yx; -> 1.-u.yx; Thanks FabriceNeyret !
+    
+    float vig = uv.x*uv.y * intensity; // multiply with sth for intensity
+    
+    vig = pow(vig, 0.25); // change pow for modifying the extend of the  vignette
+
+    return vec4(vig);
+}
