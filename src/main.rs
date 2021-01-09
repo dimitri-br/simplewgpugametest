@@ -82,6 +82,12 @@ pub fn main() {
                                         .help("Enable debug logging [full, info, warn, err, off]")
                                         .takes_value(true)
                                         .value_name("DEBUG_LEVEL"))
+                          .arg(Arg::with_name("screenmode")
+                                        .short("sm")
+                                        .long("screenmode")
+                                        .help("Set the screen mode: [full, borderless, windowed]")
+                                        .takes_value(true)
+                                        .value_name("SCREENMODE"))
                           .get_matches();
 
     let backend = matches.value_of("backend").unwrap_or("primary");
@@ -143,13 +149,22 @@ pub fn main() {
 
     let mut vsync_enabled = "true";
 
-    if matches.is_present("vsync") {
-        vsync_enabled = match matches.value_of("vsync").unwrap_or("true"){
-            "on" | "true" => "true",
-            "off" | "false" => "false",
-            _ => "true",
-        };
-    }
+    vsync_enabled = match matches.value_of("vsync").unwrap_or("true"){
+        "on" | "true" => "true",
+        "off" | "false" => "false",
+        _ => "true",
+    };
+
+    let mut screenmode = "full";
+
+    screenmode = match matches.value_of("screenmode").unwrap_or("full"){
+        "full" | "fullscreen" => "full",
+        "border" | "borderless" | "fullscreenwindow" => "borderless",
+        "win" | "windowed" | "window" => "windowed",
+        _ => "full"
+    };
+
+    log::info!("Screen mode: {:?}", screenmode);
 
     let vsync_mode = match vsync_enabled{
         "true" => wgpu::PresentMode::Fifo,
@@ -173,12 +188,41 @@ pub fn main() {
 
     let event_loop = EventLoop::new();
     
-    let window = WindowBuilder::new()
-        .with_inner_size(winit::dpi::Size::from(winit::dpi::LogicalSize{ width: 1280, height: 720}))
-        .with_title(TITLE)        
-        .with_transparent(false)
-        .build(&event_loop)
-        .unwrap();
+    let mut x = 0;
+    let mut monitor: Vec<winit::monitor::MonitorHandle> = event_loop.available_monitors().filter(|_| if x == 0 { x += 1; true }else{ false }).collect();
+    let monitor = monitor.swap_remove(0);
+    
+    let mut x = 0;
+    let mut video_modes: Vec<winit::monitor::VideoMode> = monitor.video_modes().filter(|_| if x == 0 { x += 1; true }else{ false }).collect();
+    let video_modes = video_modes.swap_remove(0);
+
+    let window: winit::window::Window = match screenmode{
+        "full" => {
+            WindowBuilder::new()
+            .with_fullscreen(Some(winit::window::Fullscreen::Exclusive(video_modes)))
+            .with_title(TITLE)        
+            .with_transparent(false)
+            .build(&event_loop)
+            .unwrap()
+        },
+        "borderless" => {
+            WindowBuilder::new()
+            .with_fullscreen(Some(winit::window::Fullscreen::Borderless(Some(monitor))))
+            .with_title(TITLE)        
+            .with_transparent(false)
+            .build(&event_loop)
+            .unwrap()
+        },
+        "windowed" => {
+            WindowBuilder::new()
+            .with_inner_size(winit::dpi::Size::from(winit::dpi::LogicalSize{ width: 1280, height: 720}))
+            .with_title(TITLE)        
+            .with_transparent(false)
+            .build(&event_loop)
+            .unwrap()
+        },
+        _ => {panic!()}
+    };
 
     log::info!("Window created");
     let mut renderer;
@@ -240,7 +284,7 @@ pub fn main() {
         sc_desc.width as f32 / sc_desc.height as f32,
         45.0,
         0.1,
-        100.0,
+        25.0,
     );
 
     let (camera_bind_group, camera_layout, mut cam_uniform) = camera.create_uniforms(&temp_renderer);
@@ -250,9 +294,9 @@ pub fn main() {
     let texture_layout = Texture::generate_texture_layout(&temp_renderer);
 
 
-    let smiley_texture = Rc::new(Texture::load_texture(&temp_renderer, "./data/textures/pepe.png").unwrap());
+    let smiley_texture = Rc::new(Texture::load_texture(&temp_renderer, "./data/textures/derp.png").unwrap());
     let happy_tree_texture = Rc::new(Texture::load_texture(&temp_renderer, "./data/textures/happy-tree.png").unwrap());
-    let pepe_texture = Rc::new(Texture::load_texture(&temp_renderer, "./data/textures/derp.png").unwrap());
+    let pepe_texture = Rc::new(Texture::load_texture(&temp_renderer, "./data/textures/pepe.png").unwrap());
     
     // Create transform layout
     let transform_layout = UniformUtils::create_bind_group_layout(&temp_renderer, 0, wgpu::ShaderStage::VERTEX, Some("Transform"));
@@ -270,7 +314,7 @@ pub fn main() {
     let mut components = Vec::<Box<dyn ComponentBase>>::new();
 
     // create material - lower depth is sorted higher
-    let material = Material::new(&temp_renderer, Rc::clone(&smiley_texture), 1.0, 0.0, 0, "main".to_string());
+    let material = Material::new(&temp_renderer, Rc::clone(&smiley_texture), cgmath::Vector3::<f32> { x: 0.0, y: 20.0, z: 20.0 }, 1.0, 0.0, 0, "main".to_string());
 
     // create new mesh (TODO - mesh loading) and assign material
     let mut mesh = RenderMesh::new(&temp_renderer, material);
@@ -285,7 +329,7 @@ pub fn main() {
         z: cgmath::Deg(0.0),
     }));
 
-    let scale = NonUniformScale::new(cgmath::Vector3::<f32> { x: 1.0, y: 1.0, z: 1.0});
+    let scale = NonUniformScale::new(cgmath::Vector3::<f32> { x: 2.0, y: 2.0, z: 1.0});
 
     let mut transform = Transform::new(&temp_renderer, translation.value, rotation.value, scale.value);
     let (transform_group, _, _) = transform.create_uniforms(&temp_renderer);
@@ -308,7 +352,7 @@ pub fn main() {
     let mut components = Vec::<Box<dyn ComponentBase>>::new();
 
     // create material
-    let material = Material::new(&temp_renderer, Rc::clone(&happy_tree_texture), 1.0, 0.0, -1, "main".to_string());
+    let material = Material::new(&temp_renderer, Rc::clone(&happy_tree_texture), cgmath::Vector3::<f32> { x: 1.0, y: 1.0, z: 1.0 }, 1.0, 0.0, -1, "main".to_string());
 
     // create new mesh (TODO - mesh loading) and assign material
     let mut mesh = RenderMesh::new(&temp_renderer, material);
@@ -345,7 +389,7 @@ pub fn main() {
     let mut components = Vec::<Box<dyn ComponentBase>>::new();
 
     // create material
-    let material = Material::new(&temp_renderer, Rc::clone(&pepe_texture), 1.0, 0.0, -1, "main".to_string());
+    let material = Material::new(&temp_renderer, Rc::clone(&pepe_texture), cgmath::Vector3::<f32> { x: 1.0, y: 1.0, z: 1.0 }, 1.0, 0.0, -1, "main".to_string());
 
     // create new mesh (TODO - mesh loading) and assign material
     let mut mesh = RenderMesh::new(&temp_renderer, material);

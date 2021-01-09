@@ -4,6 +4,7 @@ use wgpu::util::DeviceExt;
 #[derive(std::fmt::Debug)]
 pub struct Material{
     texture: Rc<Texture>,
+    color: cgmath::Vector3<f32>,
     shininess: f32,
     metallic: f32,
     sort: i32,
@@ -12,9 +13,10 @@ pub struct Material{
 }
 
 impl Material{
-    pub fn new(renderer_reference: &Renderer, texture: Rc<Texture>, shininess: f32, metallic: f32, sort: i32, shader_name: String) -> Self{
+    pub fn new(renderer_reference: &Renderer, texture: Rc<Texture>, color: cgmath::Vector3<f32>, shininess: f32, metallic: f32, sort: i32, shader_name: String) -> Self{
         Self{
             texture,
+            color,
             shininess,
             metallic,
             sort,
@@ -32,7 +34,7 @@ impl Material{
     }
 
     pub fn create_uniform_group(&mut self, renderer_reference: &Renderer) -> (wgpu::BindGroup, wgpu::BindGroupLayout, MaterialUniform){
-        let material_uniform = MaterialUniform::new(self.shininess, self.metallic, self.sort);
+        let material_uniform = MaterialUniform::new(self.color, self.shininess, self.metallic, self.sort);
         let buffer = material_uniform.create_uniform_buffer(renderer_reference);
         let layout = Material::create_uniform_layout(renderer_reference);
         self.buffer = buffer;
@@ -54,13 +56,15 @@ impl Material{
 // This is so we can store this in a buffer
 #[derive(Debug, Copy, Clone, bytemuck::Pod, bytemuck::Zeroable)]
 pub struct MaterialUniform{
+    color: [f32; 3],
     shininess: f32,
     metallic: f32,
     sort: i32,
 }
 impl MaterialUniform{
-    pub fn new(shininess: f32, metallic: f32, sort: i32) -> Self{
+    pub fn new(color:  cgmath::Vector3::<f32>, shininess: f32, metallic: f32, sort: i32) -> Self{
         Self{
+            color: color.into(),
             shininess,
             metallic,
             sort

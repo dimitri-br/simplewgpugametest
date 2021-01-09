@@ -12,6 +12,7 @@ layout(set = 0, binding = 0) uniform texture2D t_diffuse;
 layout(set = 0, binding = 1) uniform sampler s_diffuse;
 layout(set=2, binding=0)
 uniform Material{
+    vec3 color;
     float shininess;
     float metallic;
     int sort;
@@ -20,7 +21,7 @@ uniform Material{
 void main() {
 
     vec4 texture = texture(sampler2D(t_diffuse, s_diffuse), v_tex_coords);
-    f_color = texture;
+    f_color = texture * vec4(color, 1.0f);
 
     gl_FragDepth = sort;
 

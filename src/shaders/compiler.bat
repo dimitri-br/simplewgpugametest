@@ -1,4 +1,5 @@
 @echo off
+rem compile vertex shaders
 for %%f in (*.vert) do (
     if "%%~xf"==".vert" glslc.exe %%f -o %%f.spv
     if errorlevel 1 (
@@ -7,7 +8,7 @@ for %%f in (*.vert) do (
     )
     if "%%~xf"==".vert" echo Compiled vertex shader: %%f
 )
-
+rem compile fragment shaders
 for %%f in (*.frag) do (
     if "%%~xf"==".frag" glslc.exe %%f -o %%f.spv
     if errorlevel 1 (
@@ -18,4 +19,4 @@ for %%f in (*.frag) do (
 
 )
 
-pause
+exit /b 0

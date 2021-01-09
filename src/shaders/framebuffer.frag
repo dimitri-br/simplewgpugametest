@@ -25,9 +25,11 @@ void main()
 
     // Apply the bloom hdr effect by additive
     hdrColor += bloomColor;
-
-
     vec4 result = vec4(vec3(1.0) - exp(-hdrColor * exposure), 1.0);
+
+
+    // Effects
+    
     result += film_grain(0.0015, v_tex_coords);
     result *= vignette(v_tex_coords, 512.0);
 

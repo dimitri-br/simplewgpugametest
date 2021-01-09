@@ -70,7 +70,7 @@ impl Renderer {
         let render_pipelines = HashMap::<String, wgpu::RenderPipeline>::new();
         let sample_count = 1;
 
-        let postprocessing = PostProcessing::new(&device, &sc_desc, sample_count, 4);
+        let postprocessing = PostProcessing::new(&device, &sc_desc, sample_count, 8);
 
         let depth_texture = DepthTexture::create_depth_texture(&device, &sc_desc, "depth_texture");
 
@@ -172,7 +172,7 @@ impl Renderer {
     }
 
     pub fn render(&mut self, camera: &mut Camera, entities: &EntityManager, time: &std::time::SystemTime) -> Result<(), wgpu::SwapChainError> {       
-        let material = Material::new(&self, Rc::new(Texture::from_empty(&self.device).unwrap()), 1.0, 0.0, 0, "none".to_string());
+        let material = Material::new(&self, Rc::new(Texture::from_empty(&self.device).unwrap()), cgmath::Vector3::<f32> { x: 1.0, y: 1.0, z: 1.0 }, 1.0, 0.0, 0, "none".to_string());
         let framebuffer = RenderMesh::new(&self, material);
 
         let frame = self
