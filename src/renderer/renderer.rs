@@ -1,4 +1,4 @@
-use crate::{Vertex, RenderMesh, EntityManager, PostProcessing, BloomUniform, Texture, Material, Rc, BaseUniforms, DepthTexture, Camera, Transform};
+use crate::{Vertex, RenderMesh, EntityManager, PostProcessing, BloomUniform, Texture, Material, Rc, BaseUniforms, DepthTexture, Camera, Entity};
 use std::collections::HashMap;
 use std::any::Any;
 use winit::{
@@ -116,7 +116,7 @@ impl Renderer {
         rasterization_state: Some(
             wgpu::RasterizationStateDescriptor {
                 front_face: wgpu::FrontFace::Ccw,
-                cull_mode: wgpu::CullMode::None,
+                cull_mode: wgpu::CullMode::Back,
                 depth_bias: 0,
                 depth_bias_slope_scale: 0.0,
                 depth_bias_clamp: 0.0,
@@ -130,7 +130,7 @@ impl Renderer {
         depth_stencil_state: Some(wgpu::DepthStencilStateDescriptor {
             format: DepthTexture::DEPTH_FORMAT,
             depth_write_enabled: true,
-            depth_compare: wgpu::CompareFunction::Less, // 1.
+            depth_compare: wgpu::CompareFunction::Always, // 1.
             stencil: wgpu::StencilStateDescriptor::default(), // 2.
         }),
 
@@ -142,7 +142,7 @@ impl Renderer {
         },
         sample_count: sample_count, // 5.
         sample_mask: !0, // 6.
-        alpha_to_coverage_enabled: false, // 7.
+        alpha_to_coverage_enabled: true, // 7.
     })
    }
 
@@ -230,7 +230,15 @@ impl Renderer {
                 }),
             });
             for pipeline in self.render_pipelines.iter(){
+                let mut entities_to_draw = Vec::<&Entity>::new();
                 for entity in entities.get_entities_with_type(RenderMesh::get_component_id()){
+                    entities_to_draw.push(&entity);
+                }
+
+                entities_to_draw.sort_by(|a, b| b.get_component::<RenderMesh>(RenderMesh::get_component_id()).unwrap().borrow_material().sort.cmp(&a.get_component::<RenderMesh>(RenderMesh::get_component_id()).unwrap().borrow_material().sort));
+
+
+                for entity in entities_to_draw.into_iter(){
                     let mesh = match entity.get_component::<RenderMesh>(RenderMesh::get_component_id()){
                         Ok(rm) => { rm }
                         Err(e) => panic!("{:?}", e)

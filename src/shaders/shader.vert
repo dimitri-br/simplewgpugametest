@@ -5,7 +5,8 @@
 
 layout(set=1, binding=0) 
 uniform Uniforms {
-    mat4 u_view_proj;
+    mat4 proj;
+    mat4 view;
 };
 
 layout(set=3, binding=0) 
@@ -15,5 +16,7 @@ uniform Transform {
 
 void main() {
     v_tex_coords = tex_coords;
-    gl_Position = u_view_proj * transform * vec4(position, 1.0);
+    gl_Position = proj * view * transform * vec4(position, 1.0);
+
+    frag_pos = vec3(transform * vec4(position, 1.0));
 }

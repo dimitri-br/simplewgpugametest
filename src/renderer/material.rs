@@ -7,7 +7,7 @@ pub struct Material{
     color: cgmath::Vector3<f32>,
     shininess: f32,
     metallic: f32,
-    sort: i32,
+    pub sort: i32,
     buffer: wgpu::Buffer,
     shader_name: String
 }

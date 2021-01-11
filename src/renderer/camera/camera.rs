@@ -39,16 +39,16 @@ impl Camera {
             height: 1080,
         }
     }
-    pub fn build_view_projection_matrix(&mut self, sc_desc: &wgpu::SwapChainDescriptor) -> cgmath::Matrix4<f32> {
+    pub fn build_view_projection_matrix(&mut self, sc_desc: &wgpu::SwapChainDescriptor) -> (cgmath::Matrix4<f32>, cgmath::Matrix4<f32>) {
         // 1.
-        let view = cgmath::Matrix4::look_at(self.eye, self.target, self.up);
+        let view = cgmath::Matrix4::look_at_rh(self.eye, self.target, self.up);
         // 2.
         let proj = cgmath::perspective(cgmath::Deg(self.fovy), self.aspect, self.znear, self.zfar);
 
         self.width = sc_desc.width;
         self.height = sc_desc.height;
         // 3.
-        return OPENGL_TO_WGPU_MATRIX * proj * view;
+        return (OPENGL_TO_WGPU_MATRIX * proj, view);
     }
 
     pub fn create_uniforms(&mut self, renderer_reference: &Renderer) -> (wgpu::BindGroup, wgpu::BindGroupLayout, CameraUniform){
@@ -78,18 +78,23 @@ impl Camera {
 // This is so we can store this in a buffer
 #[derive(Debug, Copy, Clone, bytemuck::Pod, bytemuck::Zeroable)]
 pub struct CameraUniform{
-    pub view_proj: [[f32; 4]; 4],
+    pub proj: [[f32; 4]; 4],
+    pub view: [[f32; 4]; 4],
 }
 
 impl CameraUniform{
     pub fn new() -> Self {
         Self {
-            view_proj: cgmath::Matrix4::identity().into(),
+            proj: cgmath::Matrix4::identity().into(),
+            view: cgmath::Matrix4::identity().into(),
         }
     }
 
     pub fn update_view_proj(&mut self, camera: &mut Camera, sc_desc: &wgpu::SwapChainDescriptor) {
-        self.view_proj = camera.build_view_projection_matrix(sc_desc).into();
+        let (proj, view) = camera.build_view_projection_matrix(sc_desc);
+        self.proj = proj.into();
+        self.view = view.into();
+
     }
 
     pub fn create_uniform_buffer(&self, renderer_reference:&Renderer) -> wgpu::Buffer{

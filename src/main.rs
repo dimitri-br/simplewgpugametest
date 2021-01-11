@@ -314,7 +314,7 @@ pub fn main() {
     let mut components = Vec::<Box<dyn ComponentBase>>::new();
 
     // create material - lower depth is sorted higher
-    let material = Material::new(&temp_renderer, Rc::clone(&smiley_texture), cgmath::Vector3::<f32> { x: 0.0, y: 20.0, z: 20.0 }, 1.0, 0.0, 0, "main".to_string());
+    let material = Material::new(&temp_renderer, Rc::clone(&smiley_texture), cgmath::Vector3::<f32> { x: 0.0, y: 200.0, z: 200.0 }, 1.0, 0.0, 0, "main".to_string());
 
     // create new mesh (TODO - mesh loading) and assign material
     let mut mesh = RenderMesh::new(&temp_renderer, material);
@@ -329,7 +329,7 @@ pub fn main() {
         z: cgmath::Deg(0.0),
     }));
 
-    let scale = NonUniformScale::new(cgmath::Vector3::<f32> { x: 2.0, y: 2.0, z: 1.0});
+    let scale = NonUniformScale::new(cgmath::Vector3::<f32> { x: 3.0, y: 3.0, z: 1.0});
 
     let mut transform = Transform::new(&temp_renderer, translation.value, rotation.value, scale.value);
     let (transform_group, _, _) = transform.create_uniforms(&temp_renderer);
