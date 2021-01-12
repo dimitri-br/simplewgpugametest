@@ -1,28 +1,61 @@
-2021-01-11 15:54:54| game_test: INFO - Hello, world - Logger initalized!
-2021-01-11 15:54:54| game_test: INFO - Logging Level: Info
-2021-01-11 15:54:54| game_test: INFO - Screen mode: "full"
-2021-01-11 15:54:54| game_test: INFO - Vsync Mode: Fifo
-2021-01-11 15:54:54| game_test: INFO - App is running in release mode
-2021-01-11 15:54:55| game_test: INFO - Window created
-2021-01-11 15:54:55| game_test: INFO - Renderer created
-2021-01-11 15:54:55| game_test::entity::entitymanager: INFO - Entity Manager Initialized
-2021-01-11 15:54:55| game_test: INFO - Systems successfully initialized
-2021-01-11 15:54:55| game_test::renderer::texture: INFO - Texture Some("./data/textures/derp.png") loaded
-2021-01-11 15:54:55| game_test::renderer::texture: INFO - Texture Some("./data/textures/happy-tree.png") loaded
-2021-01-11 15:54:55| game_test::renderer::texture: INFO - Texture Some("./data/textures/pepe.png") loaded
-2021-01-11 15:54:55| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
-2021-01-11 15:54:55| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
-2021-01-11 15:54:55| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
-2021-01-11 15:54:55| game_test::entity::entitymanager: INFO - Entity created with 3 components
-2021-01-11 15:54:55| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
-2021-01-11 15:54:55| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
-2021-01-11 15:54:55| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
-2021-01-11 15:54:55| game_test::entity::entitymanager: INFO - Entity created with 2 components
-2021-01-11 15:54:55| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
-2021-01-11 15:54:55| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
-2021-01-11 15:54:55| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
-2021-01-11 15:54:55| game_test::entity::entitymanager: INFO - Entity created with 2 components
-2021-01-11 15:54:55| game_test: INFO - Entities built
-2021-01-11 15:54:55| game_test: INFO - Render Pipelines built
-2021-01-11 15:54:55| game_test: INFO - Starting main loop
-2021-01-11 15:55:03| game_test: INFO - User Quit Application
+2021-01-12 10:25:19| game_test: INFO - Hello, world - Logger initalized!
+2021-01-12 10:25:19| game_test: INFO - Logging Level: Info
+2021-01-12 10:25:19| game_test: INFO - Screen mode: "full"
+2021-01-12 10:25:19| game_test: INFO - Vsync Mode: Fifo
+2021-01-12 10:25:19| game_test: INFO - App is running in release mode
+2021-01-12 10:25:19| game_test: INFO - Window created
+2021-01-12 10:25:19| gfx_backend_dx11: INFO - DXGI version: Dxgi1_5
+2021-01-12 10:25:19| gfx_backend_dx11: INFO - AdapterInfo {
+    name: "NVIDIA GeForce RTX 2060",
+    vendor: 4318,
+    device: 7944,
+    device_type: DiscreteGpu,
+}
+2021-01-12 10:25:19| gfx_backend_dx11: INFO - AdapterInfo {
+    name: "Microsoft Basic Render Driver",
+    vendor: 5140,
+    device: 140,
+    device_type: VirtualGpu,
+}
+2021-01-12 10:25:20| gfx_backend_dx11: INFO - feature level=b100=FL11_1
+2021-01-12 10:25:20| game_test: INFO - Renderer created
+2021-01-12 10:25:20| game_test::entity::entitymanager: INFO - Entity Manager Initialized
+2021-01-12 10:25:20| game_test: INFO - Systems successfully initialized
+2021-01-12 10:25:20| game_test::renderer::texture: INFO - Texture Some("./data/textures/derp.png") loaded
+2021-01-12 10:25:20| game_test::renderer::texture: INFO - Texture Some("./data/textures/happy-tree.png") loaded
+2021-01-12 10:25:20| game_test::renderer::texture: INFO - Texture Some("./data/textures/pepe.png") loaded
+2021-01-12 10:25:20| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
+2021-01-12 10:25:20| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
+2021-01-12 10:25:20| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
+2021-01-12 10:25:20| game_test::entity::entitymanager: INFO - Entity created with 3 components
+2021-01-12 10:25:20| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
+2021-01-12 10:25:20| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
+2021-01-12 10:25:20| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
+2021-01-12 10:25:20| game_test::entity::entitymanager: INFO - Entity created with 2 components
+2021-01-12 10:25:20| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
+2021-01-12 10:25:20| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
+2021-01-12 10:25:20| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
+2021-01-12 10:25:20| game_test::entity::entitymanager: INFO - Entity created with 2 components
+2021-01-12 10:25:20| game_test: INFO - Entities built
+2021-01-12 10:25:20| game_test: INFO - Render Pipelines built
+2021-01-12 10:25:20| game_test: INFO - Starting main loop
+2021-01-12 10:25:21| gfx_memory::heaps: ERROR - Heaps not completely freed before drop. Utilization: MemoryHeapUtilization { utilization: MemoryUtilization { used: 118243328, effective: 58709504 }, size: 18446744073709551615 }
+2021-01-12 10:25:21| gfx_memory::heaps: ERROR - Heaps not completely freed before drop. Utilization: MemoryHeapUtilization { utilization: MemoryUtilization { used: 17104896, effective: 2047356 }, size: 18446744073709551615 }
+2021-01-12 10:25:21| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(8294400) is still used
+2021-01-12 10:25:21| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(2073600) is still used
+2021-01-12 10:25:21| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(256) is still used
+2021-01-12 10:25:21| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(2048) is still used
+2021-01-12 10:25:21| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(16384) is still used
+2021-01-12 10:25:21| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(705792) is still used
+2021-01-12 10:25:21| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(262144) is still used
+2021-01-12 10:25:21| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(65536) is still used
+2021-01-12 10:25:21| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(1048576) is still used
+2021-01-12 10:25:21| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(25600) is still used
+2021-01-12 10:25:21| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(2600192) is still used
+2021-01-12 10:25:21| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(26624) is still used
+2021-01-12 10:25:21| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(26624) is still used
+2021-01-12 10:25:21| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(1792) is still used
+2021-01-12 10:25:21| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(14336) is still used
+2021-01-12 10:25:21| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(1024) is still used
+2021-01-12 10:25:21| gfx_memory::allocator::linear: ERROR - Not all allocations from LinearAllocator were freed
+2021-01-12 10:25:21| gfx_descriptor::allocator: ERROR - DescriptorAllocator is dropped

@@ -4,7 +4,7 @@ use std::any::Any;
 use winit::{
     window::Window,
 };
-
+use wgpu_glyph::{ab_glyph, GlyphBrushBuilder, Section, Text, Layout, HorizontalAlign, VerticalAlign};
 
 pub struct Renderer {
     pub surface: wgpu::Surface,
@@ -15,6 +15,7 @@ pub struct Renderer {
     size: winit::dpi::PhysicalSize<u32>,
     //pub render_pipeline: wgpu::RenderPipeline,
     pub render_pipelines: HashMap<String, wgpu::RenderPipeline>,
+    staging_belt: wgpu::util::StagingBelt,
     postprocessing: PostProcessing,
     depth_texture: DepthTexture,
     pub sample_count: u32,
@@ -74,6 +75,8 @@ impl Renderer {
 
         let depth_texture = DepthTexture::create_depth_texture(&device, &sc_desc, "depth_texture");
 
+        let mut staging_belt = wgpu::util::StagingBelt::new(1024);
+
         Self {
             surface,
             device,
@@ -83,6 +86,7 @@ impl Renderer {
             size,
             //render_pipeline,
             render_pipelines,
+            staging_belt,
             postprocessing,
             depth_texture,
             sample_count,
@@ -91,6 +95,60 @@ impl Renderer {
 
     
     fn generate_pipeline(device: &wgpu::Device, vs_module: wgpu::ShaderModule, fs_module: wgpu::ShaderModule,
+        bind_group_layouts: &[&wgpu::BindGroupLayout], color_states: &[wgpu::ColorStateDescriptor], vertex_descriptors: &[wgpu::VertexBufferDescriptor], sample_count: u32) -> wgpu::RenderPipeline {
+
+       let render_pipeline_layout =
+       device.create_pipeline_layout(&wgpu::PipelineLayoutDescriptor {
+           label: Some("Render Pipeline Layout"),
+           bind_group_layouts: bind_group_layouts,
+           push_constant_ranges: &[],
+        });
+
+       
+
+        device.create_render_pipeline(&wgpu::RenderPipelineDescriptor {
+            label: Some("Render Pipeline"),
+            layout: Some(&render_pipeline_layout),
+            vertex_stage: wgpu::ProgrammableStageDescriptor {
+                module: &vs_module,
+                entry_point: "main", // 1.
+            },
+            fragment_stage: Some(wgpu::ProgrammableStageDescriptor { // 2.
+                module: &fs_module,
+                entry_point: "main",
+            }),
+            rasterization_state: Some(
+                wgpu::RasterizationStateDescriptor {
+                    front_face: wgpu::FrontFace::Ccw,
+                    cull_mode: wgpu::CullMode::Back,
+                    depth_bias: 0,
+                    depth_bias_slope_scale: 0.0,
+                    depth_bias_clamp: 0.0,
+                    clamp_depth: false,
+                }
+            ),
+            color_states: color_states,
+
+            primitive_topology: wgpu::PrimitiveTopology::TriangleList, // 1.
+
+            depth_stencil_state: Some(wgpu::DepthStencilStateDescriptor {
+                format: DepthTexture::DEPTH_FORMAT,
+                depth_write_enabled: true,
+                depth_compare: wgpu::CompareFunction::Always, // 1.
+                stencil: wgpu::StencilStateDescriptor::default(), // 2.
+            }),
+
+            vertex_state: wgpu::VertexStateDescriptor {
+                index_format: wgpu::IndexFormat::Uint32,
+                vertex_buffers: vertex_descriptors,
+            },
+            sample_count: sample_count, // 5.
+            sample_mask: !0, // 6.
+            alpha_to_coverage_enabled: true, // 7.
+        })
+    }
+
+    fn generate_screen_pipeline(device: &wgpu::Device, vs_module: wgpu::ShaderModule, fs_module: wgpu::ShaderModule,
         bind_group_layouts: &[&wgpu::BindGroupLayout], color_states: &[wgpu::ColorStateDescriptor], sample_count: u32) -> wgpu::RenderPipeline {
 
        let render_pipeline_layout =
@@ -98,58 +156,58 @@ impl Renderer {
            label: Some("Render Pipeline Layout"),
            bind_group_layouts: bind_group_layouts,
            push_constant_ranges: &[],
-       });
+        });
 
        
 
         device.create_render_pipeline(&wgpu::RenderPipelineDescriptor {
-        label: Some("Render Pipeline"),
-        layout: Some(&render_pipeline_layout),
-        vertex_stage: wgpu::ProgrammableStageDescriptor {
-            module: &vs_module,
-            entry_point: "main", // 1.
-        },
-        fragment_stage: Some(wgpu::ProgrammableStageDescriptor { // 2.
-            module: &fs_module,
-            entry_point: "main",
-        }),
-        rasterization_state: Some(
-            wgpu::RasterizationStateDescriptor {
-                front_face: wgpu::FrontFace::Ccw,
-                cull_mode: wgpu::CullMode::Back,
-                depth_bias: 0,
-                depth_bias_slope_scale: 0.0,
-                depth_bias_clamp: 0.0,
-                clamp_depth: false,
-            }
-        ),
-        color_states: color_states,
+            label: Some("Render Pipeline"),
+            layout: Some(&render_pipeline_layout),
+            vertex_stage: wgpu::ProgrammableStageDescriptor {
+                module: &vs_module,
+                entry_point: "main", // 1.
+            },
+            fragment_stage: Some(wgpu::ProgrammableStageDescriptor { // 2.
+                module: &fs_module,
+                entry_point: "main",
+            }),
+            rasterization_state: Some(
+                wgpu::RasterizationStateDescriptor {
+                    front_face: wgpu::FrontFace::Ccw,
+                    cull_mode: wgpu::CullMode::Back,
+                    depth_bias: 0,
+                    depth_bias_slope_scale: 0.0,
+                    depth_bias_clamp: 0.0,
+                    clamp_depth: false,
+                }
+            ),
+            color_states: color_states,
 
-        primitive_topology: wgpu::PrimitiveTopology::TriangleList, // 1.
+            primitive_topology: wgpu::PrimitiveTopology::TriangleList, // 1.
 
-        depth_stencil_state: Some(wgpu::DepthStencilStateDescriptor {
-            format: DepthTexture::DEPTH_FORMAT,
-            depth_write_enabled: true,
-            depth_compare: wgpu::CompareFunction::Always, // 1.
-            stencil: wgpu::StencilStateDescriptor::default(), // 2.
-        }),
+            depth_stencil_state: Some(wgpu::DepthStencilStateDescriptor {
+                format: DepthTexture::DEPTH_FORMAT,
+                depth_write_enabled: true,
+                depth_compare: wgpu::CompareFunction::Always, // 1.
+                stencil: wgpu::StencilStateDescriptor::default(), // 2.
+            }),
 
-        vertex_state: wgpu::VertexStateDescriptor {
-            index_format: wgpu::IndexFormat::Uint32,
-            vertex_buffers: &[
-                Vertex::desc(), // Set our vertex buffer description here (Description defines the things like texcoords and normals)
-            ],
-        },
-        sample_count: sample_count, // 5.
-        sample_mask: !0, // 6.
-        alpha_to_coverage_enabled: true, // 7.
-    })
-   }
+            vertex_state: wgpu::VertexStateDescriptor {
+                index_format: wgpu::IndexFormat::Uint32,
+                vertex_buffers: &[
+                    Vertex::desc(), // Set our vertex buffer description here (Description defines the things like texcoords and normals)
+                ],
+            },
+            sample_count: sample_count, // 5.
+            sample_mask: !0, // 6.
+            alpha_to_coverage_enabled: true, // 7.
+        })
+    }
 
-   pub fn create_pipeline(&mut self, name: String, bind_group_layouts: &[&wgpu::BindGroupLayout], vertex_shader: wgpu::ShaderModuleSource, fragment_shader: wgpu::ShaderModuleSource, color_states: &[wgpu::ColorStateDescriptor], sample_count: u32){
+   pub fn create_pipeline(&mut self, name: String, bind_group_layouts: &[&wgpu::BindGroupLayout], vertex_shader: wgpu::ShaderModuleSource, fragment_shader: wgpu::ShaderModuleSource, color_states: &[wgpu::ColorStateDescriptor], vertex_descriptors: &[wgpu::VertexBufferDescriptor], sample_count: u32){
     let vs_module = self.device.create_shader_module(vertex_shader);
     let fs_module = self.device.create_shader_module(fragment_shader);
-    let new_pipeline = Renderer::generate_pipeline(&self.device, vs_module, fs_module, bind_group_layouts, color_states, sample_count);
+    let new_pipeline = Renderer::generate_pipeline(&self.device, vs_module, fs_module, bind_group_layouts, color_states, vertex_descriptors, sample_count);
     if !self.render_pipelines.contains_key(&name){
         self.render_pipelines.insert(name, new_pipeline);
     }else{
@@ -171,7 +229,7 @@ impl Renderer {
         // Not sure what to run here, maybe pipeline switching for multishader support?
     }
 
-    pub fn render(&mut self, camera: &mut Camera, entities: &EntityManager, time: &std::time::SystemTime) -> Result<(), wgpu::SwapChainError> {       
+    pub fn render(&mut self, camera: &mut Camera, entities: &EntityManager, time: &std::time::SystemTime, framerate: f32) -> Result<(), wgpu::SwapChainError> {       
         let material = Material::new(&self, Rc::new(Texture::from_empty(&self.device).unwrap()), cgmath::Vector3::<f32> { x: 1.0, y: 1.0, z: 1.0 }, 1.0, 0.0, 0, "none".to_string());
         let framebuffer = RenderMesh::new(&self, material);
 
@@ -184,6 +242,34 @@ impl Renderer {
         uniform.iTime = time.elapsed().unwrap().as_secs_f32();
         uniform.iResolution = [self.sc_desc.width as f32, self.sc_desc.height as f32];
         let bind_group = uniform.create_uniform_group(&self);
+
+        let font = ab_glyph::FontArc::try_from_slice(include_bytes!("../../data/fonts/Potta-One.ttf"))
+             .expect("Load font");
+
+        let mut glyph_brush = GlyphBrushBuilder::using_font(font)
+            .build(&self.device, wgpu::TextureFormat::Bgra8UnormSrgb);
+
+        let hello_world = Section {
+            screen_position: ((self.sc_desc.width as f32) / 2.0, 0.0),
+            text: vec![Text::new("Hello World!").with_color([1.0, 1.0, 1.0, 1.0]).with_scale(72.0)],
+            layout: Layout::default().h_align(HorizontalAlign::Center).v_align(VerticalAlign::Top),
+            ..Section::default()
+        };
+
+        let fps_text = format!("FPS: {:?}", framerate as u32);
+        let fps = Section {
+            screen_position: (self.sc_desc.width as f32, 0.0),
+            text: vec![Text::new(&fps_text).with_color([1.0, 1.0, 1.0, 1.0]).with_scale(72.0)],
+            layout: Layout::default().h_align(HorizontalAlign::Right).v_align(VerticalAlign::Top),
+            ..Section::default()
+        };
+
+        let help = Section {
+            screen_position: (0.0, self.sc_desc.height as f32),
+            text: vec![Text::new("WASD or Arrows to move").with_color([1.0, 1.0, 1.0, 1.0]).with_scale(25.0)],
+            layout: Layout::default().h_align(HorizontalAlign::Left).v_align(VerticalAlign::Bottom),
+            ..Section::default()
+        };
         
         let mut encoder = self.device.create_command_encoder(&wgpu::CommandEncoderDescriptor {
             label: Some("Render Encoder"),
@@ -262,7 +348,10 @@ impl Renderer {
                         }
                     }
                 }
+                
+
             }
+
         }
         {
             encoder.copy_texture_to_texture(
@@ -281,7 +370,6 @@ impl Renderer {
 
             let bloom_uniform_uniform = bloom_uniform.create_uniform_group(self);
             let bind_group = bloom_uniform_uniform.0;
-            let mut bundle_iterator;
             for _ in 0..self.postprocessing.bloom_intensity{
                 {
                     let mut render_pass = encoder.begin_render_pass(&wgpu::RenderPassDescriptor {
@@ -309,30 +397,13 @@ impl Renderer {
                             stencil_ops: None,
                         }),
                     });
-                    let mut bloom_encoder = self.device.create_render_bundle_encoder(&wgpu::RenderBundleEncoderDescriptor{
-                        color_formats: &[wgpu::TextureFormat::Rgba8UnormSrgb],
-                        depth_stencil_format: Some(DepthTexture::DEPTH_FORMAT),
-                        sample_count: 1,
-                        label: Some("Bloom encoder")
-                    });
-                    bloom_encoder.set_pipeline(&self.render_pipelines["bloom"]);
-        
-                    bloom_encoder.set_bind_group(0, &self.postprocessing.hdr_render_texture_group, &[]);
-                    
-    
-                    bloom_encoder.set_bind_group(1, &bind_group, &[]);  
-                    
-                    bloom_encoder.set_vertex_buffer(0, framebuffer.get_vertex_buffer().slice(..));
-                    bloom_encoder.draw(0..framebuffer.get_num_vertices(), 0..1);
+                    render_pass.set_pipeline(&self.render_pipelines["bloom"]);
+                    render_pass.set_bind_group(0, &self.postprocessing.hdr_render_texture_group, &[]);
+                    render_pass.set_bind_group(1, &bind_group, &[]);  
+                    render_pass.draw(0..3, 0..1);
     
                     horizontal = !horizontal;
                     bloom_uniform.horizonal = horizontal as u8;
-
-                    let bundle = bloom_encoder.finish(&wgpu::RenderBundleDescriptor{
-                        label: Some("Render Bundle"),
-                    });
-                    bundle_iterator = [bundle];
-                    render_pass.execute_bundles(bundle_iterator.iter());
                 }
     
                 {
@@ -373,11 +444,9 @@ impl Renderer {
             // Post pass
             render_pass.set_pipeline(&self.render_pipelines["fxaa"]);
             render_pass.set_bind_group(0, &self.postprocessing.framebuffer_render_texture_group, &[]);
-            render_pass.set_bind_group(1, &self.postprocessing.framebuffer_render_texture_group, &[]);
+            render_pass.set_bind_group(1, &self.postprocessing.framebuffer_render_texture_group, &[]); // Dummy because I'm bad at this
             render_pass.set_bind_group(2, &bind_group.0, &[]);
-
-            render_pass.set_vertex_buffer(0, framebuffer.get_vertex_buffer().slice(..));
-            render_pass.draw(0..framebuffer.get_num_vertices(), 0..1);
+            render_pass.draw(0..3, 0..1);
         }
         {
             
@@ -448,14 +517,26 @@ impl Renderer {
             render_pass.set_bind_group(0, &self.postprocessing.framebuffer_render_texture_group, &[]);
             render_pass.set_bind_group(1, &self.postprocessing.hdr_render_texture_group, &[]);
             render_pass.set_bind_group(2, &bind_group.0, &[]);
-            render_pass.set_vertex_buffer(0, framebuffer.get_vertex_buffer().slice(..));
-            render_pass.draw(0..framebuffer.get_num_vertices(), 0..1);
+            render_pass.draw(0..3, 0..1);
         }
-        
+        {
+            glyph_brush.queue(hello_world);
+            glyph_brush.queue(fps);
+            glyph_brush.queue(help);
+
+            glyph_brush.draw_queued(
+                &self.device,
+                &mut self.staging_belt,
+                &mut encoder,
+                &frame.view,
+                self.sc_desc.width,
+                self.sc_desc.height,
+            ).unwrap();
+        }
+        self.staging_belt.finish();
         
         // submit will accept anything that implements IntoIter
         self.queue.submit(std::iter::once(encoder.finish()));
-        
         Ok(())    
     }
 

@@ -5,3 +5,4 @@ pub mod material;
 pub mod camera;
 pub mod uniforms;
 pub mod postprocessing;
+pub mod ui;

@@ -1,28 +1,2373 @@
-2021-01-11 15:55:26| game_test: INFO - Hello, world - Logger initalized!
-2021-01-11 15:55:26| game_test: INFO - Logging Level: Info
-2021-01-11 15:55:26| game_test: INFO - Screen mode: "full"
-2021-01-11 15:55:26| game_test: INFO - Vsync Mode: Fifo
-2021-01-11 15:55:26| game_test: INFO - App is running in release mode
-2021-01-11 15:55:26| game_test: INFO - Window created
-2021-01-11 15:55:27| game_test: INFO - Renderer created
-2021-01-11 15:55:27| game_test::entity::entitymanager: INFO - Entity Manager Initialized
-2021-01-11 15:55:27| game_test: INFO - Systems successfully initialized
-2021-01-11 15:55:27| game_test::renderer::texture: INFO - Texture Some("./data/textures/derp.png") loaded
-2021-01-11 15:55:27| game_test::renderer::texture: INFO - Texture Some("./data/textures/happy-tree.png") loaded
-2021-01-11 15:55:27| game_test::renderer::texture: INFO - Texture Some("./data/textures/pepe.png") loaded
-2021-01-11 15:55:27| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
-2021-01-11 15:55:27| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
-2021-01-11 15:55:27| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
-2021-01-11 15:55:27| game_test::entity::entitymanager: INFO - Entity created with 3 components
-2021-01-11 15:55:27| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
-2021-01-11 15:55:27| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
-2021-01-11 15:55:27| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
-2021-01-11 15:55:27| game_test::entity::entitymanager: INFO - Entity created with 2 components
-2021-01-11 15:55:27| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
-2021-01-11 15:55:27| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
-2021-01-11 15:55:27| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
-2021-01-11 15:55:27| game_test::entity::entitymanager: INFO - Entity created with 2 components
-2021-01-11 15:55:27| game_test: INFO - Entities built
-2021-01-11 15:55:27| game_test: INFO - Render Pipelines built
-2021-01-11 15:55:27| game_test: INFO - Starting main loop
-2021-01-11 15:55:28| game_test: INFO - User Quit Application
+2021-01-12 10:29:00| game_test: INFO - Hello, world - Logger initalized!
+2021-01-12 10:29:00| game_test: INFO - Logging Level: Trace
+2021-01-12 10:29:00| game_test: INFO - Screen mode: "full"
+2021-01-12 10:29:00| game_test: INFO - Vsync Mode: Fifo
+2021-01-12 10:29:00| game_test: INFO - App is running in release mode
+2021-01-12 10:29:00| game_test: INFO - Window created
+2021-01-12 10:29:00| gfx_backend_dx11: INFO - DXGI version: Dxgi1_5
+2021-01-12 10:29:00| gfx_backend_dx11: INFO - AdapterInfo {
+    name: "NVIDIA GeForce RTX 2060",
+    vendor: 4318,
+    device: 7944,
+    device_type: DiscreteGpu,
+}
+2021-01-12 10:29:00| gfx_backend_dx11: INFO - AdapterInfo {
+    name: "Microsoft Basic Render Driver",
+    vendor: 5140,
+    device: 140,
+    device_type: VirtualGpu,
+}
+2021-01-12 10:29:01| gfx_backend_dx11: INFO - feature level=b100=FL11_1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Create new allocator: type: 'MemoryTypeId(0)', properties: 'DEVICE_LOCAL' config: 'GeneralConfig {
+    block_size_granularity: 256,
+    max_chunk_size: 16777216,
+    min_device_allocation: 65536,
+}'
+2021-01-12 10:29:01| gfx_memory::allocator::linear: TRACE - Create new 'linear' allocator: type: 'MemoryTypeId(0)', properties: 'DEVICE_LOCAL' config: 'LinearConfig {
+    line_size: 16777216,
+}'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Create new allocator: type: 'MemoryTypeId(1)', properties: 'CPU_VISIBLE | COHERENT | CPU_CACHED' config: 'GeneralConfig {
+    block_size_granularity: 256,
+    max_chunk_size: 16777216,
+    min_device_allocation: 65536,
+}'
+2021-01-12 10:29:01| gfx_memory::allocator::linear: TRACE - Create new 'linear' allocator: type: 'MemoryTypeId(1)', properties: 'CPU_VISIBLE | COHERENT | CPU_CACHED' config: 'LinearConfig {
+    line_size: 16777216,
+}'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Create new allocator: type: 'MemoryTypeId(2)', properties: 'CPU_VISIBLE | CPU_CACHED' config: 'GeneralConfig {
+    block_size_granularity: 256,
+    max_chunk_size: 16777216,
+    min_device_allocation: 65536,
+}'
+2021-01-12 10:29:01| gfx_memory::allocator::linear: TRACE - Create new 'linear' allocator: type: 'MemoryTypeId(2)', properties: 'CPU_VISIBLE | CPU_CACHED' config: 'LinearConfig {
+    line_size: 16777216,
+}'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - SwapchainConfig {
+    present_mode: FIFO,
+    composite_alpha_mode: OPAQUE,
+    format: Bgra8Srgb,
+    extent: Extent2D {
+        width: 1920,
+        height: 1080,
+    },
+    image_count: 3,
+    image_layers: 1,
+    image_usage: COLOR_ATTACHMENT,
+}
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - 10101000
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '8294400', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 8294400, align: 4, aligned size: 8294400, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 8294400
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 4 consecutive blocks for size 2073600 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk for roughly 2 blocks of size 2073600
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk with 8 blocks size 2073600 from device
+2021-01-12 10:29:01| gfx_memory::allocator: TRACE - Raw allocation of size 16588800 for type MemoryTypeId(0)
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - 	Chunk init mask: 0xff
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 4 consecutive blocks of size 2073600 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 0, mask: 0xf -> 0xf0
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - 10101000
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '8294400', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 8294400, align: 4, aligned size: 8294400, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 8294400
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 4 consecutive blocks for size 2073600 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 4 consecutive blocks of size 2073600 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 4, mask: 0xf0 -> 0x0
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - 10101000
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '8294400', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 8294400, align: 4, aligned size: 8294400, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 8294400
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 4 consecutive blocks for size 2073600 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 4 consecutive blocks of size 2073600 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk for roughly 16 blocks of size 2073600
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk with 16 blocks size 2073600 from device
+2021-01-12 10:29:01| gfx_memory::allocator: TRACE - Raw allocation of size 33177600 for type MemoryTypeId(0)
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - 	Chunk init mask: 0xffff
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 4 consecutive blocks of size 2073600 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 0, mask: 0xf -> 0xfff0
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - 10101000
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '8294400', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 8294400, align: 4, aligned size: 8294400, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 8294400
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 4 consecutive blocks for size 2073600 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 4 consecutive blocks of size 2073600 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 4 consecutive blocks of size 2073600 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 4, mask: 0xf0 -> 0xff00
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocating 1 sets with layout DescriptorSetLayout { bindings: [DescriptorSetLayoutBinding { binding: 0, ty: Image { ty: Sampled { with_sampler: false } }, count: 1, stage_flags: FRAGMENT, immutable_samplers: false }, DescriptorSetLayoutBinding { binding: 1, ty: Sampler, count: 1, stage_flags: FRAGMENT, immutable_samplers: false }], pool_mapping: MultiStageData { vs: RegisterData { c: RegisterPoolMapping { offset: 0, count: 0 }, t: RegisterPoolMapping { offset: 0, count: 0 }, u: RegisterPoolMapping { offset: 0, count: 0 }, s: RegisterPoolMapping { offset: 0, count: 0 } }, ps: RegisterData { c: RegisterPoolMapping { offset: 0, count: 0 }, t: RegisterPoolMapping { offset: 0, count: 1 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 1 } }, cs: RegisterData { c: RegisterPoolMapping { offset: 2, count: 0 }, t: RegisterPoolMapping { offset: 2, count: 0 }, u: RegisterPoolMapping { offset: 2, count: 0 }, s: RegisterPoolMapping { offset: 2, count: 0 } } } } @ DescriptorCounts { counts: [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Create new pool with 64 sets and DescriptorCounts { counts: [64, 0, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] } descriptors
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - 10101000
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '8294400', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 8294400, align: 4, aligned size: 8294400, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 8294400
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 4 consecutive blocks for size 2073600 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 4 consecutive blocks of size 2073600 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 4 consecutive blocks of size 2073600 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 8, mask: 0xf00 -> 0xf000
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocating 1 sets with layout DescriptorSetLayout { bindings: [DescriptorSetLayoutBinding { binding: 0, ty: Image { ty: Sampled { with_sampler: false } }, count: 1, stage_flags: FRAGMENT, immutable_samplers: false }, DescriptorSetLayoutBinding { binding: 1, ty: Sampler, count: 1, stage_flags: FRAGMENT, immutable_samplers: false }], pool_mapping: MultiStageData { vs: RegisterData { c: RegisterPoolMapping { offset: 0, count: 0 }, t: RegisterPoolMapping { offset: 0, count: 0 }, u: RegisterPoolMapping { offset: 0, count: 0 }, s: RegisterPoolMapping { offset: 0, count: 0 } }, ps: RegisterData { c: RegisterPoolMapping { offset: 0, count: 0 }, t: RegisterPoolMapping { offset: 0, count: 1 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 1 } }, cs: RegisterData { c: RegisterPoolMapping { offset: 2, count: 0 }, t: RegisterPoolMapping { offset: 2, count: 0 }, u: RegisterPoolMapping { offset: 2, count: 0 }, s: RegisterPoolMapping { offset: 2, count: 0 } } } } @ DescriptorCounts { counts: [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocate 1 from exising pool
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - 1001000
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '8294400', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 8294400, align: 4, aligned size: 8294400, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 8294400
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 4 consecutive blocks for size 2073600 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 4 consecutive blocks of size 2073600 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 4 consecutive blocks of size 2073600 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 12, mask: 0xf000 -> 0x0
+2021-01-12 10:29:01| game_test: INFO - Renderer created
+2021-01-12 10:29:01| game_test::entity::entitymanager: INFO - Entity Manager Initialized
+2021-01-12 10:29:01| game_test: INFO - Systems successfully initialized
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '16', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 16, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk for roughly 2 blocks of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 2048
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 2048 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk for roughly 2 blocks of size 2048
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 16384
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 16384 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk for roughly 2 blocks of size 16384
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk with 8 blocks size 16384 from device
+2021-01-12 10:29:01| gfx_memory::allocator: TRACE - Raw allocation of size 131072 for type MemoryTypeId(0)
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - 	Chunk init mask: 0xff
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 16384 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 0, mask: 0x1 -> 0xfe
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - 	Chunk init mask: 0xff
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 2048 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 0, mask: 0x1 -> 0xfe
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - 	Chunk init mask: 0xff
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 0, mask: 0x1 -> 0xfe
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | UNIFORM, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '8', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::linear: TRACE - Allocated `Line` of size 16777216
+2021-01-12 10:29:01| gfx_memory::allocator: TRACE - Raw allocation of size 16777216 for type MemoryTypeId(2)
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '144', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 144, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 1, mask: 0x2 -> 0xfc
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | UNIFORM, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '132', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocating 1 sets with layout DescriptorSetLayout { bindings: [DescriptorSetLayoutBinding { binding: 0, ty: Buffer { ty: Uniform, format: Structured { dynamic_offset: false } }, count: 1, stage_flags: VERTEX, immutable_samplers: false }], pool_mapping: MultiStageData { vs: RegisterData { c: RegisterPoolMapping { offset: 0, count: 1 }, t: RegisterPoolMapping { offset: 1, count: 0 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 0 } }, ps: RegisterData { c: RegisterPoolMapping { offset: 1, count: 0 }, t: RegisterPoolMapping { offset: 1, count: 0 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 0 } }, cs: RegisterData { c: RegisterPoolMapping { offset: 1, count: 0 }, t: RegisterPoolMapping { offset: 1, count: 0 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 0 } } } } @ DescriptorCounts { counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0] }
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Create new pool with 64 sets and DescriptorCounts { counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64, 0, 0] } descriptors
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - 10101000
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '705600', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 705600, align: 4, aligned size: 705792, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 705792
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 2073600 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 2073600 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 2073600 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk for roughly 32 blocks of size 2073600
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk with 32 blocks size 2073600 from device
+2021-01-12 10:29:01| gfx_memory::allocator: TRACE - Raw allocation of size 66355200 for type MemoryTypeId(0)
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - 	Chunk init mask: 0xffffffff
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 2073600 from chunk 2
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 0, mask: 0x1 -> 0xfffffffe
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '705600', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocating 1 sets with layout DescriptorSetLayout { bindings: [DescriptorSetLayoutBinding { binding: 0, ty: Image { ty: Sampled { with_sampler: false } }, count: 1, stage_flags: FRAGMENT, immutable_samplers: false }, DescriptorSetLayoutBinding { binding: 1, ty: Sampler, count: 1, stage_flags: FRAGMENT, immutable_samplers: false }], pool_mapping: MultiStageData { vs: RegisterData { c: RegisterPoolMapping { offset: 0, count: 0 }, t: RegisterPoolMapping { offset: 0, count: 0 }, u: RegisterPoolMapping { offset: 0, count: 0 }, s: RegisterPoolMapping { offset: 0, count: 0 } }, ps: RegisterData { c: RegisterPoolMapping { offset: 0, count: 0 }, t: RegisterPoolMapping { offset: 0, count: 1 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 1 } }, cs: RegisterData { c: RegisterPoolMapping { offset: 2, count: 0 }, t: RegisterPoolMapping { offset: 2, count: 0 }, u: RegisterPoolMapping { offset: 2, count: 0 }, s: RegisterPoolMapping { offset: 2, count: 0 } } } } @ DescriptorCounts { counts: [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocate 1 from exising pool
+2021-01-12 10:29:01| game_test::renderer::texture: INFO - Texture Some("./data/textures/derp.png") loaded
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - 10101000
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '262144', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 262144, align: 4, aligned size: 262144, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 262144
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 4 consecutive blocks for size 65536 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk for roughly 2 blocks of size 65536
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk with 8 blocks size 65536 from device
+2021-01-12 10:29:01| gfx_memory::allocator: TRACE - Raw allocation of size 524288 for type MemoryTypeId(0)
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - 	Chunk init mask: 0xff
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 4 consecutive blocks of size 65536 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 0, mask: 0xf -> 0xf0
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '262144', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocating 1 sets with layout DescriptorSetLayout { bindings: [DescriptorSetLayoutBinding { binding: 0, ty: Image { ty: Sampled { with_sampler: false } }, count: 1, stage_flags: FRAGMENT, immutable_samplers: false }, DescriptorSetLayoutBinding { binding: 1, ty: Sampler, count: 1, stage_flags: FRAGMENT, immutable_samplers: false }], pool_mapping: MultiStageData { vs: RegisterData { c: RegisterPoolMapping { offset: 0, count: 0 }, t: RegisterPoolMapping { offset: 0, count: 0 }, u: RegisterPoolMapping { offset: 0, count: 0 }, s: RegisterPoolMapping { offset: 0, count: 0 } }, ps: RegisterData { c: RegisterPoolMapping { offset: 0, count: 0 }, t: RegisterPoolMapping { offset: 0, count: 1 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 1 } }, cs: RegisterData { c: RegisterPoolMapping { offset: 2, count: 0 }, t: RegisterPoolMapping { offset: 2, count: 0 }, u: RegisterPoolMapping { offset: 2, count: 0 }, s: RegisterPoolMapping { offset: 2, count: 0 } } } } @ DescriptorCounts { counts: [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocate 1 from exising pool
+2021-01-12 10:29:01| game_test::renderer::texture: INFO - Texture Some("./data/textures/happy-tree.png") loaded
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - 10101000
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '1048576', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 1048576, align: 4, aligned size: 1048576, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 1048576
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 2073600 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 2073600 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 2073600 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 2073600 from chunk 2
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 1, mask: 0x2 -> 0xfffffffc
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '1048576', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocating 1 sets with layout DescriptorSetLayout { bindings: [DescriptorSetLayoutBinding { binding: 0, ty: Image { ty: Sampled { with_sampler: false } }, count: 1, stage_flags: FRAGMENT, immutable_samplers: false }, DescriptorSetLayoutBinding { binding: 1, ty: Sampler, count: 1, stage_flags: FRAGMENT, immutable_samplers: false }], pool_mapping: MultiStageData { vs: RegisterData { c: RegisterPoolMapping { offset: 0, count: 0 }, t: RegisterPoolMapping { offset: 0, count: 0 }, u: RegisterPoolMapping { offset: 0, count: 0 }, s: RegisterPoolMapping { offset: 0, count: 0 } }, ps: RegisterData { c: RegisterPoolMapping { offset: 0, count: 0 }, t: RegisterPoolMapping { offset: 0, count: 1 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 1 } }, cs: RegisterData { c: RegisterPoolMapping { offset: 2, count: 0 }, t: RegisterPoolMapping { offset: 2, count: 0 }, u: RegisterPoolMapping { offset: 2, count: 0 }, s: RegisterPoolMapping { offset: 2, count: 0 } } } } @ DescriptorCounts { counts: [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocate 1 from exising pool
+2021-01-12 10:29:01| game_test::renderer::texture: INFO - Texture Some("./data/textures/pepe.png") loaded
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '16', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 16, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 2, mask: 0x4 -> 0xf8
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | UNIFORM, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '8', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '124', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 124, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 3, mask: 0x8 -> 0xf0
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | VERTEX, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '124', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '4', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 4, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 4, mask: 0x10 -> 0xe0
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | INDEX, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '4', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '32', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 32, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 5, mask: 0x20 -> 0xc0
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | UNIFORM, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '28', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocating 1 sets with layout DescriptorSetLayout { bindings: [DescriptorSetLayoutBinding { binding: 0, ty: Buffer { ty: Uniform, format: Structured { dynamic_offset: false } }, count: 1, stage_flags: FRAGMENT, immutable_samplers: false }], pool_mapping: MultiStageData { vs: RegisterData { c: RegisterPoolMapping { offset: 0, count: 0 }, t: RegisterPoolMapping { offset: 0, count: 0 }, u: RegisterPoolMapping { offset: 0, count: 0 }, s: RegisterPoolMapping { offset: 0, count: 0 } }, ps: RegisterData { c: RegisterPoolMapping { offset: 0, count: 1 }, t: RegisterPoolMapping { offset: 1, count: 0 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 0 } }, cs: RegisterData { c: RegisterPoolMapping { offset: 1, count: 0 }, t: RegisterPoolMapping { offset: 1, count: 0 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 0 } } } } @ DescriptorCounts { counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0] }
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocate 1 from exising pool
+2021-01-12 10:29:01| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
+2021-01-12 10:29:01| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
+2021-01-12 10:29:01| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '16', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 16, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 6, mask: 0x40 -> 0x80
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | UNIFORM, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '8', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '80', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 80, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 7, mask: 0x80 -> 0x0
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | UNIFORM, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '68', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocating 1 sets with layout DescriptorSetLayout { bindings: [DescriptorSetLayoutBinding { binding: 0, ty: Buffer { ty: Uniform, format: Structured { dynamic_offset: false } }, count: 1, stage_flags: VERTEX, immutable_samplers: false }], pool_mapping: MultiStageData { vs: RegisterData { c: RegisterPoolMapping { offset: 0, count: 1 }, t: RegisterPoolMapping { offset: 1, count: 0 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 0 } }, ps: RegisterData { c: RegisterPoolMapping { offset: 1, count: 0 }, t: RegisterPoolMapping { offset: 1, count: 0 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 0 } }, cs: RegisterData { c: RegisterPoolMapping { offset: 1, count: 0 }, t: RegisterPoolMapping { offset: 1, count: 0 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 0 } } } } @ DescriptorCounts { counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0] }
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocate 1 from exising pool
+2021-01-12 10:29:01| game_test::entity::entitymanager: INFO - Entity created with 3 components
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '16', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 16, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk for roughly 16 blocks of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 16384 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 16384 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 1, mask: 0x2 -> 0xfc
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - 	Chunk init mask: 0xffffffffffffffff
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 0, mask: 0x1 -> 0xfffffffffffffffe
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | UNIFORM, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '8', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '124', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 124, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 1, mask: 0x2 -> 0xfffffffffffffffc
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | VERTEX, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '124', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '4', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 4, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 2, mask: 0x4 -> 0xfffffffffffffff8
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | INDEX, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '4', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '32', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 32, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 3, mask: 0x8 -> 0xfffffffffffffff0
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | UNIFORM, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '28', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocating 1 sets with layout DescriptorSetLayout { bindings: [DescriptorSetLayoutBinding { binding: 0, ty: Buffer { ty: Uniform, format: Structured { dynamic_offset: false } }, count: 1, stage_flags: FRAGMENT, immutable_samplers: false }], pool_mapping: MultiStageData { vs: RegisterData { c: RegisterPoolMapping { offset: 0, count: 0 }, t: RegisterPoolMapping { offset: 0, count: 0 }, u: RegisterPoolMapping { offset: 0, count: 0 }, s: RegisterPoolMapping { offset: 0, count: 0 } }, ps: RegisterData { c: RegisterPoolMapping { offset: 0, count: 1 }, t: RegisterPoolMapping { offset: 1, count: 0 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 0 } }, cs: RegisterData { c: RegisterPoolMapping { offset: 1, count: 0 }, t: RegisterPoolMapping { offset: 1, count: 0 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 0 } } } } @ DescriptorCounts { counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0] }
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocate 1 from exising pool
+2021-01-12 10:29:01| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
+2021-01-12 10:29:01| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
+2021-01-12 10:29:01| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '16', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 16, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 4, mask: 0x10 -> 0xffffffffffffffe0
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | UNIFORM, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '8', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '80', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 80, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 5, mask: 0x20 -> 0xffffffffffffffc0
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | UNIFORM, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '68', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocating 1 sets with layout DescriptorSetLayout { bindings: [DescriptorSetLayoutBinding { binding: 0, ty: Buffer { ty: Uniform, format: Structured { dynamic_offset: false } }, count: 1, stage_flags: VERTEX, immutable_samplers: false }], pool_mapping: MultiStageData { vs: RegisterData { c: RegisterPoolMapping { offset: 0, count: 1 }, t: RegisterPoolMapping { offset: 1, count: 0 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 0 } }, ps: RegisterData { c: RegisterPoolMapping { offset: 1, count: 0 }, t: RegisterPoolMapping { offset: 1, count: 0 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 0 } }, cs: RegisterData { c: RegisterPoolMapping { offset: 1, count: 0 }, t: RegisterPoolMapping { offset: 1, count: 0 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 0 } } } } @ DescriptorCounts { counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0] }
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocate 1 from exising pool
+2021-01-12 10:29:01| game_test::entity::entitymanager: INFO - Entity created with 2 components
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '16', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 16, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 6, mask: 0x40 -> 0xffffffffffffff80
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | UNIFORM, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '8', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '124', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 124, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 7, mask: 0x80 -> 0xffffffffffffff00
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | VERTEX, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '124', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '4', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 4, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 8, mask: 0x100 -> 0xfffffffffffffe00
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | INDEX, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '4', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '32', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 32, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 9, mask: 0x200 -> 0xfffffffffffffc00
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | UNIFORM, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '28', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocating 1 sets with layout DescriptorSetLayout { bindings: [DescriptorSetLayoutBinding { binding: 0, ty: Buffer { ty: Uniform, format: Structured { dynamic_offset: false } }, count: 1, stage_flags: FRAGMENT, immutable_samplers: false }], pool_mapping: MultiStageData { vs: RegisterData { c: RegisterPoolMapping { offset: 0, count: 0 }, t: RegisterPoolMapping { offset: 0, count: 0 }, u: RegisterPoolMapping { offset: 0, count: 0 }, s: RegisterPoolMapping { offset: 0, count: 0 } }, ps: RegisterData { c: RegisterPoolMapping { offset: 0, count: 1 }, t: RegisterPoolMapping { offset: 1, count: 0 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 0 } }, cs: RegisterData { c: RegisterPoolMapping { offset: 1, count: 0 }, t: RegisterPoolMapping { offset: 1, count: 0 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 0 } } } } @ DescriptorCounts { counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0] }
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocate 1 from exising pool
+2021-01-12 10:29:01| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
+2021-01-12 10:29:01| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
+2021-01-12 10:29:01| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '16', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 16, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 10, mask: 0x400 -> 0xfffffffffffff800
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | UNIFORM, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '8', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '80', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 80, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 11, mask: 0x800 -> 0xfffffffffffff000
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | UNIFORM, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '68', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocating 1 sets with layout DescriptorSetLayout { bindings: [DescriptorSetLayoutBinding { binding: 0, ty: Buffer { ty: Uniform, format: Structured { dynamic_offset: false } }, count: 1, stage_flags: VERTEX, immutable_samplers: false }], pool_mapping: MultiStageData { vs: RegisterData { c: RegisterPoolMapping { offset: 0, count: 1 }, t: RegisterPoolMapping { offset: 1, count: 0 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 0 } }, ps: RegisterData { c: RegisterPoolMapping { offset: 1, count: 0 }, t: RegisterPoolMapping { offset: 1, count: 0 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 0 } }, cs: RegisterData { c: RegisterPoolMapping { offset: 1, count: 0 }, t: RegisterPoolMapping { offset: 1, count: 0 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 0 } } } } @ DescriptorCounts { counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0] }
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocate 1 from exising pool
+2021-01-12 10:29:01| game_test::entity::entitymanager: INFO - Entity created with 2 components
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '64', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| game_test: INFO - Entities built
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Capability [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ExtInstImport [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemoryModel [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	EntryPoint [10]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Source [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	SourceExtension [9]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	SourceExtension [10]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	SourceExtension [8]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberDecorate [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		BuiltIn
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberDecorate [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		BuiltIn
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberDecorate [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		BuiltIn
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberDecorate [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		BuiltIn
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Capability [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ExtInstImport [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemoryModel [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	EntryPoint [9]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ExecutionMode [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Source [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	SourceExtension [9]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	SourceExtension [10]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	SourceExtension [8]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		DescriptorSet
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Binding
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		DescriptorSet
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Binding
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberDecorate [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Offset
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberDecorate [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Offset
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberDecorate [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Offset
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberDecorate [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Offset
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [3]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Block
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		DescriptorSet
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Binding
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVoid [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeFunction [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeFloat [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVector [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeImage [9]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		tracking Handle(4) for sampling properties
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeSampler [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		tracking Handle(6) for sampling properties
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeSampledImage [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVector [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVector [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeInt [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeStruct [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeBool [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeInt [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Function [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Label
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		SampledImage [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		ImageSampleImplicitLod [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 			Image Handle(4) with sampler Handle(6)
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Store [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		AccessChain [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 32
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 33
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up type 30
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		CompositeExtract [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 36
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up type 28
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		CompositeExtract [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 36
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up type 28
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		CompositeExtract [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 36
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up type 28
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		CompositeConstruct [7]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 38
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 39
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 40
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 37
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		FMul [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Store [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		VectorShuffle [8]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Dot [5]
+2021-01-12 10:29:01| gfx_backend_dx11::shader: DEBUG - Generated Vertex shader:
+cbuffer Uniforms : register(b0)
+{
+    row_major float4x4 _25_proj : packoffset(c0);
+    row_major float4x4 _25_view : packoffset(c4);
+};
+
+cbuffer Transform : register(b1)
+{
+    row_major float4x4 _35_transform : packoffset(c0);
+};
+
+
+static float4 gl_Position;
+static float2 v_tex_coords;
+static float2 tex_coords;
+static float3 position;
+static float3 frag_pos;
+
+struct SPIRV_Cross_Input
+{
+    float3 position : TEXCOORD0;
+    float2 tex_coords : TEXCOORD1;
+};
+
+struct SPIRV_Cross_Output
+{
+    float2 v_tex_coords : TEXCOORD0;
+    float3 frag_pos : TEXCOORD1;
+    float4 gl_Position : SV_Position;
+};
+
+void vert_main()
+{
+    v_tex_coords = tex_coords;
+    gl_Position = mul(float4(position, 1.0f), mul(_35_transform, mul(_25_view, _25_proj)));
+    frag_pos = float3(mul(float4(position, 1.0f), _35_transform).xyz);
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    tex_coords = stage_input.tex_coords;
+    position = stage_input.position;
+    vert_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.gl_Position = gl_Position;
+    stage_output.v_tex_coords = v_tex_coords;
+    stage_output.frag_pos = frag_pos;
+    return stage_output;
+}
+
+2021-01-12 10:29:01| gfx_backend_dx11::shader: DEBUG - Generated Fragment shader:
+cbuffer Material : register(b0)
+{
+    float3 _32_color : packoffset(c0);
+    float _32_shininess : packoffset(c0.w);
+    float _32_metallic : packoffset(c1);
+    int _32_sort : packoffset(c1.y);
+};
+
+Texture2D<float4> t_diffuse : register(t0);
+SamplerState s_diffuse : register(s0);
+
+static float2 v_tex_coords;
+static float4 f_color;
+static float4 h_color;
+static float3 frag_pos;
+
+struct SPIRV_Cross_Input
+{
+    float2 v_tex_coords : TEXCOORD0;
+    float3 frag_pos : TEXCOORD1;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 f_color : SV_Target0;
+    float4 h_color : SV_Target1;
+};
+
+void frag_main()
+{
+    float4 _texture = t_diffuse.Sample(s_diffuse, v_tex_coords);
+    f_color = _texture * float4(_32_color, 1.0f);
+    float brightness = dot(f_color.xyz, float3(0.2125999927520751953125f, 0.715200006961822509765625f, 0.072200000286102294921875f));
+    if (brightness > 1.0f)
+    {
+        h_color = float4(f_color);
+    }
+    else
+    {
+        if (f_color.w > 0.0f)
+        {
+            h_color = float4(0.100000001490116119384765625f, 0.100000001490116119384765625f, 0.100000001490116119384765625f, 1.0f);
+        }
+        else
+        {
+            h_color = float4(0.100000001490116119384765625f, 0.100000001490116119384765625f, 0.100000001490116119384765625f, 0.0f);
+        }
+    }
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    v_tex_coords = stage_input.v_tex_coords;
+    frag_pos = stage_input.frag_pos;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.f_color = f_color;
+    stage_output.h_color = h_color;
+    return stage_output;
+}
+
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Capability [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ExtInstImport [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemoryModel [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	EntryPoint [10]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Source [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	SourceExtension [9]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	SourceExtension [10]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	SourceExtension [8]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberDecorate [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		BuiltIn
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberDecorate [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		BuiltIn
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberDecorate [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		BuiltIn
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberDecorate [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		BuiltIn
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Capability [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ExtInstImport [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemoryModel [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	EntryPoint [9]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ExecutionMode [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Source [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	SourceExtension [9]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	SourceExtension [10]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	SourceExtension [8]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		DescriptorSet
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Binding
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		DescriptorSet
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Binding
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVoid [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeFunction [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeFloat [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVector [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeImage [9]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		tracking Handle(4) for sampling properties
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeSampler [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		tracking Handle(6) for sampling properties
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeSampledImage [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVector [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVector [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeInt [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Function [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Label
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		SampledImage [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		ImageSampleImplicitLod [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 			Image Handle(4) with sampler Handle(6)
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Store [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		VectorShuffle [8]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		FSub [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		AccessChain [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 9
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 34
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up type 7
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		CompositeExtract [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 32
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up type 27
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		CompositeExtract [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 32
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up type 27
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		CompositeExtract [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 32
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up type 27
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		CompositeConstruct [7]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 38
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 39
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 40
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 37
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Store [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		VectorShuffle [8]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		CompositeExtract [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 44
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up type 27
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		CompositeExtract [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 44
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up type 27
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		CompositeExtract [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 44
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up type 27
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		CompositeConstruct [7]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 45
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 46
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 47
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 28
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Store [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Return [1]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		FunctionEnd
+2021-01-12 10:29:01| gfx_backend_dx11::shader: DEBUG - Generated Vertex shader:
+cbuffer Uniforms : register(b0)
+{
+    row_major float4x4 _25_proj : packoffset(c0);
+    row_major float4x4 _25_view : packoffset(c4);
+};
+
+cbuffer Transform : register(b1)
+{
+    row_major float4x4 _35_transform : packoffset(c0);
+};
+
+
+static float4 gl_Position;
+static float2 v_tex_coords;
+static float2 tex_coords;
+static float3 position;
+static float3 frag_pos;
+
+struct SPIRV_Cross_Input
+{
+    float3 position : TEXCOORD0;
+    float2 tex_coords : TEXCOORD1;
+};
+
+struct SPIRV_Cross_Output
+{
+    float2 v_tex_coords : TEXCOORD0;
+    float3 frag_pos : TEXCOORD1;
+    float4 gl_Position : SV_Position;
+};
+
+void vert_main()
+{
+    v_tex_coords = tex_coords;
+    gl_Position = mul(float4(position, 1.0f), mul(_35_transform, mul(_25_view, _25_proj)));
+    frag_pos = float3(mul(float4(position, 1.0f), _35_transform).xyz);
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    tex_coords = stage_input.tex_coords;
+    position = stage_input.position;
+    vert_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.gl_Position = gl_Position;
+    stage_output.v_tex_coords = v_tex_coords;
+    stage_output.frag_pos = frag_pos;
+    return stage_output;
+}
+
+2021-01-12 10:29:01| gfx_backend_dx11::shader: DEBUG - Generated Fragment shader:
+Texture2D<float4> t_diffuse : register(t0);
+SamplerState s_diffuse : register(s0);
+
+static float2 v_tex_coords;
+static float4 f_color;
+static float4 h_color;
+static float3 frag_pos;
+
+struct SPIRV_Cross_Input
+{
+    float2 v_tex_coords : TEXCOORD0;
+    float3 frag_pos : TEXCOORD1;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 f_color : SV_Target0;
+    float4 h_color : SV_Target1;
+};
+
+void frag_main()
+{
+    float4 _texture = t_diffuse.Sample(s_diffuse, v_tex_coords);
+    f_color = float4(1.0f.xxx - _texture.xyz, _texture.w);
+    h_color = float4(f_color.xyz, 1.0f);
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    v_tex_coords = stage_input.v_tex_coords;
+    frag_pos = stage_input.frag_pos;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.f_color = f_color;
+    stage_output.h_color = h_color;
+    return stage_output;
+}
+
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Capability [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ExtInstImport [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemoryModel [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	EntryPoint [9]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Source [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	SourceExtension [10]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	SourceExtension [8]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [8]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		BuiltIn
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberDecorate [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		BuiltIn
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [3]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Block
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVoid [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeFunction [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeFloat [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVector [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeMatrix [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVector [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeInt [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeStruct [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVector [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Function [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Label
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Store [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		ShiftLeftLogical [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Capability [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Capability [2]
+2021-01-12 10:29:01| gfx_backend_dx11::shader: DEBUG - Generated Vertex shader:
+static float4 gl_Position;
+static int gl_VertexIndex;
+static float2 outUV;
+static float3 frag_pos;
+
+struct SPIRV_Cross_Input
+{
+    uint gl_VertexIndex : SV_VertexID;
+};
+
+struct SPIRV_Cross_Output
+{
+    float2 outUV : TEXCOORD0;
+    float3 frag_pos : TEXCOORD1;
+    float4 gl_Position : SV_Position;
+};
+
+void vert_main()
+{
+    float4x4 OPENGL_TO_WGPU_MATRIX = float4x4(float4(1.0f, 0.0f, 0.0f, 0.0f), float4(0.0f, 1.0f, 0.0f, 0.0f), float4(0.0f, 0.0f, 0.5f, 0.0f), float4(0.0f, 0.0f, 0.5f, 1.0f));
+    outUV = float2(float((gl_VertexIndex << 1) & 2), float(gl_VertexIndex & 2));
+    gl_Position = mul(float4((outUV * 2.0f) - 1.0f.xx, 0.0f, 1.0f), OPENGL_TO_WGPU_MATRIX);
+    outUV = float2(float((gl_VertexIndex << 1) & 2), 1.0f - float(gl_VertexIndex & 2));
+    frag_pos = gl_Position.xyz;
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    gl_VertexIndex = int(stage_input.gl_VertexIndex);
+    vert_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.gl_Position = gl_Position;
+    stage_output.outUV = outUV;
+    stage_output.frag_pos = frag_pos;
+    return stage_output;
+}
+
+2021-01-12 10:29:01| gfx_backend_dx11::shader: DEBUG - Generated Fragment shader:
+cbuffer BloomUniforms : register(b0)
+{
+    uint _66_horizontal : packoffset(c0);
+};
+
+Texture2D<float4> t_diffuse : register(t0);
+SamplerState s_diffuse : register(s0);
+
+static float2 v_tex_coords;
+static float4 f_color;
+static float3 frag_pos;
+
+struct SPIRV_Cross_Input
+{
+    float2 v_tex_coords : TEXCOORD0;
+    float3 frag_pos : TEXCOORD1;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 f_color : SV_Target0;
+};
+
+uint2 SPIRV_Cross_textureSize(Texture2D<float4> Tex, uint Level, out uint Param)
+{
+    uint2 ret;
+    Tex.GetDimensions(Level, ret.x, ret.y, Param);
+    return ret;
+}
+
+void frag_main()
+{
+    float weight[5] = { 0.0f, 0.0f, 0.0f, 0.0f, 0.0f };
+    weight[0] = 0.227026998996734619140625f;
+    weight[1] = 0.19459460675716400146484375f;
+    weight[2] = 0.121621601283550262451171875f;
+    weight[3] = 0.054053999483585357666015625f;
+    weight[4] = 0.01621600054204463958740234375f;
+    uint _45_dummy_parameter;
+    float2 tex_offset = 1.0f.xx / float2(int2(SPIRV_Cross_textureSize(t_diffuse, uint(0), _45_dummy_parameter)));
+    float3 result = t_diffuse.Sample(s_diffuse, v_tex_coords).xyz * weight[0];
+    if (_66_horizontal != 0u)
+    {
+        for (int i = 1; i < 5; i++)
+        {
+            result += (t_diffuse.Sample(s_diffuse, v_tex_coords + float2(tex_offset.x * float(i), 0.0f)).xyz * weight[i]);
+            result += (t_diffuse.Sample(s_diffuse, v_tex_coords - float2(tex_offset.x * float(i), 0.0f)).xyz * weight[i]);
+        }
+    }
+    else
+    {
+        for (int i_1 = 1; i_1 < 5; i_1++)
+        {
+            result += (t_diffuse.Sample(s_diffuse, v_tex_coords + float2(0.0f, tex_offset.y * float(i_1))).xyz * weight[i_1]);
+            result += (t_diffuse.Sample(s_diffuse, v_tex_coords - float2(0.0f, tex_offset.y * float(i_1))).xyz * weight[i_1]);
+        }
+    }
+    f_color = float4(result, 1.0f);
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    v_tex_coords = stage_input.v_tex_coords;
+    frag_pos = stage_input.frag_pos;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.f_color = f_color;
+    return stage_output;
+}
+
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Capability [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ExtInstImport [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemoryModel [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	EntryPoint [9]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Source [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	SourceExtension [10]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	SourceExtension [8]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [8]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		BuiltIn
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberDecorate [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		BuiltIn
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [3]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Block
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVoid [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeFunction [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeFloat [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVector [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeMatrix [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVector [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeInt [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeStruct [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVector [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Function [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Label
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Store [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		ShiftLeftLogical [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Capability [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ExtInstImport [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemoryModel [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	EntryPoint [9]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ExecutionMode [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Source [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	SourceExtension [9]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	SourceExtension [10]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	SourceExtension [8]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [8]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberDecorate [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Offset
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberDecorate [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Offset
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [3]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Block
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		DescriptorSet
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Binding
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		BuiltIn
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		DescriptorSet
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Binding
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		DescriptorSet
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Binding
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVoid [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeFunction [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeFloat [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVector [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeImage [9]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		tracking Handle(4) for sampling properties
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeSampler [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		tracking Handle(6) for sampling properties
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVector [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeFunction [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeStruct [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeInt [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeInt [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVector [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeSampledImage [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeBool [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Function [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Label
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		VectorShuffle [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Store [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		FunctionCall [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Store [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Return [1]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		FunctionEnd
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Function [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Label
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		AccessChain [6]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 24
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 26
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up type 22
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 28
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up type 7
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		FDiv [5]
+2021-01-12 10:29:01| gfx_backend_dx11::shader: DEBUG - Generated Vertex shader:
+static float4 gl_Position;
+static int gl_VertexIndex;
+static float2 outUV;
+static float3 frag_pos;
+
+struct SPIRV_Cross_Input
+{
+    uint gl_VertexIndex : SV_VertexID;
+};
+
+struct SPIRV_Cross_Output
+{
+    float2 outUV : TEXCOORD0;
+    float3 frag_pos : TEXCOORD1;
+    float4 gl_Position : SV_Position;
+};
+
+void vert_main()
+{
+    float4x4 OPENGL_TO_WGPU_MATRIX = float4x4(float4(1.0f, 0.0f, 0.0f, 0.0f), float4(0.0f, 1.0f, 0.0f, 0.0f), float4(0.0f, 0.0f, 0.5f, 0.0f), float4(0.0f, 0.0f, 0.5f, 1.0f));
+    outUV = float2(float((gl_VertexIndex << 1) & 2), float(gl_VertexIndex & 2));
+    gl_Position = mul(float4((outUV * 2.0f) - 1.0f.xx, 0.0f, 1.0f), OPENGL_TO_WGPU_MATRIX);
+    outUV = float2(float((gl_VertexIndex << 1) & 2), 1.0f - float(gl_VertexIndex & 2));
+    frag_pos = gl_Position.xyz;
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    gl_VertexIndex = int(stage_input.gl_VertexIndex);
+    vert_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.gl_Position = gl_Position;
+    stage_output.outUV = outUV;
+    stage_output.frag_pos = frag_pos;
+    return stage_output;
+}
+
+2021-01-12 10:29:01| gfx_backend_dx11::shader: DEBUG - Generated Fragment shader:
+cbuffer BaseUniforms : register(b0)
+{
+    float2 _24_iResolution : packoffset(c0);
+    float _24_iTime : packoffset(c0.z);
+};
+
+Texture2D<float4> t_diffuse : register(t0);
+SamplerState s_diffuse : register(s0);
+
+static float4 gl_FragCoord;
+static float4 f_color;
+static float2 v_tex_coords;
+static float3 frag_pos;
+
+struct SPIRV_Cross_Input
+{
+    float2 v_tex_coords : TEXCOORD0;
+    float3 frag_pos : TEXCOORD1;
+    float4 gl_FragCoord : SV_Position;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 f_color : SV_Target0;
+};
+
+float4 applyFXAA(float2 fragCoord, Texture2D<float4> tex, SamplerState samp)
+{
+    float2 inverseVP = float2(1.0f / _24_iResolution.x, 1.0f / _24_iResolution.y);
+    float3 rgbNW = tex.Sample(samp, (fragCoord + (-1.0f).xx) * inverseVP).xyz;
+    float3 rgbNE = tex.Sample(samp, (fragCoord + float2(1.0f, -1.0f)) * inverseVP).xyz;
+    float3 rgbSW = tex.Sample(samp, (fragCoord + float2(-1.0f, 1.0f)) * inverseVP).xyz;
+    float3 rgbSE = tex.Sample(samp, (fragCoord + 1.0f.xx) * inverseVP).xyz;
+    float3 rgbM = tex.Sample(samp, fragCoord * inverseVP).xyz;
+    float3 luma = float3(0.2989999949932098388671875f, 0.58700001239776611328125f, 0.114000000059604644775390625f);
+    float lumaNW = dot(rgbNW, luma);
+    float lumaNE = dot(rgbNE, luma);
+    float lumaSW = dot(rgbSW, luma);
+    float lumaSE = dot(rgbSE, luma);
+    float lumaM = dot(rgbM, luma);
+    float lumaMin = min(lumaM, min(min(lumaNW, lumaNE), min(lumaSW, lumaSE)));
+    float lumaMax = max(lumaM, max(max(lumaNW, lumaNE), max(lumaSW, lumaSE)));
+    float2 dir = 0.0f.xx;
+    dir.x = -((lumaNW + lumaNE) - (lumaSW + lumaSE));
+    dir.y = (lumaNW + lumaSW) - (lumaNE + lumaSE);
+    float dirReduce = max((((lumaNW + lumaNE) + lumaSW) + lumaSE) * 0.03125f, 0.0078125f);
+    float rcpDirMin = 1.0f / (min(abs(dir.x), abs(dir.y)) + dirReduce);
+    dir = min(8.0f.xx, max((-8.0f).xx, dir * rcpDirMin)) * inverseVP;
+    float3 rgbA = (tex.Sample(samp, (fragCoord * inverseVP) + (dir * (-0.16666667163372039794921875f))).xyz + tex.Sample(samp, (fragCoord * inverseVP) + (dir * 0.16666667163372039794921875f)).xyz) * 0.5f;
+    float3 rgbB = (rgbA * 0.5f) + ((tex.Sample(samp, (fragCoord * inverseVP) + (dir * (-0.5f))).xyz + tex.Sample(samp, (fragCoord * inverseVP) + (dir * 0.5f)).xyz) * 0.25f);
+    float lumaB = dot(rgbB, luma);
+    float4 color = 0.0f.xxxx;
+    if ((lumaB < lumaMin) || (lumaB > lumaMax))
+    {
+        color = float4(rgbA, 1.0f);
+    }
+    else
+    {
+        color = float4(rgbB, 1.0f);
+    }
+    return color;
+}
+
+void frag_main()
+{
+    float2 param = gl_FragCoord.xy;
+    f_color = applyFXAA(param, t_diffuse, s_diffuse);
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    gl_FragCoord = stage_input.gl_FragCoord;
+    gl_FragCoord.w = 1.0 / gl_FragCoord.w;
+    v_tex_coords = stage_input.v_tex_coords;
+    frag_pos = stage_input.frag_pos;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.f_color = f_color;
+    return stage_output;
+}
+
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Capability [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ExtInstImport [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemoryModel [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	EntryPoint [9]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Source [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	SourceExtension [10]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	SourceExtension [8]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [8]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		BuiltIn
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberDecorate [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		BuiltIn
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [3]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Block
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVoid [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeFunction [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeFloat [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVector [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeMatrix [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVector [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeInt [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeStruct [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVector [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Function [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Label
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Store [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		ShiftLeftLogical [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Capability [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ExtInstImport [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemoryModel [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	EntryPoint [8]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ExecutionMode [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Source [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	SourceExtension [10]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	SourceExtension [8]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [8]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [8]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [9]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [11]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberDecorate [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Offset
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberDecorate [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Offset
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [3]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Block
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		DescriptorSet
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Binding
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		DescriptorSet
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Binding
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		DescriptorSet
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Binding
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		DescriptorSet
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Binding
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		DescriptorSet
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Binding
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVoid [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeFunction [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeFloat [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVector [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeFunction [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeImage [9]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		tracking Handle(5) for sampling properties
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeSampler [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		tracking Handle(7) for sampling properties
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVector [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeFunction [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVector [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeFunction [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeFunction [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeFunction [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeFunction [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeFunction [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeSampledImage [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeInt [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeStruct [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeInt [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ConstantComposite [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Function [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Label
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		SampledImage [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		ImageSampleImplicitLod [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 			Image Handle(5) with sampler Handle(7)
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		VectorShuffle [8]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Store [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		SampledImage [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		ImageSampleImplicitLod [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 			Image Handle(5) with sampler Handle(7)
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		VectorShuffle [8]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Store [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		FAdd [5]
+2021-01-12 10:29:01| gfx_backend_dx11::shader: DEBUG - Generated Vertex shader:
+static float4 gl_Position;
+static int gl_VertexIndex;
+static float2 outUV;
+static float3 frag_pos;
+
+struct SPIRV_Cross_Input
+{
+    uint gl_VertexIndex : SV_VertexID;
+};
+
+struct SPIRV_Cross_Output
+{
+    float2 outUV : TEXCOORD0;
+    float3 frag_pos : TEXCOORD1;
+    float4 gl_Position : SV_Position;
+};
+
+void vert_main()
+{
+    float4x4 OPENGL_TO_WGPU_MATRIX = float4x4(float4(1.0f, 0.0f, 0.0f, 0.0f), float4(0.0f, 1.0f, 0.0f, 0.0f), float4(0.0f, 0.0f, 0.5f, 0.0f), float4(0.0f, 0.0f, 0.5f, 1.0f));
+    outUV = float2(float((gl_VertexIndex << 1) & 2), float(gl_VertexIndex & 2));
+    gl_Position = mul(float4((outUV * 2.0f) - 1.0f.xx, 0.0f, 1.0f), OPENGL_TO_WGPU_MATRIX);
+    outUV = float2(float((gl_VertexIndex << 1) & 2), 1.0f - float(gl_VertexIndex & 2));
+    frag_pos = gl_Position.xyz;
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    gl_VertexIndex = int(stage_input.gl_VertexIndex);
+    vert_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.gl_Position = gl_Position;
+    stage_output.outUV = outUV;
+    stage_output.frag_pos = frag_pos;
+    return stage_output;
+}
+
+2021-01-12 10:29:01| gfx_backend_dx11::shader: DEBUG - Generated Fragment shader:
+cbuffer BaseUniforms : register(b0)
+{
+    float2 _246_iResolution : packoffset(c0);
+    float _246_iTime : packoffset(c0.z);
+};
+
+Texture2D<float4> t_diffuse : register(t0);
+SamplerState s_diffuse : register(s0);
+Texture2D<float4> hdr_t_diffuse : register(t1);
+SamplerState hdr_s_diffuse : register(s1);
+
+static float2 v_tex_coords;
+static float4 f_color;
+static float3 frag_pos;
+
+struct SPIRV_Cross_Input
+{
+    float2 v_tex_coords : TEXCOORD0;
+    float3 frag_pos : TEXCOORD1;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 f_color : SV_Target0;
+};
+
+float gaussian(float z, float u, float o)
+{
+    return (1.0f / (o * 2.506591320037841796875f)) * exp(-(((z - u) * (z - u)) / (2.0f * (o * o))));
+}
+
+float3 screen(float3 a, float3 b, float w)
+{
+    return lerp(a, 1.0f.xxx - ((1.0f.xxx - a) * (1.0f.xxx - b)), w.xxx);
+}
+
+float4 film_grain(float intensity, float2 texcoord)
+{
+    float2 ps = 1.0f.xx;
+    float2 uv = texcoord * ps;
+    float4 color = 0.0f.xxxx;
+    float t = _246_iTime * 2.5f;
+    float seed = dot(uv, float2(12.98980045318603515625f, 78.233001708984375f));
+    float _noise = frac((sin(seed) * 43758.546875f) + t);
+    float param = _noise;
+    float param_1 = 0.0f;
+    float param_2 = 0.25f;
+    _noise = gaussian(param, param_1, param_2);
+    float w = intensity;
+    float3 grain = _noise.xxx * (1.0f.xxx - color.xyz);
+    float3 param_3 = color.xyz;
+    float3 param_4 = grain;
+    float param_5 = w;
+    float3 _290 = screen(param_3, param_4, param_5);
+    color = float4(_290.x, _290.y, _290.z, color.w);
+    return color;
+}
+
+float4 vignette(inout float2 uv, float intensity)
+{
+    uv *= (1.0f.xx - uv.yx);
+    float vig = (uv.x * uv.y) * intensity;
+    vig = pow(vig, 0.25f);
+    return vig.xxxx;
+}
+
+float3 adjustContrast(float3 color, float value)
+{
+    return 0.5f.xxx + ((color - 0.5f.xxx) * (1.0f + value));
+}
+
+float3 adjustSaturation(float3 color, float value)
+{
+    float3 greyscale = dot(color, float3(0.2125999927520751953125f, 0.715200006961822509765625f, 0.072200000286102294921875f)).xxx;
+    return lerp(greyscale, color, (1.0f + value).xxx);
+}
+
+float3 adjustExposure(float3 color, float value)
+{
+    return color * (1.0f + value);
+}
+
+float3 chromaticAberration(Texture2D<float4> tex, SamplerState samp, float2 uv, float intensity)
+{
+    float amount = intensity;
+    amount = pow(amount, 3.0f);
+    amount *= 0.0500000007450580596923828125f;
+    float3 col = 0.0f.xxx;
+    col.x = tex.Sample(samp, float2(uv.x + amount, uv.y)).x;
+    col.y = tex.Sample(samp, uv).y;
+    col.z = tex.Sample(samp, float2(uv.x - amount, uv.y)).z;
+    col *= (1.0f - (amount * 0.5f));
+    return col;
+}
+
+float3 acesFilm(float3 x)
+{
+    return clamp((x * ((x * 2.5099999904632568359375f) + 0.02999999932944774627685546875f.xxx)) / ((x * ((x * 2.4300000667572021484375f) + 0.589999973773956298828125f.xxx)) + 0.14000000059604644775390625f.xxx), 0.0f.xxx, 1.0f.xxx);
+}
+
+void frag_main()
+{
+    float3 hdrColor = t_diffuse.Sample(s_diffuse, v_tex_coords).xyz;
+    float3 bloomColor = hdr_t_diffuse.Sample(hdr_s_diffuse, v_tex_coords).xyz;
+    hdrColor += bloomColor;
+    float4 result = float4(1.0f.xxx - exp((-hdrColor) * 0.07500000298023223876953125f), 1.0f);
+    float param = 0.00150000001303851604461669921875f;
+    float2 param_1 = v_tex_coords;
+    result += film_grain(param, param_1);
+    float2 param_2 = v_tex_coords;
+    float param_3 = 512.0f;
+    float4 _341 = vignette(param_2, param_3);
+    result *= _341;
+    float3 param_4 = result.xyz;
+    float param_5 = 0.02500000037252902984619140625f;
+    float3 _349 = adjustContrast(param_4, param_5);
+    result = float4(_349.x, _349.y, _349.z, result.w);
+    float3 param_6 = result.xyz;
+    float param_7 = 0.5f;
+    float3 _356 = adjustSaturation(param_6, param_7);
+    result = float4(_356.x, _356.y, _356.z, result.w);
+    float3 param_8 = result.xyz;
+    float param_9 = 0.5f;
+    float3 _363 = adjustExposure(param_8, param_9);
+    result = float4(_363.x, _363.y, _363.z, result.w);
+    float2 param_10 = v_tex_coords;
+    float param_11 = 0.5f;
+    float3 _372 = result.xyz * chromaticAberration(t_diffuse, s_diffuse, param_10, param_11);
+    result = float4(_372.x, _372.y, _372.z, result.w);
+    float3 param_12 = result.xyz;
+    float3 _378 = acesFilm(param_12);
+    result = float4(_378.x, _378.y, _378.z, result.w);
+    result = pow(result, 0.4545454680919647216796875f.xxxx);
+    f_color = result;
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    v_tex_coords = stage_input.v_tex_coords;
+    frag_pos = stage_input.frag_pos;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.f_color = f_color;
+    return stage_output;
+}
+
+2021-01-12 10:29:01| game_test: INFO - Render Pipelines built
+2021-01-12 10:29:01| game_test: INFO - Starting main loop
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '128', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '64', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '64', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '64', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - 10101000
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '262144', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 262144, align: 4, aligned size: 262144, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 262144
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 4 consecutive blocks for size 65536 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 4 consecutive blocks of size 65536 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 4, mask: 0xf0 -> 0x0
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocating 1 sets with layout DescriptorSetLayout { bindings: [DescriptorSetLayoutBinding { binding: 0, ty: Image { ty: Sampled { with_sampler: false } }, count: 1, stage_flags: FRAGMENT, immutable_samplers: false }, DescriptorSetLayoutBinding { binding: 1, ty: Sampler, count: 1, stage_flags: FRAGMENT, immutable_samplers: false }], pool_mapping: MultiStageData { vs: RegisterData { c: RegisterPoolMapping { offset: 0, count: 0 }, t: RegisterPoolMapping { offset: 0, count: 0 }, u: RegisterPoolMapping { offset: 0, count: 0 }, s: RegisterPoolMapping { offset: 0, count: 0 } }, ps: RegisterData { c: RegisterPoolMapping { offset: 0, count: 0 }, t: RegisterPoolMapping { offset: 0, count: 1 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 1 } }, cs: RegisterData { c: RegisterPoolMapping { offset: 2, count: 0 }, t: RegisterPoolMapping { offset: 2, count: 0 }, u: RegisterPoolMapping { offset: 2, count: 0 }, s: RegisterPoolMapping { offset: 2, count: 0 } } } } @ DescriptorCounts { counts: [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] }
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocate 1 from exising pool
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '16', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 16, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 12, mask: 0x1000 -> 0xffffffffffffe000
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | UNIFORM, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '8', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '124', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 124, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 13, mask: 0x2000 -> 0xffffffffffffc000
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | VERTEX, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '124', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '4', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 4, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 14, mask: 0x4000 -> 0xffffffffffff8000
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | INDEX, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '4', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '16', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 16, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 15, mask: 0x8000 -> 0xffffffffffff0000
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | UNIFORM, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '16', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocating 1 sets with layout DescriptorSetLayout { bindings: [DescriptorSetLayoutBinding { binding: 0, ty: Buffer { ty: Uniform, format: Structured { dynamic_offset: false } }, count: 1, stage_flags: FRAGMENT, immutable_samplers: false }], pool_mapping: MultiStageData { vs: RegisterData { c: RegisterPoolMapping { offset: 0, count: 0 }, t: RegisterPoolMapping { offset: 0, count: 0 }, u: RegisterPoolMapping { offset: 0, count: 0 }, s: RegisterPoolMapping { offset: 0, count: 0 } }, ps: RegisterData { c: RegisterPoolMapping { offset: 0, count: 1 }, t: RegisterPoolMapping { offset: 1, count: 0 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 0 } }, cs: RegisterData { c: RegisterPoolMapping { offset: 1, count: 0 }, t: RegisterPoolMapping { offset: 1, count: 0 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 0 } } } } @ DescriptorCounts { counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0] }
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocate 1 from exising pool
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '80', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 80, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 16, mask: 0x10000 -> 0xfffffffffffe0000
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | UNIFORM, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '68', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - 10101000
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '65536', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 65536, align: 4, aligned size: 65536, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 65536
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 65536 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 65536 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk for roughly 16 blocks of size 65536
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk with 16 blocks size 65536 from device
+2021-01-12 10:29:01| gfx_memory::allocator: TRACE - Raw allocation of size 1048576 for type MemoryTypeId(0)
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - 	Chunk init mask: 0xffff
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 65536 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 0, mask: 0x1 -> 0xfffe
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '25600', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 25600, align: 4, aligned size: 25600, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 25600
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 25600 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk for roughly 2 blocks of size 25600
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk with 8 blocks size 25600 from device
+2021-01-12 10:29:01| gfx_memory::allocator: TRACE - Raw allocation of size 204800 for type MemoryTypeId(0)
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - 	Chunk init mask: 0xff
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 25600 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 0, mask: 0x1 -> 0xfe
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC | TRANSFER_DST, props=1
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocating 1 sets with layout DescriptorSetLayout { bindings: [DescriptorSetLayoutBinding { binding: 0, ty: Buffer { ty: Uniform, format: Structured { dynamic_offset: false } }, count: 1, stage_flags: VERTEX, immutable_samplers: false }, DescriptorSetLayoutBinding { binding: 1, ty: Sampler, count: 1, stage_flags: FRAGMENT, immutable_samplers: false }, DescriptorSetLayoutBinding { binding: 2, ty: Image { ty: Sampled { with_sampler: false } }, count: 1, stage_flags: FRAGMENT, immutable_samplers: false }], pool_mapping: MultiStageData { vs: RegisterData { c: RegisterPoolMapping { offset: 0, count: 1 }, t: RegisterPoolMapping { offset: 1, count: 0 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 0 } }, ps: RegisterData { c: RegisterPoolMapping { offset: 1, count: 0 }, t: RegisterPoolMapping { offset: 1, count: 1 }, u: RegisterPoolMapping { offset: 2, count: 0 }, s: RegisterPoolMapping { offset: 2, count: 1 } }, cs: RegisterData { c: RegisterPoolMapping { offset: 3, count: 0 }, t: RegisterPoolMapping { offset: 3, count: 0 }, u: RegisterPoolMapping { offset: 3, count: 0 }, s: RegisterPoolMapping { offset: 3, count: 0 } } } } @ DescriptorCounts { counts: [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0] }
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Create new pool with 64 sets and DescriptorCounts { counts: [64, 0, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64, 0, 0] } descriptors
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '2600000', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 2600000, align: 4, aligned size: 2600192, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 2600192
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 2 consecutive blocks for size 2073600 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 2 consecutive blocks of size 2073600 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 2 consecutive blocks of size 2073600 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 2 consecutive blocks of size 2073600 from chunk 2
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 2, mask: 0xc -> 0xfffffff0
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | VERTEX, props=1
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Capability [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ExtInstImport [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemoryModel [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	EntryPoint [14]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Source [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [7]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberName [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		BuiltIn
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberDecorate [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		BuiltIn
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberDecorate [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		BuiltIn
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberDecorate [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		BuiltIn
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemberDecorate [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		BuiltIn
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Capability [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ExtInstImport [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	MemoryModel [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	EntryPoint [8]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	ExecutionMode [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Source [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [6]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Name [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		DescriptorSet
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Binding
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		DescriptorSet
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Binding
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Decorate [4]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 		Location
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVoid [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeFunction [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeFloat [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeImage [9]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		tracking Handle(3) for sampling properties
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeSampler [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		tracking Handle(5) for sampling properties
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeSampledImage [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVector [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeVector [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeInt [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypeBool [2]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	TypePointer [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Constant [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 	Function [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Label
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Variable [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		SampledImage [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		ImageSampleImplicitLod [5]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 			Image Handle(3) with sampler Handle(5)
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		CompositeExtract [5]
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up expr 24
+2021-01-12 10:29:01| naga::front::spv: TRACE - 			looking up type 23
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Store [3]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		Load [4]
+2021-01-12 10:29:01| naga::front::spv: DEBUG - 		FOrdLessThanEqual [5]
+2021-01-12 10:29:01| gfx_backend_dx11::shader: DEBUG - Generated Vertex shader:
+cbuffer Transform : register(b0)
+{
+    row_major float4x4 _90_transform : packoffset(c0);
+};
+
+
+static float4 gl_Position;
+static int gl_VertexIndex;
+static float3 left_top;
+static float2 right_bottom;
+static float2 f_tex_pos;
+static float2 tex_left_top;
+static float2 tex_right_bottom;
+static float4 f_color;
+static float4 color;
+
+struct SPIRV_Cross_Input
+{
+    float3 left_top : TEXCOORD0;
+    float2 right_bottom : TEXCOORD1;
+    float2 tex_left_top : TEXCOORD2;
+    float2 tex_right_bottom : TEXCOORD3;
+    float4 color : TEXCOORD4;
+    uint gl_VertexIndex : SV_VertexID;
+};
+
+struct SPIRV_Cross_Output
+{
+    float2 f_tex_pos : TEXCOORD0;
+    float4 f_color : TEXCOORD1;
+    float4 gl_Position : SV_Position;
+};
+
+void vert_main()
+{
+    float2 pos = 0.0f.xx;
+    float left = left_top.x;
+    float right = right_bottom.x;
+    float top = left_top.y;
+    float bottom = right_bottom.y;
+    switch (gl_VertexIndex)
+    {
+        case 0:
+        {
+            pos = float2(left, top);
+            f_tex_pos = tex_left_top;
+            break;
+        }
+        case 1:
+        {
+            pos = float2(right, top);
+            f_tex_pos = float2(tex_right_bottom.x, tex_left_top.y);
+            break;
+        }
+        case 2:
+        {
+            pos = float2(left, bottom);
+            f_tex_pos = float2(tex_left_top.x, tex_right_bottom.y);
+            break;
+        }
+        case 3:
+        {
+            pos = float2(right, bottom);
+            f_tex_pos = tex_right_bottom;
+            break;
+        }
+    }
+    f_color = color;
+    gl_Position = mul(float4(pos, left_top.z, 1.0f), _90_transform);
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    gl_VertexIndex = int(stage_input.gl_VertexIndex);
+    left_top = stage_input.left_top;
+    right_bottom = stage_input.right_bottom;
+    tex_left_top = stage_input.tex_left_top;
+    tex_right_bottom = stage_input.tex_right_bottom;
+    color = stage_input.color;
+    vert_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.gl_Position = gl_Position;
+    stage_output.f_tex_pos = f_tex_pos;
+    stage_output.f_color = f_color;
+    return stage_output;
+}
+
+2021-01-12 10:29:01| gfx_backend_dx11::shader: DEBUG - Generated Fragment shader:
+Texture2D<float4> font_tex : register(t0);
+SamplerState font_sampler : register(s0);
+
+static float2 f_tex_pos;
+static float4 Target0;
+static float4 f_color;
+
+struct SPIRV_Cross_Input
+{
+    float2 f_tex_pos : TEXCOORD0;
+    float4 f_color : TEXCOORD1;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 Target0 : SV_Target0;
+};
+
+void frag_main()
+{
+    float alpha = font_tex.Sample(font_sampler, f_tex_pos).x;
+    if (alpha <= 0.0f)
+    {
+        discard;
+    }
+    Target0 = f_color * float4(1.0f, 1.0f, 1.0f, alpha);
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    f_tex_pos = stage_input.f_tex_pos;
+    f_color = stage_input.f_color;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.Target0 = Target0;
+    return stage_output;
+}
+
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '16', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 16, align: 4, aligned size: 256, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 256
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 256 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 256 from chunk 1
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 17, mask: 0x20000 -> 0xfffffffffffc0000
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_DST | UNIFORM, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '4', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocating 1 sets with layout DescriptorSetLayout { bindings: [DescriptorSetLayoutBinding { binding: 0, ty: Buffer { ty: Uniform, format: Structured { dynamic_offset: false } }, count: 1, stage_flags: FRAGMENT, immutable_samplers: false }], pool_mapping: MultiStageData { vs: RegisterData { c: RegisterPoolMapping { offset: 0, count: 0 }, t: RegisterPoolMapping { offset: 0, count: 0 }, u: RegisterPoolMapping { offset: 0, count: 0 }, s: RegisterPoolMapping { offset: 0, count: 0 } }, ps: RegisterData { c: RegisterPoolMapping { offset: 0, count: 1 }, t: RegisterPoolMapping { offset: 1, count: 0 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 0 } }, cs: RegisterData { c: RegisterPoolMapping { offset: 1, count: 0 }, t: RegisterPoolMapping { offset: 1, count: 0 }, u: RegisterPoolMapping { offset: 1, count: 0 }, s: RegisterPoolMapping { offset: 1, count: 0 } } } } @ DescriptorCounts { counts: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0] }
+2021-01-12 10:29:01| gfx_descriptor::allocator: TRACE - Allocate 1 from exising pool
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '0', kind  'General', size: '26624', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 26624, align: 4, aligned size: 26624, type: 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 26624
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 26624 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk for roughly 2 blocks of size 26624
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk with 8 blocks size 26624 from device
+2021-01-12 10:29:01| gfx_memory::allocator: TRACE - Raw allocation of size 212992 for type MemoryTypeId(0)
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - 	Chunk init mask: 0xff
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 26624 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 0, mask: 0x1 -> 0xfe
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC | TRANSFER_DST, props=1
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'General', size: '26624', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 26624, align: 4, aligned size: 26624, type: 2
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 26624
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 26624 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk for roughly 2 blocks of size 26624
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk with 8 blocks size 26624 from device
+2021-01-12 10:29:01| gfx_memory::allocator: TRACE - Raw allocation of size 212992 for type MemoryTypeId(2)
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - 	Chunk init mask: 0xff
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 26624 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 0, mask: 0x1 -> 0xfe
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'General', size: '1768', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 1768, align: 4, aligned size: 1792, type: 2
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 1792
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 1792 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk for roughly 2 blocks of size 1792
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 14336
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 14336 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk for roughly 2 blocks of size 14336
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk with 8 blocks size 14336 from device
+2021-01-12 10:29:01| gfx_memory::allocator: TRACE - Raw allocation of size 114688 for type MemoryTypeId(2)
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - 	Chunk init mask: 0xff
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 14336 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 0, mask: 0x1 -> 0xfe
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - 	Chunk init mask: 0xff
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 1792 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 0, mask: 0x1 -> 0xfe
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'General', size: '1024', align: '4'
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate general block: size: 1024, align: 4, aligned size: 1024, type: 2
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate block of size 1024
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 1024 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate chunk for roughly 2 blocks of size 1024
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks for size 26624 from the entry
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 26624 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 1, mask: 0x2 -> 0xfc
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - 	Chunk init mask: 0x3ffffff
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Allocate 1 consecutive blocks of size 1024 from chunk 0
+2021-01-12 10:29:01| gfx_memory::allocator::general: TRACE - Chunk acquired at 0, mask: 0x1 -> 0x3fffffe
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:01| gfx_memory::heaps: TRACE - Allocate memory block: type '2', kind  'Linear', size: '128', align: '4'
+2021-01-12 10:29:01| gfx_backend_dx11::device: DEBUG - usage=TRANSFER_SRC, props=1010
+2021-01-12 10:29:02| gfx_memory::heaps: ERROR - Heaps not completely freed before drop. Utilization: MemoryHeapUtilization { utilization: MemoryUtilization { used: 118243328, effective: 58709504 }, size: 18446744073709551615 }
+2021-01-12 10:29:02| gfx_memory::heaps: ERROR - Heaps not completely freed before drop. Utilization: MemoryHeapUtilization { utilization: MemoryUtilization { used: 17104896, effective: 2047356 }, size: 18446744073709551615 }
+2021-01-12 10:29:02| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(8294400) is still used
+2021-01-12 10:29:02| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(2073600) is still used
+2021-01-12 10:29:02| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(256) is still used
+2021-01-12 10:29:02| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(2048) is still used
+2021-01-12 10:29:02| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(16384) is still used
+2021-01-12 10:29:02| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(705792) is still used
+2021-01-12 10:29:02| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(262144) is still used
+2021-01-12 10:29:02| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(65536) is still used
+2021-01-12 10:29:02| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(1048576) is still used
+2021-01-12 10:29:02| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(25600) is still used
+2021-01-12 10:29:02| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(2600192) is still used
+2021-01-12 10:29:02| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(26624) is still used
+2021-01-12 10:29:02| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(26624) is still used
+2021-01-12 10:29:02| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(1792) is still used
+2021-01-12 10:29:02| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(14336) is still used
+2021-01-12 10:29:02| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(1024) is still used
+2021-01-12 10:29:02| gfx_memory::allocator::linear: ERROR - Not all allocations from LinearAllocator were freed
+2021-01-12 10:29:02| gfx_descriptor::allocator: ERROR - DescriptorAllocator is dropped

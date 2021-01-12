@@ -12,6 +12,7 @@ winit = "0.24.0"
 cgmath = "0.18.0"
 log = "0.4.11"
 wgpu = "0.6.2"
+wgpu_glyph = "0.10.0"
 futures = "0.3.8"
 bytemuck = { version = "1.4", features = [ "derive" ] }
 anyhow = "1.0"

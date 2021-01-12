@@ -477,9 +477,11 @@ pub fn main() {
     });
 
     // recreate pipeline with layouts (needs mut)
-    temp_renderer.create_pipeline("main".to_string(), &layouts, wgpu::include_spirv!("./shaders/shader.vert.spv"), wgpu::include_spirv!("./shaders/shader.frag.spv"), &color_states, 1);
-    temp_renderer.create_pipeline("invert".to_string(), &layouts, wgpu::include_spirv!("./shaders/shader.vert.spv"), wgpu::include_spirv!("./shaders/invert.frag.spv"), &color_states, 1);
+    temp_renderer.create_pipeline("main".to_string(), &layouts, wgpu::include_spirv!("./shaders/shader.vert.spv"), wgpu::include_spirv!("./shaders/shader.frag.spv"), &color_states, &[Vertex::desc()], 1);
+    temp_renderer.create_pipeline("invert".to_string(), &layouts, wgpu::include_spirv!("./shaders/shader.vert.spv"), wgpu::include_spirv!("./shaders/invert.frag.spv"), &color_states, &[Vertex::desc()], 1);
     layouts.clear();
+
+    /* Screen based rendering now */
     let main_tex_layout = &Texture::generate_texture_layout_from_device(&temp_renderer.device);
     let hdr_tex_layout = &Texture::generate_texture_layout_from_device(&temp_renderer.device);
     layouts.push(main_tex_layout);
@@ -499,7 +501,7 @@ pub fn main() {
     let bloom_u_layout = &BloomUniform::create_uniform_layout(&temp_renderer);
     layouts.push(bloom_u_layout);
     
-    temp_renderer.create_pipeline("bloom".to_string(), &layouts, wgpu::include_spirv!("./shaders/dummy.vert.spv"), wgpu::include_spirv!("./shaders/bloom.frag.spv"), &color_states, 1);
+    temp_renderer.create_pipeline("bloom".to_string(), &layouts, wgpu::include_spirv!("./shaders/framebuffer.vert.spv"), wgpu::include_spirv!("./shaders/bloom.frag.spv"), &color_states, &[], 1);
 
     layouts.remove(1);
 
@@ -508,7 +510,7 @@ pub fn main() {
     layouts.push(hdr_tex_layout);
     layouts.push(fb_u_layout);
 
-    temp_renderer.create_pipeline("fxaa".to_string(), &layouts, wgpu::include_spirv!("./shaders/dummy.vert.spv"), wgpu::include_spirv!("./shaders/fxaa.frag.spv"), &color_states, 1);
+    temp_renderer.create_pipeline("fxaa".to_string(), &layouts, wgpu::include_spirv!("./shaders/framebuffer.vert.spv"), wgpu::include_spirv!("./shaders/fxaa.frag.spv"), &color_states, &[], 1);
 
 
 
@@ -525,12 +527,15 @@ pub fn main() {
     });
 
     let sample_count = temp_renderer.sample_count;
-    temp_renderer.create_pipeline("framebuffer".to_string(), &layouts, wgpu::include_spirv!("./shaders/dummy.vert.spv"), wgpu::include_spirv!("./shaders/framebuffer.frag.spv"), &color_states, sample_count);
+    temp_renderer.create_pipeline("framebuffer".to_string(), &layouts, wgpu::include_spirv!("./shaders/framebuffer.vert.spv"), wgpu::include_spirv!("./shaders/framebuffer.frag.spv"), &color_states, &[], sample_count);
    
     log::info!("Render Pipelines built");
     
     // drop the borrowed mut reference (to stay safe)
     drop(temp_renderer);
+
+    /* Define some runtime variables */
+    let mut framerate: f32 = 0.0;
 
     /* Game Loop Defined */
 
@@ -592,7 +597,7 @@ pub fn main() {
             
 
 
-            match renderer.render(&mut camera, &entity_manager, &time) {
+            match renderer.render(&mut camera, &entity_manager, &time, framerate) {
                 Ok(_) => {}
                 // Recreate the swap_chain if lost
                 Err(wgpu::SwapChainError::Lost) => renderer.resize(window_size),
@@ -605,7 +610,9 @@ pub fn main() {
             let delta_time = start.elapsed().unwrap().as_secs_f32();
             system_manager.delta_time = delta_time;
             camera_controller.delta_time = delta_time;
-            let framerate = 1.0 / delta_time;
+            if ((1.0 / delta_time) - framerate).abs() > 2.0{
+                framerate = 1.0 / delta_time;
+            }
         }
         Event::MainEventsCleared => {
             // RedrawRequested will only trigger once, unless we manually

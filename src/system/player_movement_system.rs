@@ -23,7 +23,7 @@ impl SystemBase for PlayerMovementSystem{
             move_vec.x = match input_manager.try_get_key_value(winit::event::VirtualKeyCode::Left){
                 Ok(v) => {
                     match v{
-                        winit::event::ElementState::Pressed => 1.0,
+                        winit::event::ElementState::Pressed => -1.0,
                         winit::event::ElementState::Released => 0.0,
                     }
                 },
@@ -32,7 +32,7 @@ impl SystemBase for PlayerMovementSystem{
             move_vec.x = match input_manager.try_get_key_value(winit::event::VirtualKeyCode::A){
                 Ok(v) => {
                     match v{
-                        winit::event::ElementState::Pressed => 1.0,
+                        winit::event::ElementState::Pressed => -1.0,
                         winit::event::ElementState::Released => move_vec.x,
                     }
                 },
@@ -41,7 +41,7 @@ impl SystemBase for PlayerMovementSystem{
             move_vec.x = match input_manager.try_get_key_value(winit::event::VirtualKeyCode::Right){
                 Ok(v) => {
                     match v{
-                        winit::event::ElementState::Pressed => -1.0,
+                        winit::event::ElementState::Pressed => 1.0,
                         winit::event::ElementState::Released => move_vec.x,
                     }
                 },
@@ -50,7 +50,7 @@ impl SystemBase for PlayerMovementSystem{
             move_vec.x = match input_manager.try_get_key_value(winit::event::VirtualKeyCode::D){
                 Ok(v) => {
                     match v{
-                        winit::event::ElementState::Pressed => -1.0,
+                        winit::event::ElementState::Pressed => 1.0,
                         winit::event::ElementState::Released => move_vec.x,
                     }
                 },
