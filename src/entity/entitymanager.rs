@@ -1,4 +1,4 @@
-use crate::{Entity, ComponentBase, Rc, Renderer, SystemBase, RefCell};
+use crate::{Entity, ComponentBase, Rc, b2, Physics, World};
 use std::collections::HashMap;
 use rayon::prelude::*;
 
@@ -12,7 +12,6 @@ impl EntityManager{
 
         Self{
             entities: Vec::<Entity>::new(),
-
         }
     }
 
@@ -68,6 +67,7 @@ impl EntityManager{
         }
         entities
     }
+
 
     pub fn get_entities_with_types_mut(&mut self, ids: &[u32]) -> Vec::<&mut Entity>{
         // Create an empty vec to store our entity indexes

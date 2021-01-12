@@ -1,11 +1,11 @@
-use crate::{SystemBase, EntityManager, PlayerMovementComponent, Transform, Renderer, Rc, RefCell, InputManager, Camera};
+use crate::{SystemBase, EntityManager, PlayerMovementComponent, Transform, PhysicsComponent, Renderer, Rc, RefCell, InputManager, Camera, Physics, b2};
 
 pub struct PlayerMovementSystem{
 }
 
 impl SystemBase for PlayerMovementSystem{
-    fn execute(&mut self, renderer: &Renderer, entity_manager: &mut EntityManager, input_manager: &InputManager, delta_time: f32, camera: &mut Camera){
-        for entity_ref in entity_manager.get_entities_with_types_mut(&[PlayerMovementComponent::get_component_id(), Transform::get_component_id()]){
+    fn execute(&mut self, renderer: &Renderer, entity_manager: &mut EntityManager, input_manager: &InputManager, physics: &mut Physics, delta_time: f32, camera: &mut Camera){
+        for entity_ref in entity_manager.get_entities_with_types_mut(&[PlayerMovementComponent::get_component_id(), Transform::get_component_id(), PhysicsComponent::get_component_id()]){
             
 
             let temp_entity = Rc::new(RefCell::new(entity_ref));
@@ -105,11 +105,31 @@ impl SystemBase for PlayerMovementSystem{
 
 
             
-            transform.position += cgmath::Vector3::<f32> { x: move_vec.x * speed * delta_time, y: move_vec.y * speed * delta_time, z: 0.0};
+            //transform.position += cgmath::Vector3::<f32> { x: move_vec.x * speed * delta_time, y: move_vec.y * speed * delta_time, z: 0.0};
             
             camera.move_camera(cgmath::Point3::<f32> { x: transform.position.x, y: transform.position.y, z: 10.0});
 
             transform.update_uniform_buffers(&renderer);
+
+            drop(temp);
+
+            let mut temp = temp_entity.borrow_mut();
+            let phys_ref = match temp.get_component_mut::<PhysicsComponent>(PhysicsComponent::get_component_id()){
+                Ok(transform) => transform,
+                Err(_) => panic!("Error - component not found!"),
+            };
+            let body = physics.world.body(phys_ref.handle);
+            let lin_vel = body.linear_velocity();
+            let vel_y = lin_vel.y;
+            let vel_x = lin_vel.x;
+            let center = *body.world_center();
+            drop(body);
+            let mut body = physics.world.body_mut(phys_ref.handle);
+            body.apply_linear_impulse(&b2::Vec2{ x: ((move_vec.x * speed)) - (if move_vec.x == 0.0 { vel_x } else {vel_x}), y: (move_vec.y * speed) - (if move_vec.y == 0.0 { 1.0 } else {vel_y}) }, &center, true);
+
+            drop(body);
+            //phys_ref.set_velocity(physics, b2::Vec2{ x: (move_vec.x * speed * delta_time) + x_force, y: (move_vec.y * speed * delta_time) + gravity });
+            
         }
     }
 }

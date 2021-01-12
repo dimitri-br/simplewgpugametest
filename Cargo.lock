@@ -241,6 +241,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "cmake"
+version = "0.1.45"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "eb6210b637171dfba4cda12e579ac6dc73f5165ad56133e5d72ef3131f320855"
+dependencies = [
+ "cc",
+]
+
+[[package]]
 name = "cocoa"
 version = "0.24.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -685,6 +694,7 @@ dependencies = [
  "wgpu",
  "wgpu_glyph",
  "winit",
+ "wrapped2d",
 ]
 
 [[package]]
@@ -2460,6 +2470,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5d129932f4644ac2396cb456385cbf9e63b5b30c6e8dc4820bdca4eb082037a5"
 dependencies = [
  "winapi 0.3.9",
+]
+
+[[package]]
+name = "wrapped2d"
+version = "0.4.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "788cab1d895e49bbd7c034209005525a901402a52acc6fcc422cab895469858a"
+dependencies = [
+ "bitflags",
+ "cc",
+ "cmake",
+ "libc",
+ "vec_map",
 ]
 
 [[package]]

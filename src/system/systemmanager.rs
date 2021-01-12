@@ -1,4 +1,4 @@
-use crate::{Entity, ComponentBase, Rc, Renderer, SystemBase, RefCell, EntityManager, InputManager, Camera};
+use crate::{Entity, ComponentBase, Rc, Renderer, SystemBase, Physics, EntityManager, InputManager, Camera};
 use std::collections::HashMap;
 use rayon::prelude::*;
 
@@ -18,9 +18,9 @@ impl SystemManager{
         self.systems.push(system);
     }
 
-    pub fn update_systems(&mut self, renderer_reference: &Renderer, entity_manager: &mut EntityManager, input_manager: &InputManager, camera: &mut Camera){
+    pub fn update_systems(&mut self, renderer_reference: &Renderer, entity_manager: &mut EntityManager, input_manager: &InputManager, physics: &mut Physics, camera: &mut Camera){
         for system in self.systems.iter_mut(){
-            system.execute(renderer_reference, entity_manager, input_manager, self.delta_time, camera);
+            system.execute(renderer_reference, entity_manager, input_manager, physics, self.delta_time, camera);
         }
     }
 }

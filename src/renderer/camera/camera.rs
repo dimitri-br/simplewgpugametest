@@ -64,7 +64,7 @@ impl Camera {
     }
 
     pub fn move_camera(&mut self, mut new_pos: cgmath::Point3::<f32>){
-        self.eye = new_pos;
+        self.eye = lerp(cgmath::Point3::<f32> { x: self.target.x, y: self.target.y, z: new_pos.z }, new_pos, 0.075);
         new_pos.z = 0.0;
         self.target = lerp(self.target, new_pos, 0.075);
     }
