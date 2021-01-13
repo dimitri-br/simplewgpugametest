@@ -1,23 +1,367 @@
-2021-01-05 20:20:28| game_test: INFO - Hello, world - Logger initalized!
-2021-01-05 20:20:28| game_test: INFO - Logging Level: Info
-2021-01-05 20:20:28| game_test: INFO - Vsync Mode: Fifo
-2021-01-05 20:20:28| game_test: INFO - App is running in release mode
-2021-01-05 20:20:28| game_test: INFO - Window created
-2021-01-05 20:20:28| gfx_backend_dx11: INFO - DXGI version: Dxgi1_5
-2021-01-05 20:20:28| gfx_backend_dx11: INFO - AdapterInfo {
-    name: "NVIDIA GeForce RTX 2060",
-    vendor: 4318,
-    device: 7944,
-    device_type: DiscreteGpu,
-}
-2021-01-05 20:20:28| gfx_backend_dx11: INFO - AdapterInfo {
-    name: "Microsoft Basic Render Driver",
-    vendor: 5140,
-    device: 140,
-    device_type: VirtualGpu,
-}
-2021-01-05 20:20:29| gfx_backend_dx11: INFO - feature level=b100=FL11_1
-2021-01-05 20:20:29| gfx_backend_dx11::device: ERROR - CreateTexture2D failed: 0x80070057
-2021-01-05 20:20:29| gfx_memory::heaps: ERROR - Heaps not completely freed before drop. Utilization: MemoryHeapUtilization { utilization: MemoryUtilization { used: 16588800, effective: 16588800 }, size: 18446744073709551615 }
-2021-01-05 20:20:29| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(8294400) is still used
-2021-01-05 20:20:29| gfx_memory::allocator::general: ERROR - Memory leak: SizeEntry(2073600) is still used
+2021-01-12 18:00:37| game_test: INFO - Hello, world - Logger initalized!
+2021-01-12 18:00:37| game_test: INFO - Logging Level: Info
+2021-01-12 18:00:37| game_test: INFO - Screen mode: "full"
+2021-01-12 18:00:37| game_test: INFO - Vsync Mode: Fifo
+2021-01-12 18:00:37| game_test: INFO - App is running in release mode
+2021-01-12 18:00:38| game_test: INFO - Window created
+2021-01-12 18:00:38| game_test: INFO - Renderer created
+2021-01-12 18:00:38| game_test::entity::entitymanager: INFO - Entity Manager Initialized
+2021-01-12 18:00:38| game_test::physics: INFO - Initialized the physics world
+2021-01-12 18:00:38| game_test: INFO - Systems successfully initialized
+2021-01-12 18:00:38| game_test::renderer::texture: INFO - Texture Some("./data/textures/derp.png") loaded
+2021-01-12 18:00:38| game_test::renderer::texture: INFO - Texture Some("./data/textures/happy-tree.png") loaded
+2021-01-12 18:00:38| game_test::renderer::texture: INFO - Texture Some("./data/textures/pepe.png") loaded
+2021-01-12 18:00:38| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
+2021-01-12 18:00:38| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
+2021-01-12 18:00:38| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new physics shape
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new body definition
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:38| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:38| game_test::entity::entitymanager: INFO - Entity created with 4 components
+2021-01-12 18:00:38| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
+2021-01-12 18:00:38| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
+2021-01-12 18:00:38| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new physics shape
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new body definition
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:38| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:38| game_test::entity::entitymanager: INFO - Entity created with 3 components
+2021-01-12 18:00:38| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
+2021-01-12 18:00:38| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
+2021-01-12 18:00:38| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new physics shape
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new body definition
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:38| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:38| game_test::entity::entitymanager: INFO - Entity created with 3 components
+2021-01-12 18:00:38| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
+2021-01-12 18:00:38| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
+2021-01-12 18:00:38| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new physics shape
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new body definition
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:38| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:38| game_test::entity::entitymanager: INFO - Entity created with 3 components
+2021-01-12 18:00:38| game_test: INFO - Entities built
+2021-01-12 18:00:38| game_test: INFO - Render Pipelines built
+2021-01-12 18:00:38| game_test: INFO - Starting main loop
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:38| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:38| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:38| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:38| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:38| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:38| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:38| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:38| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:38| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:38| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:38| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:38| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:38| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:38| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:39| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:39| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:40| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:40| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world
+2021-01-12 18:00:41| game_test: INFO - User Quit Application
+2021-01-12 18:00:41| game_test::physics: INFO - Generating new body handle
+2021-01-12 18:00:41| game_test::physics: INFO - Added new body handle and shape to the physics world

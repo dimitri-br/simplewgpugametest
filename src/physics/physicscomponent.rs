@@ -1,5 +1,4 @@
 use wrapped2d::b2;
-
 use crate::{ComponentBase, Physics};
 use std::any::Any;
 
@@ -19,6 +18,7 @@ impl PhysicsComponent{
         let body = physics.create_body(body_type, b2::Vec2 { x: position.x, y: position.y });
         let handle = physics.create_handle(&body);
         physics.bind_to_world(&handle, &shape);
+
         Self{
             id: ID,
             shape,

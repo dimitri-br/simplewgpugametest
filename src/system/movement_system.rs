@@ -16,6 +16,7 @@ impl SystemBase for MovementSystem{
                 self.move_dir = component.position;
             }
         }
+        let mut points = 0;
         for entity_ref in entity_manager.get_entities_with_types_mut(&[MovementComponent::get_component_id(), Transform::get_component_id(), PhysicsComponent::get_component_id()]){
 
 
@@ -42,7 +43,7 @@ impl SystemBase for MovementSystem{
             }
 
             let mut move_dir: cgmath::Vector3::<f32> = cgmath::Vector3::<f32> { x: 0.0, y: 0.0, z: 0.0};
-            if (transform.position - self.move_dir).magnitude() > 2.0{
+            if (transform.position - self.move_dir).magnitude() > 0.25{
                 move_dir = (transform.position - self.move_dir).normalize();
             }
             /*
@@ -68,6 +69,7 @@ impl SystemBase for MovementSystem{
             };
             if reset_pos{
                 phys_ref.update_position(physics, b2::Vec2 { x: 0.0, y: 5.0 });
+                points += 1;
             }
             let body = physics.world.body(phys_ref.handle);
             let lin_vel = body.linear_velocity();
@@ -79,7 +81,16 @@ impl SystemBase for MovementSystem{
             body.apply_linear_impulse(&b2::Vec2{ x: (move_dir.x * speed), y: (move_dir.y * speed ) }, &center, true);
             drop(body);
             //phys_ref.set_velocity(physics, b2::Vec2{ x: (move_vec.x * speed * delta_time) + x_force, y: (move_vec.y * speed * delta_time) + gravity });
-            
+
+        }
+
+        for entity_ref in entity_manager.get_entities_with_types_mut(&[PlayerMovementComponent::get_component_id()]){
+            if entity_ref.try_find_component(PlayerMovementComponent::get_component_id()).is_ok(){
+
+                let mut component = entity_ref.get_component_mut::<PlayerMovementComponent>(PlayerMovementComponent::get_component_id()).unwrap();
+                
+                component.points += points;
+            }
         }
     }
 }

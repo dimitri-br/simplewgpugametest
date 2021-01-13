@@ -1,4 +1,4 @@
-use crate::{Vertex, RenderMesh, EntityManager, PostProcessing, BloomUniform, Texture, Material, Rc, BaseUniforms, DepthTexture, Camera, Entity};
+use crate::{Vertex, RenderMesh, EntityManager, PostProcessing, BloomUniform, Texture, Material, Rc, BaseUniforms, DepthTexture, Camera, Entity, PlayerMovementComponent};
 use std::collections::HashMap;
 use std::any::Any;
 use winit::{
@@ -19,6 +19,7 @@ pub struct Renderer {
     postprocessing: PostProcessing,
     depth_texture: DepthTexture,
     pub sample_count: u32,
+    glyph_brush: wgpu_glyph::GlyphBrush<()>,
 }
 
 impl Renderer {
@@ -77,6 +78,12 @@ impl Renderer {
 
         let mut staging_belt = wgpu::util::StagingBelt::new(1024);
 
+        let font = ab_glyph::FontArc::try_from_slice(include_bytes!("../../data/fonts/FingerPaint-Regular.ttf"))
+        .expect("Load font");
+
+        let mut glyph_brush = GlyphBrushBuilder::using_font(font)
+            .build(&device, wgpu::TextureFormat::Bgra8UnormSrgb);
+
         Self {
             surface,
             device,
@@ -90,6 +97,7 @@ impl Renderer {
             postprocessing,
             depth_texture,
             sample_count,
+            glyph_brush,
        }
     }
 
@@ -243,11 +251,7 @@ impl Renderer {
         uniform.iResolution = [self.sc_desc.width as f32, self.sc_desc.height as f32];
         let bind_group = uniform.create_uniform_group(&self);
 
-        let font = ab_glyph::FontArc::try_from_slice(include_bytes!("../../data/fonts/Potta-One.ttf"))
-             .expect("Load font");
 
-        let mut glyph_brush = GlyphBrushBuilder::using_font(font)
-            .build(&self.device, wgpu::TextureFormat::Bgra8UnormSrgb);
 
         let hello_world = Section {
             screen_position: ((self.sc_desc.width as f32) / 2.0, 0.0),
@@ -266,8 +270,22 @@ impl Renderer {
 
         let help = Section {
             screen_position: (0.0, self.sc_desc.height as f32),
-            text: vec![Text::new("WASD or Arrows to move").with_color([1.0, 1.0, 1.0, 1.0]).with_scale(25.0)],
+            text: vec![Text::new("Press WASD or Arrows to move").with_color([1.0, 1.0, 1.0, 1.0]).with_scale(25.0)],
             layout: Layout::default().h_align(HorizontalAlign::Left).v_align(VerticalAlign::Bottom),
+            ..Section::default()
+        };
+
+        let mut points: Section;
+        let mut points_text: String;
+        let entity = entities.get_entities_with_type(PlayerMovementComponent::get_component_id())[0];
+        let mut component = entity.get_component::<PlayerMovementComponent>(PlayerMovementComponent::get_component_id()).unwrap();
+
+        points_text = format!("Points: {:?}", component.points as i32);
+
+        points = Section {
+            screen_position: (self.sc_desc.width as f32 / 2.0, self.sc_desc.height as f32),
+            text: vec![Text::new(&points_text).with_color([1.0, 1.0, 1.0, 1.0]).with_scale(90.0)],
+            layout: Layout::default().h_align(HorizontalAlign::Right).v_align(VerticalAlign::Bottom),
             ..Section::default()
         };
         
@@ -330,8 +348,9 @@ impl Renderer {
                         Err(e) => panic!("{:?}", e)
                     };
                     if mesh.borrow_material().get_shader_name() == pipeline.0{
-                        render_pass.set_pipeline(pipeline.1); // 2.
-
+                        {
+                            render_pass.set_pipeline(pipeline.1); // 2.
+                        }
                         // 0 - texture count is reserved for textures
                         render_pass.set_bind_group(0, &mesh.borrow_material().borrow_texture().get_texture_group(), &[]);
                         let mut i: u32 = 1;
@@ -520,11 +539,12 @@ impl Renderer {
             render_pass.draw(0..3, 0..1);
         }
         {
-            glyph_brush.queue(hello_world);
-            glyph_brush.queue(fps);
-            glyph_brush.queue(help);
+            self.glyph_brush.queue(hello_world);
+            self.glyph_brush.queue(fps);
+            self.glyph_brush.queue(help);
+            self.glyph_brush.queue(points);
 
-            glyph_brush.draw_queued(
+            self.glyph_brush.draw_queued(
                 &self.device,
                 &mut self.staging_belt,
                 &mut encoder,

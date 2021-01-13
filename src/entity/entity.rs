@@ -99,8 +99,8 @@ impl Entity{
         self.uniforms = uniforms;
     }
 
-    pub fn get_uniforms(&self) -> Rc<&Vec::<Rc<wgpu::BindGroup>>>{
-        Rc::new(&self.uniforms)
+    pub fn get_uniforms(&self) -> &Vec::<Rc<wgpu::BindGroup>>{
+        &self.uniforms
     }
 
 }

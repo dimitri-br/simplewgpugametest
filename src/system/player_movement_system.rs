@@ -1,4 +1,5 @@
 use crate::{SystemBase, EntityManager, PlayerMovementComponent, Transform, PhysicsComponent, Renderer, Rc, RefCell, InputManager, Camera, Physics, b2};
+use wrapped2d::collision::test_overlap;
 
 pub struct PlayerMovementSystem{
 }
@@ -18,6 +19,7 @@ impl SystemBase for PlayerMovementSystem{
             let mut move_vec = cgmath::Vector2::<f32> { x: 0.0, y: 0.0 };
             let mut movement_component = temp.get_component_mut::<PlayerMovementComponent>(PlayerMovementComponent::get_component_id()).unwrap();
             speed = movement_component.speed;
+
 
             movement_component.position = trans_pos;
             move_vec.x = match input_manager.try_get_key_value(winit::event::VirtualKeyCode::Left){
@@ -97,6 +99,8 @@ impl SystemBase for PlayerMovementSystem{
 
             drop(temp);
             
+
+
             let mut temp = temp_entity.borrow_mut();
             let transform = match temp.get_component_mut::<Transform>(Transform::get_component_id()){
                 Ok(transform) => transform,
@@ -104,7 +108,13 @@ impl SystemBase for PlayerMovementSystem{
             };
 
 
-            
+            let mut reset_pos = false;
+            if transform.position.y < -15.0{
+                reset_pos = true;
+            }
+            if transform.position.y < -5.0{
+                move_vec.y = 0.0;
+            }
             //transform.position += cgmath::Vector3::<f32> { x: move_vec.x * speed * delta_time, y: move_vec.y * speed * delta_time, z: 0.0};
             
             camera.move_camera(cgmath::Point3::<f32> { x: transform.position.x, y: transform.position.y, z: 10.0});
@@ -118,7 +128,14 @@ impl SystemBase for PlayerMovementSystem{
                 Ok(transform) => transform,
                 Err(_) => panic!("Error - component not found!"),
             };
+            let mut points: i32 = 0;
+            if reset_pos{
+                phys_ref.update_position(physics, b2::Vec2 { x: 0.0, y: 0.0 });
+                points -= 5;
+            }
+
             let body = physics.world.body(phys_ref.handle);
+
             let lin_vel = body.linear_velocity();
             let vel_y = lin_vel.y;
             let vel_x = lin_vel.x;
@@ -128,8 +145,13 @@ impl SystemBase for PlayerMovementSystem{
             body.apply_linear_impulse(&b2::Vec2{ x: ((move_vec.x * speed)) - (if move_vec.x == 0.0 { vel_x } else {vel_x}), y: (move_vec.y * speed) - (if move_vec.y == 0.0 { 1.0 } else {vel_y}) }, &center, true);
 
             drop(body);
+            drop(temp);
             //phys_ref.set_velocity(physics, b2::Vec2{ x: (move_vec.x * speed * delta_time) + x_force, y: (move_vec.y * speed * delta_time) + gravity });
-            
+
+            let mut temp = temp_entity.borrow_mut();
+            let mut movement_component = temp.get_component_mut::<PlayerMovementComponent>(PlayerMovementComponent::get_component_id()).unwrap();
+
+            movement_component.points += points;
         }
     }
 }

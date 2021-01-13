@@ -99,4 +99,17 @@ impl RenderMesh{
     pub fn generate_material_uniforms(&mut self, renderer_reference: &Renderer) -> (wgpu::BindGroup, wgpu::BindGroupLayout, MaterialUniform){
         self.material.create_uniform_group(renderer_reference)
     }
+
+    pub fn draw<'a>(&'a self, render_pass: &'a mut wgpu::RenderPass<'a>, uniforms: &'a Vec::<Rc<wgpu::BindGroup>>){
+        // 0 - texture count is reserved for textures
+        render_pass.set_bind_group(0, self.borrow_material().borrow_texture().get_texture_group(), &[]);
+        let mut i: u32 = 1;
+        for uniform in uniforms.iter(){
+            render_pass.set_bind_group(i, &uniform, &[]);
+            i += 1;
+        }
+        render_pass.set_vertex_buffer(0, self.get_vertex_buffer().slice(..));
+        render_pass.draw(0..self.get_num_vertices(), 0..1);
+    }
+    
 }

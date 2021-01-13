@@ -7,6 +7,7 @@ pub struct PlayerMovementComponent{
     pub speed: f32,
     pub movement_vector: cgmath::Vector2::<f32>,
     pub position: cgmath::Vector3::<f32>,
+    pub points: i32,
     id: u32
 }
 
@@ -28,6 +29,7 @@ impl PlayerMovementComponent{
             speed,
             movement_vector: cgmath::Vector2::<f32> { x: 0.0, y: 0.0 },
             position: cgmath::Vector3::<f32> { x: 0.0, y: 0.0, z: 0.0 },
+            points: 0,
             id: ID
         }
     }
