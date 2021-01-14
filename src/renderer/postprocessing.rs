@@ -43,8 +43,8 @@ impl PostProcessing{
         };
 
         let d_size = wgpu::Extent3d {
-            width: 256,
-            height: 1,
+            width: 32,
+            height: 32,
             depth: 1,
         };
 
@@ -80,7 +80,7 @@ impl PostProcessing{
             size: d_size,
             mip_level_count: 1,
             sample_count: 1,
-            dimension: wgpu::TextureDimension::D1,
+            dimension: wgpu::TextureDimension::D2,
             format: wgpu::TextureFormat::Rgba8UnormSrgb,
             usage:  sc_desc.usage | wgpu::TextureUsage::SAMPLED | wgpu::TextureUsage::COPY_DST | wgpu::TextureUsage::COPY_SRC,
             label: None,
@@ -197,7 +197,7 @@ impl PostProcessing{
                 size: d_size,
                 mip_level_count: 1,
                 sample_count: 1,
-                dimension: wgpu::TextureDimension::D1,
+                dimension: wgpu::TextureDimension::D2,
                 format: wgpu::TextureFormat::Rgba8UnormSrgb,
                 usage: wgpu::TextureUsage::SAMPLED | wgpu::TextureUsage::COPY_DST,
             }

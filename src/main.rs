@@ -600,7 +600,6 @@ pub fn main() {
     layouts.remove(1);
 
     let fb_u_layout = &BaseUniforms::create_uniform_layout(&temp_renderer);
-    let depth_layout = &DepthTexture::create_depth_texture_layout(&temp_renderer.device);
 
     layouts.push(hdr_tex_layout);
     layouts.push(fb_u_layout);
@@ -621,8 +620,6 @@ pub fn main() {
         write_mask: wgpu::ColorWrite::ALL,
     });
 
-    layouts.push(shadow_tex_layout);
-
 
     let sample_count = temp_renderer.sample_count;
     temp_renderer.create_pipeline("framebuffer".to_string(), &layouts, wgpu::include_spirv!("./shaders/framebuffer.vert.spv"), wgpu::include_spirv!("./shaders/framebuffer.frag.spv"), &color_states, &[], sample_count, false);
@@ -630,8 +627,9 @@ pub fn main() {
     layouts.clear();
     color_states.clear();
 
-    layouts.push(depth_layout);
-
+    layouts.push(shadow_tex_layout);
+    
+    // Define the color states for the framebuffer render pipeline. We need one per color attachment
     color_states.push(wgpu::ColorStateDescriptor {
         format: wgpu::TextureFormat::Rgba8UnormSrgb,
         color_blend: wgpu::BlendDescriptor::REPLACE,
@@ -639,7 +637,7 @@ pub fn main() {
         write_mask: wgpu::ColorWrite::ALL,
     });
 
-    temp_renderer.create_pipeline("shadow".to_string(), &layouts, wgpu::include_spirv!("./shaders/framebuffer.vert.spv"), wgpu::include_spirv!("./shaders/shadow.frag.spv"), &color_states, &[], 1, false);
+    temp_renderer.create_pipeline("shadow".to_string(), &layouts, wgpu::include_spirv!("./shaders/framebuffer.vert.spv"), wgpu::include_spirv!("./shaders/shadow.frag.spv"), &color_states, &[], sample_count, false);
 
 
     log::info!("Render Pipelines built");

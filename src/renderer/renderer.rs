@@ -456,14 +456,10 @@ impl Renderer {
             render_pass.draw(0..3, 0..1);
         }
         {
-            
             encoder.copy_texture_to_texture(
                 wgpu::TextureCopyView{ texture: &self.postprocessing.main_pass_draw_texture, mip_level: 0, origin: wgpu::Origin3d::ZERO}, 
                 wgpu::TextureCopyView{ texture: &self.postprocessing.framebuffer_render_texture, mip_level: 0, origin: wgpu::Origin3d::ZERO}, 
-                self.postprocessing.size);
-        
-
-            
+                self.postprocessing.size);            
         }
         {
             let mut render_pass = encoder.begin_render_pass(&wgpu::RenderPassDescriptor {
@@ -476,7 +472,7 @@ impl Renderer {
                                 r: 0.0,
                                 g: 0.0,
                                 b: 0.0,
-                                a: 0.0,
+                                a: 1.0,
                             }),
                             store: true,
                         }
@@ -486,14 +482,15 @@ impl Renderer {
             });
             // Post pass
             render_pass.set_pipeline(&self.render_pipelines["shadow"]);
-            render_pass.set_bind_group(0, &self.depth_texture.bind_group, &[]);
+            render_pass.set_bind_group(0, &self.postprocessing.framebuffer_render_texture_group, &[]);
             render_pass.draw(0..3, 0..1);
         }
         {
+            
             encoder.copy_texture_to_texture(
                 wgpu::TextureCopyView{ texture: &self.postprocessing.shadow_framebuffer, mip_level: 0, origin: wgpu::Origin3d::ZERO}, 
                 wgpu::TextureCopyView{ texture: &self.postprocessing.shadow_render_texture, mip_level: 0, origin: wgpu::Origin3d::ZERO}, 
-                self.postprocessing.d_size);
+                self.postprocessing.d_size);            
         }
         {
             let mut render_pass;
@@ -543,7 +540,6 @@ impl Renderer {
             render_pass.set_bind_group(1, &self.postprocessing.hdr_render_texture_group, &[]);
             render_pass.set_bind_group(2, &bind_group.0, &[]);
             render_pass.set_bind_group(3, &self.postprocessing.shadow_render_texture_group, &[]);
-
             render_pass.draw(0..3, 0..1);
         }
         {

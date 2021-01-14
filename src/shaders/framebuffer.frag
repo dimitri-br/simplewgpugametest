@@ -15,16 +15,20 @@ layout(set = 0, binding = 1) uniform sampler s_diffuse;
 layout(set = 1, binding = 0) uniform texture2D hdr_t_diffuse;
 layout(set = 1, binding = 1) uniform sampler hdr_s_diffuse;
 
-// Base Color Texture
-layout(set = 3, binding = 0) uniform texture1D shadow_t_diffuse;
-layout(set = 3, binding = 1) uniform sampler shadow_s_diffuse;
+
+// Shadow Texture (Used to sample the shadow map)
+layout(set = 3, binding = 0) uniform texture2D s_t_diffuse;
+layout(set = 3, binding = 1) uniform sampler s_s_diffuse;
+
 
 void main()
 {
     const float gamma = 2.2f;
     const float exposure = 0.075f;
 
-    vec3 hdrColor = texture(sampler2D(t_diffuse, s_diffuse), v_tex_coords).rgb;
+    vec3 hdrColor = apply_ray_map(t_diffuse, s_diffuse, s_t_diffuse, s_s_diffuse, v_tex_coords).xyz;
+
+
     vec3 bloomColor = texture(sampler2D(hdr_t_diffuse, hdr_s_diffuse), v_tex_coords).rgb;
 
     /* Image Effects */
@@ -33,8 +37,6 @@ void main()
     hdrColor += bloomColor;
     vec4 result = vec4(vec3(1.0) - exp(-hdrColor * exposure), 1.0);
 
-    vec4 light_result = apply_shadows(vec4(vec3(0.1, 0.9, 0.3), 1.0), shadow_t_diffuse, shadow_s_diffuse, v_tex_coords);
-    result *= light_result;
     // Effects
     result += film_grain(0.0015, v_tex_coords);
     result *= vignette(v_tex_coords, 512.0);
