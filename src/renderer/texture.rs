@@ -245,12 +245,36 @@ pub struct DepthTexture{
     pub texture: wgpu::Texture,
     pub view: wgpu::TextureView,
     pub sampler: wgpu::Sampler,
+    pub bind_group: wgpu::BindGroup,
 }
 
 impl DepthTexture{
     
     pub const DEPTH_FORMAT: wgpu::TextureFormat = wgpu::TextureFormat::Depth32Float; // 1.
     
+    pub fn create_depth_texture_layout(device: &wgpu::Device) -> wgpu::BindGroupLayout{
+        device.create_bind_group_layout(&wgpu::BindGroupLayoutDescriptor {
+            label: Some("Depth Pass Layout"),
+            entries: &[
+                wgpu::BindGroupLayoutEntry {
+                    binding: 0,
+                    count: None,
+                    ty: wgpu::BindingType::SampledTexture {
+                        component_type: wgpu::TextureComponentType::Float,
+                        multisampled: false,
+                        dimension: wgpu::TextureViewDimension::D2,
+                    },
+                    visibility: wgpu::ShaderStage::FRAGMENT,
+                },
+                wgpu::BindGroupLayoutEntry {
+                    binding: 1,
+                    count: None,
+                    ty: wgpu::BindingType::Sampler { comparison: true },
+                    visibility: wgpu::ShaderStage::FRAGMENT,
+                },
+            ],
+        })
+    }
     pub fn create_depth_texture(device: &wgpu::Device, sc_desc: &wgpu::SwapChainDescriptor, label: &str) -> Self {
         let size = wgpu::Extent3d { // 2.
             width: sc_desc.width,
@@ -285,6 +309,26 @@ impl DepthTexture{
             }
         );
 
-        Self { texture, view, sampler }
+        
+        let bind_group_layout = DepthTexture::create_depth_texture_layout(device);
+
+        let bind_group = device.create_bind_group(
+            &wgpu::BindGroupDescriptor {
+                layout: &bind_group_layout,
+                entries: &[
+                    wgpu::BindGroupEntry {
+                        binding: 0,
+                        resource: wgpu::BindingResource::TextureView(&view),
+                    },
+                    wgpu::BindGroupEntry {
+                        binding: 1,
+                        resource: wgpu::BindingResource::Sampler(&sampler),
+                    }
+                ],
+                label: None,
+            }
+        );
+
+        Self { texture, view, sampler, bind_group }
     }
 }

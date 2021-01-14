@@ -12,13 +12,21 @@ pub struct PostProcessing{
     pub msaa_framebuffer: wgpu::Texture, // Texture to sample MSAA to
     pub msaa_framebuffer_view: wgpu::TextureView, // View
 
+    pub shadow_framebuffer: wgpu::Texture, // Texture to sample 1d shadowmap to
+    pub shadow_framebuffer_view: wgpu::TextureView, // View
+
     pub framebuffer_render_texture: wgpu::Texture, // Texture to use in postpass
     pub framebuffer_render_texture_group: wgpu::BindGroup,
 
     pub hdr_render_texture: wgpu::Texture, // Texture to use in postpass
     pub hdr_render_texture_group: wgpu::BindGroup,
 
+    
+    pub shadow_render_texture: wgpu::Texture, // Texture to use in postpass
+    pub shadow_render_texture_group: wgpu::BindGroup,
+
     pub size: wgpu::Extent3d,
+    pub d_size: wgpu::Extent3d,
 
 
     // PPS info
@@ -31,6 +39,12 @@ impl PostProcessing{
         let size = wgpu::Extent3d {
             width: sc_desc.width,
             height: sc_desc.height,
+            depth: 1,
+        };
+
+        let d_size = wgpu::Extent3d {
+            width: 256,
+            height: 1,
             depth: 1,
         };
 
@@ -61,6 +75,18 @@ impl PostProcessing{
         });
 
         let msaa_framebuffer_view = msaa_framebuffer.create_view(&wgpu::TextureViewDescriptor::default());
+
+        let shadow_framebuffer = device.create_texture(&wgpu::TextureDescriptor {
+            size: d_size,
+            mip_level_count: 1,
+            sample_count: 1,
+            dimension: wgpu::TextureDimension::D1,
+            format: wgpu::TextureFormat::Rgba8UnormSrgb,
+            usage:  sc_desc.usage | wgpu::TextureUsage::SAMPLED | wgpu::TextureUsage::COPY_DST | wgpu::TextureUsage::COPY_SRC,
+            label: None,
+        });
+
+        let shadow_framebuffer_view = shadow_framebuffer.create_view(&wgpu::TextureViewDescriptor::default());
 
 
         let hdr_draw_texture = device.create_texture(&wgpu::TextureDescriptor {
@@ -163,6 +189,53 @@ impl PostProcessing{
             }
         );
 
+
+
+        let shadow_render_texture = device.create_texture(
+            &wgpu::TextureDescriptor {
+                label: Some("HDR render tex"),
+                size: d_size,
+                mip_level_count: 1,
+                sample_count: 1,
+                dimension: wgpu::TextureDimension::D1,
+                format: wgpu::TextureFormat::Rgba8UnormSrgb,
+                usage: wgpu::TextureUsage::SAMPLED | wgpu::TextureUsage::COPY_DST,
+            }
+        );
+        
+        let shadow_view = shadow_render_texture.create_view(&wgpu::TextureViewDescriptor::default());
+        
+        let shadow_sampler = device.create_sampler(
+            &wgpu::SamplerDescriptor {
+                address_mode_u: wgpu::AddressMode::ClampToEdge,
+                address_mode_v: wgpu::AddressMode::ClampToEdge,
+                address_mode_w: wgpu::AddressMode::ClampToEdge,
+                mag_filter: wgpu::FilterMode::Linear,
+                min_filter: wgpu::FilterMode::Nearest,
+                mipmap_filter: wgpu::FilterMode::Nearest,
+                ..Default::default()
+            }
+        );
+        let shadow_render_texture_layout = Texture::generate_texture_layout_from_device(&device);
+        let shadow_render_texture_group = device.create_bind_group(
+            &wgpu::BindGroupDescriptor {
+                layout: &shadow_render_texture_layout,
+                entries: &[
+                    wgpu::BindGroupEntry {
+                        binding: 0,
+                        resource: wgpu::BindingResource::TextureView(&shadow_view),
+                    },
+                    wgpu::BindGroupEntry {
+                        binding: 1,
+                        resource: wgpu::BindingResource::Sampler(&shadow_sampler),
+                    }
+                ],
+                label: None,
+            }
+        );
+
+
+
         Self{
             main_pass_draw_texture,
             main_pass_draw_texture_view,
@@ -173,13 +246,22 @@ impl PostProcessing{
             msaa_framebuffer,
             msaa_framebuffer_view,
 
+            shadow_framebuffer,
+            shadow_framebuffer_view,
+
             framebuffer_render_texture,
             framebuffer_render_texture_group,
 
+
+
             hdr_render_texture,
             hdr_render_texture_group,
+
+            shadow_render_texture,
+            shadow_render_texture_group,
             
             size,
+            d_size,
 
 
             bloom_intensity,

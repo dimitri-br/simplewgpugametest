@@ -5,12 +5,19 @@
 #include "image_tools.glsl"
 #include "tonemapping.glsl"
 #include "film_grain.glsl"
+#include "light.glsl"
 
+// Base Color Texture
 layout(set = 0, binding = 0) uniform texture2D t_diffuse;
 layout(set = 0, binding = 1) uniform sampler s_diffuse;
 
+// HDR Texture (Used for bloom)
 layout(set = 1, binding = 0) uniform texture2D hdr_t_diffuse;
 layout(set = 1, binding = 1) uniform sampler hdr_s_diffuse;
+
+// Base Color Texture
+layout(set = 3, binding = 0) uniform texture1D shadow_t_diffuse;
+layout(set = 3, binding = 1) uniform sampler shadow_s_diffuse;
 
 void main()
 {
@@ -26,9 +33,9 @@ void main()
     hdrColor += bloomColor;
     vec4 result = vec4(vec3(1.0) - exp(-hdrColor * exposure), 1.0);
 
-
+    vec4 light_result = apply_shadows(vec4(vec3(0.1, 0.9, 0.3), 1.0), shadow_t_diffuse, shadow_s_diffuse, v_tex_coords);
+    result *= light_result;
     // Effects
-    
     result += film_grain(0.0015, v_tex_coords);
     result *= vignette(v_tex_coords, 512.0);
 
@@ -50,7 +57,7 @@ void main()
     // Color Correct
     result.rgb = acesFilm(result.rgb);
 
-    // Gamma Correction
+    // Gamma Correction for HDR to LDR
     result = pow(result, vec4(1.0 / gamma));
 
     f_color = result;

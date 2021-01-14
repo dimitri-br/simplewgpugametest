@@ -154,12 +154,13 @@ pub fn main() {
 
     log::info!("Logging Level: {:?}", level);
 
-    let mut vsync_enabled = "true";
+    let mut vsync_enabled = "mailbox";
 
-    vsync_enabled = match matches.value_of("vsync").unwrap_or("true"){
+    vsync_enabled = match matches.value_of("vsync").unwrap_or("mailbox"){
         "on" | "true" => "true",
         "off" | "false" => "false",
-        _ => "true",
+        "mail" | "mailbox" => "mailbox",
+        _ => "mailbox",
     };
 
     let mut screenmode = "full";
@@ -176,7 +177,8 @@ pub fn main() {
     let vsync_mode = match vsync_enabled{
         "true" => wgpu::PresentMode::Fifo,
         "false" => wgpu::PresentMode::Immediate,
-        _ => wgpu::PresentMode::Fifo
+        "mailbox" => wgpu::PresentMode::Mailbox,
+        _ => wgpu::PresentMode::Mailbox
     };
 
     log::info!("Vsync Mode: {:?}", vsync_mode);
@@ -566,13 +568,14 @@ pub fn main() {
     });
 
     // recreate pipeline with layouts (needs mut)
-    temp_renderer.create_pipeline("main".to_string(), &layouts, wgpu::include_spirv!("./shaders/shader.vert.spv"), wgpu::include_spirv!("./shaders/shader.frag.spv"), &color_states, &[Vertex::desc()], 1);
-    temp_renderer.create_pipeline("invert".to_string(), &layouts, wgpu::include_spirv!("./shaders/shader.vert.spv"), wgpu::include_spirv!("./shaders/invert.frag.spv"), &color_states, &[Vertex::desc()], 1);
+    temp_renderer.create_pipeline("main".to_string(), &layouts, wgpu::include_spirv!("./shaders/shader.vert.spv"), wgpu::include_spirv!("./shaders/shader.frag.spv"), &color_states, &[Vertex::desc()], 1, true);
+    temp_renderer.create_pipeline("invert".to_string(), &layouts, wgpu::include_spirv!("./shaders/shader.vert.spv"), wgpu::include_spirv!("./shaders/invert.frag.spv"), &color_states, &[Vertex::desc()], 1, false);
     layouts.clear();
 
     /* Screen based rendering now */
     let main_tex_layout = &Texture::generate_texture_layout_from_device(&temp_renderer.device);
     let hdr_tex_layout = &Texture::generate_texture_layout_from_device(&temp_renderer.device);
+    let shadow_tex_layout = &Texture::generate_texture_layout_from_device(&temp_renderer.device);
     layouts.push(main_tex_layout);
     layouts.push(hdr_tex_layout);
 
@@ -587,19 +590,22 @@ pub fn main() {
         write_mask: wgpu::ColorWrite::ALL,
     });
 
+
+
     let bloom_u_layout = &BloomUniform::create_uniform_layout(&temp_renderer);
     layouts.push(bloom_u_layout);
     
-    temp_renderer.create_pipeline("bloom".to_string(), &layouts, wgpu::include_spirv!("./shaders/framebuffer.vert.spv"), wgpu::include_spirv!("./shaders/bloom.frag.spv"), &color_states, &[], 1);
+    temp_renderer.create_pipeline("bloom".to_string(), &layouts, wgpu::include_spirv!("./shaders/framebuffer.vert.spv"), wgpu::include_spirv!("./shaders/bloom.frag.spv"), &color_states, &[], 1, false);
 
     layouts.remove(1);
 
     let fb_u_layout = &BaseUniforms::create_uniform_layout(&temp_renderer);
+    let depth_layout = &DepthTexture::create_depth_texture_layout(&temp_renderer.device);
 
     layouts.push(hdr_tex_layout);
     layouts.push(fb_u_layout);
 
-    temp_renderer.create_pipeline("fxaa".to_string(), &layouts, wgpu::include_spirv!("./shaders/framebuffer.vert.spv"), wgpu::include_spirv!("./shaders/fxaa.frag.spv"), &color_states, &[], 1);
+    temp_renderer.create_pipeline("fxaa".to_string(), &layouts, wgpu::include_spirv!("./shaders/framebuffer.vert.spv"), wgpu::include_spirv!("./shaders/fxaa.frag.spv"), &color_states, &[], 1, false);
 
 
 
@@ -615,9 +621,27 @@ pub fn main() {
         write_mask: wgpu::ColorWrite::ALL,
     });
 
+    layouts.push(shadow_tex_layout);
+
+
     let sample_count = temp_renderer.sample_count;
-    temp_renderer.create_pipeline("framebuffer".to_string(), &layouts, wgpu::include_spirv!("./shaders/framebuffer.vert.spv"), wgpu::include_spirv!("./shaders/framebuffer.frag.spv"), &color_states, &[], sample_count);
+    temp_renderer.create_pipeline("framebuffer".to_string(), &layouts, wgpu::include_spirv!("./shaders/framebuffer.vert.spv"), wgpu::include_spirv!("./shaders/framebuffer.frag.spv"), &color_states, &[], sample_count, false);
    
+    layouts.clear();
+    color_states.clear();
+
+    layouts.push(depth_layout);
+
+    color_states.push(wgpu::ColorStateDescriptor {
+        format: wgpu::TextureFormat::Rgba8UnormSrgb,
+        color_blend: wgpu::BlendDescriptor::REPLACE,
+        alpha_blend: wgpu::BlendDescriptor::REPLACE,
+        write_mask: wgpu::ColorWrite::ALL,
+    });
+
+    temp_renderer.create_pipeline("shadow".to_string(), &layouts, wgpu::include_spirv!("./shaders/framebuffer.vert.spv"), wgpu::include_spirv!("./shaders/shadow.frag.spv"), &color_states, &[], 1, false);
+
+
     log::info!("Render Pipelines built");
     
     // drop the borrowed mut reference (to stay safe)

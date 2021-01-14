@@ -24,7 +24,6 @@ impl Physics{
     }
 
     pub fn create_handle(&mut self, body_def: &b2::BodyDef) -> b2::BodyHandle{
-        log::info!("Generating new body handle");
         self.world.create_body(body_def)
     }
 
@@ -38,7 +37,6 @@ impl Physics{
     }
 
     pub fn bind_to_world(&mut self, body_handle: &b2::BodyHandle, shape: &Box<dyn b2::Shape>){
-        log::info!("Added new body handle and shape to the physics world");
         let mut fixture = b2::FixtureDef{
             density: 1.0,
             friction: 0.3,

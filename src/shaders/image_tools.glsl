@@ -42,3 +42,20 @@ vec4 vignette(vec2 uv, float intensity){
 
     return vec4(vig);
 }
+
+vec3 celShading(vec3 color, vec2 uv, float intensity){
+
+    float cel_intensity = 0.6 * color.length() + 0.4 * intensity;
+
+ 	if (cel_intensity > 0.9) {
+ 		cel_intensity = 1.1;
+ 	}
+ 	else if (cel_intensity > 0.5) {
+ 		cel_intensity = 0.7;
+ 	}
+ 	else {
+ 		cel_intensity = 0.5;
+    }
+
+    return color * cel_intensity;
+}

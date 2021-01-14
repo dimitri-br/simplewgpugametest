@@ -103,7 +103,9 @@ impl Renderer {
 
     
     fn generate_pipeline(device: &wgpu::Device, vs_module: wgpu::ShaderModule, fs_module: wgpu::ShaderModule,
-        bind_group_layouts: &[&wgpu::BindGroupLayout], color_states: &[wgpu::ColorStateDescriptor], vertex_descriptors: &[wgpu::VertexBufferDescriptor], sample_count: u32) -> wgpu::RenderPipeline {
+        bind_group_layouts: &[&wgpu::BindGroupLayout], color_states: &[wgpu::ColorStateDescriptor],
+         vertex_descriptors: &[wgpu::VertexBufferDescriptor], sample_count: u32,
+        use_depth_buffer: bool) -> wgpu::RenderPipeline {
 
        let render_pipeline_layout =
        device.create_pipeline_layout(&wgpu::PipelineLayoutDescriptor {
@@ -139,12 +141,12 @@ impl Renderer {
 
             primitive_topology: wgpu::PrimitiveTopology::TriangleList, // 1.
 
-            depth_stencil_state: Some(wgpu::DepthStencilStateDescriptor {
+            depth_stencil_state: if use_depth_buffer {Some(wgpu::DepthStencilStateDescriptor {
                 format: DepthTexture::DEPTH_FORMAT,
                 depth_write_enabled: true,
                 depth_compare: wgpu::CompareFunction::Always, // 1.
                 stencil: wgpu::StencilStateDescriptor::default(), // 2.
-            }),
+            })} else {None},
 
             vertex_state: wgpu::VertexStateDescriptor {
                 index_format: wgpu::IndexFormat::Uint32,
@@ -212,10 +214,10 @@ impl Renderer {
         })
     }
 
-   pub fn create_pipeline(&mut self, name: String, bind_group_layouts: &[&wgpu::BindGroupLayout], vertex_shader: wgpu::ShaderModuleSource, fragment_shader: wgpu::ShaderModuleSource, color_states: &[wgpu::ColorStateDescriptor], vertex_descriptors: &[wgpu::VertexBufferDescriptor], sample_count: u32){
+   pub fn create_pipeline(&mut self, name: String, bind_group_layouts: &[&wgpu::BindGroupLayout], vertex_shader: wgpu::ShaderModuleSource, fragment_shader: wgpu::ShaderModuleSource, color_states: &[wgpu::ColorStateDescriptor], vertex_descriptors: &[wgpu::VertexBufferDescriptor], sample_count: u32, use_depth_buffer: bool){
     let vs_module = self.device.create_shader_module(vertex_shader);
     let fs_module = self.device.create_shader_module(fragment_shader);
-    let new_pipeline = Renderer::generate_pipeline(&self.device, vs_module, fs_module, bind_group_layouts, color_states, vertex_descriptors, sample_count);
+    let new_pipeline = Renderer::generate_pipeline(&self.device, vs_module, fs_module, bind_group_layouts, color_states, vertex_descriptors, sample_count, use_depth_buffer);
     if !self.render_pipelines.contains_key(&name){
         self.render_pipelines.insert(name, new_pipeline);
     }else{
@@ -322,7 +324,7 @@ impl Renderer {
                             }),
                             store: true,
                         }
-                    }
+                    },
                 ],
                 depth_stencil_attachment: Some(wgpu::RenderPassDepthStencilAttachmentDescriptor {
                     attachment: &self.depth_texture.view,
@@ -407,14 +409,7 @@ impl Renderer {
                                 }
                             }
                         ],
-                        depth_stencil_attachment: Some(wgpu::RenderPassDepthStencilAttachmentDescriptor {
-                            attachment: &self.depth_texture.view,
-                            depth_ops: Some(wgpu::Operations {
-                                load: wgpu::LoadOp::Clear(1.0),
-                                store: true,
-                            }),
-                            stencil_ops: None,
-                        }),
+                        depth_stencil_attachment: None,
                     });
                     render_pass.set_pipeline(&self.render_pipelines["bloom"]);
                     render_pass.set_bind_group(0, &self.postprocessing.hdr_render_texture_group, &[]);
@@ -451,14 +446,7 @@ impl Renderer {
                         }
                     }
                 ],
-                depth_stencil_attachment: Some(wgpu::RenderPassDepthStencilAttachmentDescriptor {
-                    attachment: &self.depth_texture.view,
-                    depth_ops: Some(wgpu::Operations {
-                        load: wgpu::LoadOp::Clear(1.0),
-                        store: true,
-                    }),
-                    stencil_ops: None,
-                }),
+                depth_stencil_attachment: None,
             });
             // Post pass
             render_pass.set_pipeline(&self.render_pipelines["fxaa"]);
@@ -473,7 +461,39 @@ impl Renderer {
                 wgpu::TextureCopyView{ texture: &self.postprocessing.main_pass_draw_texture, mip_level: 0, origin: wgpu::Origin3d::ZERO}, 
                 wgpu::TextureCopyView{ texture: &self.postprocessing.framebuffer_render_texture, mip_level: 0, origin: wgpu::Origin3d::ZERO}, 
                 self.postprocessing.size);
+        
+
             
+        }
+        {
+            let mut render_pass = encoder.begin_render_pass(&wgpu::RenderPassDescriptor {
+                color_attachments: &[
+                    wgpu::RenderPassColorAttachmentDescriptor {
+                        attachment: &self.postprocessing.shadow_framebuffer_view,
+                        resolve_target: None,
+                        ops: wgpu::Operations {
+                            load: wgpu::LoadOp::Clear(wgpu::Color {
+                                r: 0.0,
+                                g: 0.0,
+                                b: 0.0,
+                                a: 0.0,
+                            }),
+                            store: true,
+                        }
+                    }
+                ],
+                depth_stencil_attachment: None,
+            });
+            // Post pass
+            render_pass.set_pipeline(&self.render_pipelines["shadow"]);
+            render_pass.set_bind_group(0, &self.depth_texture.bind_group, &[]);
+            render_pass.draw(0..3, 0..1);
+        }
+        {
+            encoder.copy_texture_to_texture(
+                wgpu::TextureCopyView{ texture: &self.postprocessing.shadow_framebuffer, mip_level: 0, origin: wgpu::Origin3d::ZERO}, 
+                wgpu::TextureCopyView{ texture: &self.postprocessing.shadow_render_texture, mip_level: 0, origin: wgpu::Origin3d::ZERO}, 
+                self.postprocessing.d_size);
         }
         {
             let mut render_pass;
@@ -494,14 +514,7 @@ impl Renderer {
                             }
                         }
                     ],
-                    depth_stencil_attachment: Some(wgpu::RenderPassDepthStencilAttachmentDescriptor {
-                        attachment: &self.depth_texture.view,
-                        depth_ops: Some(wgpu::Operations {
-                            load: wgpu::LoadOp::Clear(1.0),
-                            store: true,
-                        }),
-                        stencil_ops: None,
-                    }),
+                    depth_stencil_attachment: None,
                 });
             }else{
                 render_pass = encoder.begin_render_pass(&wgpu::RenderPassDescriptor {
@@ -520,14 +533,7 @@ impl Renderer {
                             }
                         }
                     ],
-                    depth_stencil_attachment: Some(wgpu::RenderPassDepthStencilAttachmentDescriptor {
-                        attachment: &self.depth_texture.view,
-                        depth_ops: Some(wgpu::Operations {
-                            load: wgpu::LoadOp::Clear(1.0),
-                            store: true,
-                        }),
-                        stencil_ops: None,
-                    }),
+                    depth_stencil_attachment: None,
                 });
             }
 
@@ -536,6 +542,8 @@ impl Renderer {
             render_pass.set_bind_group(0, &self.postprocessing.framebuffer_render_texture_group, &[]);
             render_pass.set_bind_group(1, &self.postprocessing.hdr_render_texture_group, &[]);
             render_pass.set_bind_group(2, &bind_group.0, &[]);
+            render_pass.set_bind_group(3, &self.postprocessing.shadow_render_texture_group, &[]);
+
             render_pass.draw(0..3, 0..1);
         }
         {
