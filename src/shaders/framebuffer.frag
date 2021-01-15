@@ -5,7 +5,6 @@
 #include "image_tools.glsl"
 #include "tonemapping.glsl"
 #include "film_grain.glsl"
-#include "light.glsl"
 
 // Base Color Texture
 layout(set = 0, binding = 0) uniform texture2D t_diffuse;
@@ -15,18 +14,12 @@ layout(set = 0, binding = 1) uniform sampler s_diffuse;
 layout(set = 1, binding = 0) uniform texture2D hdr_t_diffuse;
 layout(set = 1, binding = 1) uniform sampler hdr_s_diffuse;
 
-
-// Shadow Texture (Used to sample the shadow map)
-layout(set = 3, binding = 0) uniform texture2D s_t_diffuse;
-layout(set = 3, binding = 1) uniform sampler s_s_diffuse;
-
-
 void main()
 {
     const float gamma = 2.2f;
     const float exposure = 0.075f;
 
-    vec3 hdrColor = apply_ray_map(t_diffuse, s_diffuse, s_t_diffuse, s_s_diffuse, v_tex_coords).xyz;
+    vec3 hdrColor = texture(sampler2D(t_diffuse, s_diffuse), v_tex_coords).rgb;
 
 
     vec3 bloomColor = texture(sampler2D(hdr_t_diffuse, hdr_s_diffuse), v_tex_coords).rgb;

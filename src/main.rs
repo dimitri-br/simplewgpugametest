@@ -604,6 +604,7 @@ pub fn main() {
     layouts.push(hdr_tex_layout);
     layouts.push(fb_u_layout);
 
+
     temp_renderer.create_pipeline("fxaa".to_string(), &layouts, wgpu::include_spirv!("./shaders/framebuffer.vert.spv"), wgpu::include_spirv!("./shaders/fxaa.frag.spv"), &color_states, &[], 1, false);
 
 
@@ -626,18 +627,6 @@ pub fn main() {
    
     layouts.clear();
     color_states.clear();
-
-    layouts.push(shadow_tex_layout);
-    
-    // Define the color states for the framebuffer render pipeline. We need one per color attachment
-    color_states.push(wgpu::ColorStateDescriptor {
-        format: wgpu::TextureFormat::Rgba8UnormSrgb,
-        color_blend: wgpu::BlendDescriptor::REPLACE,
-        alpha_blend: wgpu::BlendDescriptor::REPLACE,
-        write_mask: wgpu::ColorWrite::ALL,
-    });
-
-    temp_renderer.create_pipeline("shadow".to_string(), &layouts, wgpu::include_spirv!("./shaders/framebuffer.vert.spv"), wgpu::include_spirv!("./shaders/shadow.frag.spv"), &color_states, &[], sample_count, false);
 
 
     log::info!("Render Pipelines built");

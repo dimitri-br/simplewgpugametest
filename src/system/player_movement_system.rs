@@ -117,7 +117,7 @@ impl SystemBase for PlayerMovementSystem{
             }
             //transform.position += cgmath::Vector3::<f32> { x: move_vec.x * speed * delta_time, y: move_vec.y * speed * delta_time, z: 0.0};
             
-            //camera.move_camera(cgmath::Point3::<f32> { x: transform.position.x, y: transform.position.y, z: 10.0});
+            camera.move_camera(cgmath::Point3::<f32> { x: transform.position.x, y: transform.position.y, z: 10.0});
 
             transform.update_uniform_buffers(&renderer);
 

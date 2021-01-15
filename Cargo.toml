@@ -1,5 +1,5 @@
 [package]
-name = "game_test"
+name = "knock_the_enemy"
 version = "0.1.0"
 authors = ["Dimitri Bobkov <bobkov.dimitri@gmail.com>"]
 edition = "2018"
@@ -10,17 +10,17 @@ edition = "2018"
 image = "0.23.12"
 winit = "0.24.0"
 cgmath = "0.18.0"
-log = "0.4.11"
+log = "0.4.13"
 # Rendering 
 wgpu = "0.6.2"
 wgpu_glyph = "0.10.0"
 
-futures = "0.3.8"
-bytemuck = { version = "1.4", features = [ "derive" ] }
+futures = "0.3.11"
+bytemuck = { version = "1.5", features = [ "derive" ] }
 anyhow = "1.0"
 clap = "2.33.3"
 log4rs = "1.0.0"
-rand = "0.8.0"
+rand = "0.8.2"
 num = "0.3.1"
 rayon = "1.5.0"
 
