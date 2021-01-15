@@ -1,1685 +1,492 @@
-2021-01-15 00:47:31| game_test: INFO - Hello, world - Logger initalized!
-2021-01-15 00:47:31| game_test: INFO - Logging Level: Info
-2021-01-15 00:47:31| game_test: INFO - Screen mode: "full"
-2021-01-15 00:47:31| game_test: INFO - Vsync Mode: Mailbox
-2021-01-15 00:47:31| game_test: INFO - App is running in release mode
-2021-01-15 00:47:32| game_test: INFO - Window created
-2021-01-15 00:47:32| gfx_backend_vulkan: INFO - Unable to find extension: VK_KHR_surface
-2021-01-15 00:47:32| gfx_backend_vulkan: INFO - Unable to find extension: VK_KHR_win32_surface
-2021-01-15 00:47:32| gfx_backend_vulkan: INFO - Unable to find extension: VK_KHR_get_physical_device_properties2
-2021-01-15 00:47:32| gfx_backend_vulkan: WARN - Unable to create Vulkan instance: VkError(ERROR_INITIALIZATION_FAILED)
-2021-01-15 00:47:32| gfx_backend_dx12::device: INFO - create_descriptor_pool with 64 max sets
-2021-01-15 00:47:32| gfx_backend_dx12::device: INFO - total 64 views and 64 samplers
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::device: INFO - create_descriptor_pool with 64 max sets
-2021-01-15 00:47:32| gfx_backend_dx12::device: INFO - total 128 views and 64 samplers
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::device: INFO - Creating a pipeline layout with 1 sets and 0 root constants
-2021-01-15 00:47:32| game_test: INFO - Renderer created
-2021-01-15 00:47:32| game_test::entity::entitymanager: INFO - Entity Manager Initialized
-2021-01-15 00:47:32| game_test::physics: INFO - Initialized the physics world
-2021-01-15 00:47:32| game_test: INFO - Systems successfully initialized
-2021-01-15 00:47:32| gfx_backend_dx12::device: INFO - create_descriptor_pool with 64 max sets
-2021-01-15 00:47:32| gfx_backend_dx12::device: INFO - total 64 views and 0 samplers
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| game_test::renderer::texture: INFO - Texture Some("./data/textures/derp.png") loaded
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| game_test::renderer::texture: INFO - Texture Some("./data/textures/happy-tree.png") loaded
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| game_test::renderer::texture: INFO - Texture Some("./data/textures/pepe.png") loaded
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
-2021-01-15 00:47:32| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
-2021-01-15 00:47:32| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| game_test::physics: INFO - Generating new physics shape
-2021-01-15 00:47:32| game_test::physics: INFO - Generating new body definition
-2021-01-15 00:47:32| game_test::entity::entitymanager: INFO - Entity created with 4 components
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
-2021-01-15 00:47:32| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
-2021-01-15 00:47:32| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| game_test::physics: INFO - Generating new physics shape
-2021-01-15 00:47:32| game_test::physics: INFO - Generating new body definition
-2021-01-15 00:47:32| game_test::entity::entitymanager: INFO - Entity created with 3 components
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
-2021-01-15 00:47:32| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
-2021-01-15 00:47:32| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| game_test::physics: INFO - Generating new physics shape
-2021-01-15 00:47:32| game_test::physics: INFO - Generating new body definition
-2021-01-15 00:47:32| game_test::entity::entitymanager: INFO - Entity created with 3 components
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| game_test::transform::translation: WARN - Make sure to add this data to a Transform component
-2021-01-15 00:47:32| game_test::transform::rotation: WARN - Make sure to add this data to a Transform component
-2021-01-15 00:47:32| game_test::transform::non_uniform: WARN - Make sure to add this data to a Transform component
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| game_test::physics: INFO - Generating new physics shape
-2021-01-15 00:47:32| game_test::physics: INFO - Generating new body definition
-2021-01-15 00:47:32| game_test::entity::entitymanager: INFO - Entity created with 3 components
-2021-01-15 00:47:32| game_test: INFO - Entities built
-2021-01-15 00:47:32| gfx_backend_dx12::device: INFO - Creating a pipeline layout with 4 sets and 0 root constants
-2021-01-15 00:47:32| gfx_backend_dx12::device: INFO - Creating a pipeline layout with 4 sets and 0 root constants
-2021-01-15 00:47:32| gfx_backend_dx12::device: INFO - Creating a pipeline layout with 2 sets and 0 root constants
-2021-01-15 00:47:32| gfx_backend_dx12::device: INFO - Creating a pipeline layout with 3 sets and 0 root constants
-2021-01-15 00:47:32| gfx_backend_dx12::device: INFO - Creating a pipeline layout with 3 sets and 0 root constants
-2021-01-15 00:47:32| game_test: INFO - Render Pipelines built
-2021-01-15 00:47:32| game_test: INFO - Starting main loop
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:32| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:33| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:34| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:35| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:36| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:37| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:38| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:39| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:40| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:41| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:42| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:43| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:44| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:45| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:46| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:47| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| game_test: INFO - User Quit Application
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
-2021-01-15 00:47:48| gfx_backend_dx12::resource: INFO - allocate_set
+2021-01-15 14:28:23| knock_the_enemy: INFO - Hello, world - Logger initalized!
+2021-01-15 14:28:23| knock_the_enemy: INFO - Logging Level: Info
+2021-01-15 14:28:23| knock_the_enemy: INFO - Screen mode: "windowed"
+2021-01-15 14:28:23| knock_the_enemy: INFO - Vsync Mode: Mailbox
+2021-01-15 14:28:23| knock_the_enemy: INFO - App is running in release mode
+2021-01-15 14:28:23| knock_the_enemy: INFO - Window created
+2021-01-15 14:28:23| knock_the_enemy: INFO - Renderer created
+2021-01-15 14:28:23| knock_the_enemy::entity::entitymanager: INFO - Entity Manager Initialized
+2021-01-15 14:28:23| knock_the_enemy::physics: INFO - Initialized the physics world
+2021-01-15 14:28:23| knock_the_enemy: INFO - Systems successfully initialized
+2021-01-15 14:28:23| knock_the_enemy::renderer::texture: INFO - Texture Some("./data/textures/derp.png") loaded
+2021-01-15 14:28:23| knock_the_enemy::renderer::texture: INFO - Texture Some("./data/textures/happy-tree.png") loaded
+2021-01-15 14:28:23| knock_the_enemy::renderer::texture: INFO - Texture Some("./data/textures/pepe.png") loaded
+2021-01-15 14:28:23| knock_the_enemy::transform::translation: WARN - Make sure to add this data to a Transform component
+2021-01-15 14:28:23| knock_the_enemy::transform::rotation: WARN - Make sure to add this data to a Transform component
+2021-01-15 14:28:23| knock_the_enemy::transform::non_uniform: WARN - Make sure to add this data to a Transform component
+2021-01-15 14:28:23| knock_the_enemy::physics: INFO - Generating new physics shape
+2021-01-15 14:28:23| knock_the_enemy::physics: INFO - Generating new body definition
+2021-01-15 14:28:23| knock_the_enemy::entity::entitymanager: INFO - Entity created with 4 components
+2021-01-15 14:28:23| knock_the_enemy::transform::translation: WARN - Make sure to add this data to a Transform component
+2021-01-15 14:28:23| knock_the_enemy::transform::rotation: WARN - Make sure to add this data to a Transform component
+2021-01-15 14:28:23| knock_the_enemy::transform::non_uniform: WARN - Make sure to add this data to a Transform component
+2021-01-15 14:28:23| knock_the_enemy::physics: INFO - Generating new physics shape
+2021-01-15 14:28:23| knock_the_enemy::physics: INFO - Generating new body definition
+2021-01-15 14:28:23| knock_the_enemy::entity::entitymanager: INFO - Entity created with 3 components
+2021-01-15 14:28:23| knock_the_enemy::transform::translation: WARN - Make sure to add this data to a Transform component
+2021-01-15 14:28:23| knock_the_enemy::transform::rotation: WARN - Make sure to add this data to a Transform component
+2021-01-15 14:28:23| knock_the_enemy::transform::non_uniform: WARN - Make sure to add this data to a Transform component
+2021-01-15 14:28:23| knock_the_enemy::physics: INFO - Generating new physics shape
+2021-01-15 14:28:23| knock_the_enemy::physics: INFO - Generating new body definition
+2021-01-15 14:28:23| knock_the_enemy::entity::entitymanager: INFO - Entity created with 3 components
+2021-01-15 14:28:23| knock_the_enemy::transform::translation: WARN - Make sure to add this data to a Transform component
+2021-01-15 14:28:23| knock_the_enemy::transform::rotation: WARN - Make sure to add this data to a Transform component
+2021-01-15 14:28:23| knock_the_enemy::transform::non_uniform: WARN - Make sure to add this data to a Transform component
+2021-01-15 14:28:23| knock_the_enemy::physics: INFO - Generating new physics shape
+2021-01-15 14:28:23| knock_the_enemy::physics: INFO - Generating new body definition
+2021-01-15 14:28:23| knock_the_enemy::entity::entitymanager: INFO - Entity created with 3 components
+2021-01-15 14:28:23| knock_the_enemy: INFO - Entities built
+2021-01-15 14:28:23| knock_the_enemy: INFO - Render Pipelines built
+2021-01-15 14:28:23| knock_the_enemy: INFO - Starting main loop
+2021-01-15 14:28:23| wgpu_glyph: WARN - Increasing glyph texture size (256, 256) -> (512, 512). Consider building with `.initial_cache_size((512, 512))` to avoid resizing
+2021-01-15 14:28:25| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:25| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:25| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:25| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:25| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:26| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:26| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:26| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:26| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:26| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:26| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:26| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:26| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:26| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:26| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:26| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:26| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:26| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:26| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:26| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:26| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:26| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:26| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:26| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:26| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:26| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:26| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:26| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:26| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:27| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:27| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:27| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:27| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:27| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:27| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:27| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:27| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:27| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:27| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:27| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:27| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:27| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:27| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:27| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:27| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:27| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:27| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:27| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:27| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:27| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:27| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:27| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:27| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:28| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:28| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:28| wgpu_glyph: WARN - Increasing glyph texture size (512, 512) -> (1024, 1024). Consider building with `.initial_cache_size((1024, 1024))` to avoid resizing
+2021-01-15 14:28:28| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:28| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:28| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:28| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:28| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:28| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:28| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:28| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:28| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:28| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:29| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:29| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:29| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:29| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:29| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:29| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:29| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:29| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:29| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:29| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:29| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:29| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:29| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:29| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:29| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:29| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:29| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:29| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:29| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:29| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:29| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:29| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:30| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:30| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:30| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:30| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:30| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:30| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:30| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:30| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:30| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:30| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:30| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:30| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:30| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:30| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:30| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:30| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:30| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:30| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:30| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:30| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:30| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:30| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:30| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:30| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:31| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:31| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:31| wgpu_glyph: WARN - Increasing glyph texture size (1024, 1024) -> (2048, 2048). Consider building with `.initial_cache_size((2048, 2048))` to avoid resizing
+2021-01-15 14:28:31| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:31| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:31| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:31| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:31| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:31| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:31| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:31| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:31| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:31| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:31| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:31| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:31| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:31| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:31| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:31| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:31| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:32| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:32| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:32| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:32| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:32| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:32| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:32| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:32| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:32| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:32| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:32| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:32| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:32| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:32| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:32| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:32| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:32| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:32| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:32| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:32| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:32| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:32| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:32| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:32| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:33| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:33| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:33| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:33| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:33| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:33| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:33| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:33| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:33| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:33| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:33| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:33| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:33| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:33| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:33| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:33| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:33| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:33| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:34| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:34| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:34| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:34| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:34| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:34| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:34| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:34| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:34| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:34| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:34| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:34| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:34| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:34| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:34| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:34| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:34| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:35| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:35| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:35| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:35| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:35| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:35| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:35| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:35| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:35| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:35| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:35| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:35| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:35| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:35| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:35| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:35| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:35| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:35| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:35| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:35| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:35| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:35| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:36| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:36| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:36| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:36| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:36| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:36| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:36| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:36| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:36| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:36| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:36| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:36| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:36| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:36| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:36| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:36| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:36| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:36| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:36| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:36| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:36| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:36| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:36| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:37| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:37| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:37| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:37| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:37| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:37| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:37| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:37| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:37| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:37| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:37| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:37| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:37| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:37| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:37| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:37| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:37| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:37| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:37| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:38| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:39| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:39| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:39| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:39| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:39| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:39| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:39| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:39| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:39| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:39| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:39| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:39| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:39| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:40| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:40| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:40| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:40| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:40| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:40| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:41| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:41| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:41| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:41| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:41| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:41| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:41| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:41| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:41| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:41| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:41| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:41| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:41| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:41| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:41| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:41| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:41| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:41| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:41| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:41| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:41| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:41| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:42| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:42| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:42| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:42| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:42| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:42| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:42| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:42| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:42| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:42| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:42| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:42| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:42| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:42| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:42| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:42| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:42| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:42| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:43| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:44| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:45| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:45| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:45| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:45| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:45| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:45| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:45| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:45| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:45| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:45| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:45| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:45| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:45| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:45| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:45| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:46| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:46| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:46| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:46| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:46| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:46| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:46| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:46| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:46| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:46| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:46| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:46| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:46| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:46| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:46| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:46| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:46| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:46| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:46| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:47| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:47| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:47| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:47| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:47| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:47| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:47| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:47| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:47| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:47| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:47| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:47| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:47| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:47| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:47| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:48| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:48| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:48| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:48| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:48| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:48| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:48| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:48| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:48| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:48| knock_the_enemy: INFO - User resized screen
+2021-01-15 14:28:48| knock_the_enemy: INFO - User resized screen

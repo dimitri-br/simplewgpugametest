@@ -5,6 +5,7 @@ use winit::{
     window::Window,
 };
 use wgpu_glyph::{ab_glyph, GlyphBrushBuilder, Section, Text, Layout, HorizontalAlign, VerticalAlign};
+use ab_glyph::PxScale;
 
 pub struct Renderer {
     pub surface: wgpu::Surface,
@@ -239,6 +240,8 @@ impl Renderer {
         // Not sure what to run here, maybe pipeline switching for multishader support?
     }
 
+
+
     pub fn render(&mut self, camera: &mut Camera, entities: &EntityManager, time: &std::time::SystemTime, framerate: f32) -> Result<(), wgpu::SwapChainError> {       
         let material = Material::new(&self, Rc::new(Texture::from_empty(&self.device).unwrap()), cgmath::Vector3::<f32> { x: 1.0, y: 1.0, z: 1.0 }, 1.0, 0.0, 0, "none".to_string());
         let framebuffer = RenderMesh::new(&self, material);
@@ -254,10 +257,10 @@ impl Renderer {
         let bind_group = uniform.create_uniform_group(&self);
 
 
-
+        let sc_dim = (self.sc_desc.width as f32, self.sc_desc.height as f32);
         let hello_world = Section {
             screen_position: ((self.sc_desc.width as f32) / 2.0, 0.0),
-            text: vec![Text::new("Hello World!").with_color([1.0, 1.0, 1.0, 1.0]).with_scale(72.0)],
+            text: vec![Text::new("Hello World!").with_color([1.0, 1.0, 1.0, 1.0]).with_scale(PxScale::from(scale_text(sc_dim, 52.0)))],
             layout: Layout::default().h_align(HorizontalAlign::Center).v_align(VerticalAlign::Top),
             ..Section::default()
         };
@@ -265,14 +268,14 @@ impl Renderer {
         let fps_text = format!("FPS: {:?}", framerate as u32);
         let fps = Section {
             screen_position: (self.sc_desc.width as f32, 0.0),
-            text: vec![Text::new(&fps_text).with_color([1.0, 1.0, 1.0, 1.0]).with_scale(72.0)],
+            text: vec![Text::new(&fps_text).with_color([1.0, 1.0, 1.0, 1.0]).with_scale(PxScale::from(scale_text(sc_dim, 32.0)))],
             layout: Layout::default().h_align(HorizontalAlign::Right).v_align(VerticalAlign::Top),
             ..Section::default()
         };
 
         let help = Section {
             screen_position: (0.0, self.sc_desc.height as f32),
-            text: vec![Text::new("Press WASD or Arrows to move").with_color([1.0, 1.0, 1.0, 1.0]).with_scale(25.0)],
+            text: vec![Text::new("Press WASD or Arrows to move").with_color([1.0, 1.0, 1.0, 1.0]).with_scale(PxScale::from(scale_text(sc_dim, 32.0)))],
             layout: Layout::default().h_align(HorizontalAlign::Left).v_align(VerticalAlign::Bottom),
             ..Section::default()
         };
@@ -286,8 +289,8 @@ impl Renderer {
 
         points = Section {
             screen_position: (self.sc_desc.width as f32 / 2.0, self.sc_desc.height as f32),
-            text: vec![Text::new(&points_text).with_color([1.0, 1.0, 1.0, 1.0]).with_scale(90.0)],
-            layout: Layout::default().h_align(HorizontalAlign::Right).v_align(VerticalAlign::Bottom),
+            text: vec![Text::new(&points_text).with_color([1.0, 1.0, 1.0, 1.0]).with_scale(PxScale::from(scale_text(sc_dim, 90.0)))],
+            layout: Layout::default().h_align(HorizontalAlign::Center).v_align(VerticalAlign::Bottom),
             ..Section::default()
         };
         
@@ -539,4 +542,11 @@ impl Renderer {
     pub fn write_buffer<T>(&self, buffer: &wgpu::Buffer, offset: u64, uniforms: &[T]) where T: bytemuck::Pod{
         self.queue.write_buffer(buffer, offset, bytemuck::cast_slice(uniforms));
     }
+}
+
+pub fn scale_text(screen_dim: (f32, f32), value: f32) -> f32{
+    let aspect_x = screen_dim.0 / screen_dim.1;
+    let aspect_y = screen_dim.1 / screen_dim.0;
+    let aspect = aspect_x - aspect_y;
+    aspect * value
 }
