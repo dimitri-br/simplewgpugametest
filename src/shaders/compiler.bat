@@ -19,5 +19,5 @@ for %%f in (*.frag) do (
     if "%%~xf"==".frag" echo %date% %time%: Compiled fragment shader: %%f
 
 )
-echo Completed: %date% %time%
+echo Completed: %date% %time%. All shaders compiled without error
 exit /b 0

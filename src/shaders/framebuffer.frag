@@ -5,6 +5,8 @@
 #include "image_tools.glsl"
 #include "tonemapping.glsl"
 #include "film_grain.glsl"
+#include "toon.glsl"
+#include "pixelate.glsl"
 
 // Base Color Texture
 layout(set = 0, binding = 0) uniform texture2D t_diffuse;
@@ -20,6 +22,7 @@ void main()
     const float exposure = 0.075f;
 
     vec3 hdrColor = texture(sampler2D(t_diffuse, s_diffuse), v_tex_coords).rgb;
+    hdrColor = toonify(hdrColor, t_diffuse, s_diffuse, v_tex_coords);
 
 
     vec3 bloomColor = texture(sampler2D(hdr_t_diffuse, hdr_s_diffuse), v_tex_coords).rgb;
@@ -28,12 +31,15 @@ void main()
 
     // Apply the bloom hdr effect by additive
     hdrColor += bloomColor;
+
+    // Color correct the bloom
     vec4 result = vec4(vec3(1.0) - exp(-hdrColor * exposure), 1.0);
 
-    // Effects
-    result += film_grain(0.0015, v_tex_coords);
-    result *= vignette(v_tex_coords, 512.0);
 
+    // Effects
+
+    result *= vignette(v_tex_coords, .3, 0.3);
+    result += film_grain(0.0005, v_tex_coords);
 
     /* Image Correction */
 
@@ -45,7 +51,7 @@ void main()
 
     result.rgb = adjustExposure(result.rgb, 0.5);
 
-    result.rgb *= chromaticAberration(t_diffuse, s_diffuse, v_tex_coords, 0.5);
+    result.rgb *= chromaticAberration(t_diffuse, s_diffuse, v_tex_coords, 0.125);
 
 
 

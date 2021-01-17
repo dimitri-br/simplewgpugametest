@@ -33,14 +33,11 @@ vec3 chromaticAberration(texture2D tex, sampler samp, vec2 uv, float intensity){
     return col;
 }
 
-vec4 vignette(vec2 uv, float intensity){  
-    uv *=  1.0 - uv.yx;   //vec2(1.0)- uv.yx; -> 1.-u.yx; Thanks FabriceNeyret !
+vec4 vignette(vec2 uv, float intensity, float falloff){  
     
-    float vig = uv.x*uv.y * intensity; // multiply with sth for intensity
-    
-    vig = pow(vig, 0.25); // change pow for modifying the extend of the  vignette
-
-    return vec4(vig);
+    float dist = distance(uv.xy, vec2(0.5, 0.5));
+    float vig = smoothstep(0.8, falloff * 0.799, dist * (intensity + falloff));
+    return vec4(vec3(vig), 1.0);
 }
 
 vec3 celShading(vec3 color, vec2 uv, float intensity){

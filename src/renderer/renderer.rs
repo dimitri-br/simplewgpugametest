@@ -544,6 +544,7 @@ impl Renderer {
     }
 }
 
+// Scale text with screen size and resolution. Note this doesn't really work on nonstandard resolutions, and only landscape mode
 pub fn scale_text(screen_dim: (f32, f32), value: f32) -> f32{
     let aspect_x = screen_dim.0 / screen_dim.1;
     let aspect_y = screen_dim.1 / screen_dim.0;
