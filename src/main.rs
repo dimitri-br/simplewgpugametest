@@ -22,7 +22,6 @@ use log4rs::{
 use wrapped2d::b2;
 use wrapped2d::user_data::NoUserData;
 
-type World = b2::World<NoUserData>;
 
 mod renderer;
 mod component;
@@ -31,6 +30,7 @@ mod input_manager;
 mod entity;
 mod system;
 mod physics;
+mod audio;
 
 use renderer::renderer::Renderer;
 use renderer::vertex::Vertex;
@@ -55,7 +55,10 @@ use system::physics_system::PhysicsSystem;
 use component::movement_component::MovementComponent;
 use component::player_movement_component::PlayerMovementComponent;
 use physics::physicscomponent::PhysicsComponent;
-use physics::Physics;
+use physics::{Physics, PhysicsFilter, LayerType};
+use audio::{Audio};
+type World = b2::World<PhysicsFilter>;
+
 
 use std::rc::Rc;
 use std::cell::RefCell;
@@ -195,6 +198,13 @@ pub fn main() {
 
     // Actual program starts here
 
+    /* Controls Audio */
+    let mut audio = Audio::new();
+
+    audio.play("./data/audio/nggyu.mp3", 0.5);
+    log::info!("Audio controller created");
+    
+
     let event_loop = EventLoop::new();
     
     let mut x = 0;
@@ -234,6 +244,8 @@ pub fn main() {
     };
 
     log::info!("Window created");
+
+
     let mut renderer;
     #[cfg(not(target_arch = "wasm32"))]
     {
@@ -352,7 +364,7 @@ pub fn main() {
     let (transform_group, _, _) = transform.create_uniforms(&temp_renderer);
     let transform_group = Rc::new(transform_group);
     let pmc = PlayerMovementComponent::new(15.0);
-    let phs_comp = PhysicsComponent::new(&mut physics_manager, transform.position, (1.0, 1.0), b2::BodyType::Dynamic);
+    let phs_comp = PhysicsComponent::new(&mut physics_manager, transform.position, (1.0, 1.0), b2::BodyType::Dynamic, 1);
 
 
     uniforms.push(Rc::clone(&camera_bind_group));
@@ -399,7 +411,7 @@ pub fn main() {
     let (transform_group, _, _) = transform.create_uniforms(&temp_renderer);
     let transform_group = Rc::new(transform_group);
 
-    let phs_comp = PhysicsComponent::new(&mut physics_manager, transform.position, (1.0, 0.8), b2::BodyType::Dynamic);
+    let phs_comp = PhysicsComponent::new(&mut physics_manager, transform.position, (1.0, 0.8), b2::BodyType::Dynamic, 0);
 
 
     uniforms.push(Rc::clone(&camera_bind_group));
@@ -445,7 +457,7 @@ pub fn main() {
     let (transform_group, _, _) = transform.create_uniforms(&temp_renderer);
     let transform_group = Rc::new(transform_group);
 
-    let phs_comp = PhysicsComponent::new(&mut physics_manager, transform.position, (1.0, 1.0), b2::BodyType::Dynamic);
+    let phs_comp = PhysicsComponent::new(&mut physics_manager, transform.position, (1.0, 1.0), b2::BodyType::Dynamic, 0);
 
 
     uniforms.push(Rc::clone(&camera_bind_group));
@@ -504,7 +516,7 @@ pub fn main() {
     let (transform_group, _, _) = transform.create_uniforms(&temp_renderer);
     let transform_group = Rc::new(transform_group);
 
-    let phs_comp = PhysicsComponent::new(&mut physics_manager, transform.position, (20.0, 1.0), b2::BodyType::Static);
+    let phs_comp = PhysicsComponent::new(&mut physics_manager, transform.position, (20.0, 1.0), b2::BodyType::Static, 2);
 
 
     uniforms.push(Rc::clone(&camera_bind_group));

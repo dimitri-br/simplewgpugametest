@@ -12,6 +12,7 @@ impl Physics{
     pub fn new() -> Self{
         /* Physics */
         let mut world = World::new(&b2::Vec2 { x: 0., y: -10. }); // Physics world
+
         log::info!("Initialized the physics world");
         Self{
             world
@@ -45,4 +46,36 @@ impl Physics{
         self.world.body_mut(*body_handle).create_fixture(&**shape, &mut fixture);
         
     }
+
+    pub fn check_collision(&self, layer: u32, body: &std::cell::Ref<wrapped2d::b2::MetaBody<PhysicsFilter>>) -> bool{
+        //Collision detection - TODO abstract this
+        let mut has_collided = false;
+        for contact in body.contacts(){
+            let handle = contact.0;
+            let col_body = self.world.body(handle);
+            let user_data = col_body.user_data().as_ref();
+            if user_data == Some(&layer){
+                println!("Collided with {:?}", user_data);
+                has_collided = true;
+            }
+        }
+        has_collided
+    }
+}
+
+// Set up physics callbacks for collision detection
+use wrapped2d::user_data::*;
+
+
+pub type LayerType = u32;
+pub type ObjectId = LayerType;
+
+
+pub struct PhysicsFilter{
+}
+impl wrapped2d::user_data::UserDataTypes for PhysicsFilter{
+
+    type BodyData = Option<ObjectId>;
+    type JointData = ();
+    type FixtureData = ();
 }

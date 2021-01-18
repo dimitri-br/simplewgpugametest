@@ -1,1 +1,7 @@
 /target
+/.vs
+/.cargo
+/logs
+/log
+/export
+/vscode

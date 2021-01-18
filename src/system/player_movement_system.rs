@@ -1,5 +1,5 @@
-use crate::{SystemBase, EntityManager, PlayerMovementComponent, Transform, PhysicsComponent, Renderer, Rc, RefCell, InputManager, Camera, Physics, b2};
-use wrapped2d::collision::test_overlap;
+use crate::{SystemBase, EntityManager, PlayerMovementComponent, Transform, PhysicsComponent, Renderer, Rc, RefCell, InputManager, Camera, Physics, b2, PhysicsFilter};
+use wrapped2d::user_data::UserData;
 
 pub struct PlayerMovementSystem{
 }
@@ -128,14 +128,24 @@ impl SystemBase for PlayerMovementSystem{
                 Ok(transform) => transform,
                 Err(_) => panic!("Error - component not found!"),
             };
+            {   
+                // Simple layered collision detection
+                let body = physics.world.body(phys_ref.handle);
+                if physics.check_collision(0, &body){
+                    move_vec += cgmath::Vector2::<f32> { x: 0.0, y: 1.0 };
+                }
+                if physics.check_collision(2, &body){
+                    println!("Collided with ground!");
+                    move_vec += cgmath::Vector2::<f32> { x: 0.0, y: 1.0 };
+                }
+            }
             let mut points: i32 = 0;
             if reset_pos{
-                phys_ref.update_position(physics, b2::Vec2 { x: 0.0, y: 0.0 });
-                points -= 5;
+                phys_ref.update_position(physics, b2::Vec2 { x: 0.0, y: 2.0 });
+                points -= 1;
             }
 
             let body = physics.world.body(phys_ref.handle);
-
             let lin_vel = body.linear_velocity();
             let vel_y = lin_vel.y;
             let vel_x = lin_vel.x;

@@ -7,22 +7,34 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+# Image Loading and Processing
 image = "0.23.12"
+# Windowing
 winit = "0.24.0"
+# Useful for Vectors and Quaternions
 cgmath = "0.18.0"
+# Logging
 log = "0.4.13"
 # Rendering 
 wgpu = "0.6.2"
 wgpu_glyph = "0.10.0"
-
+# Not really used yet, but hopefully we can async some stuff
 futures = "0.3.11"
+# Used to convert cgmath to shader readable formats
 bytemuck = { version = "1.5", features = [ "derive" ] }
+# Better error handling
 anyhow = "1.0"
+# CLI so we can accept arguments
 clap = "2.33.3"
+# More abstract logging
 log4rs = "1.0.0"
+# Random Numbers
 rand = "0.8.2"
+# Regular numbers
 num = "0.3.1"
+# See futures
 rayon = "1.5.0"
-
 # Physics
 wrapped2d = "0.4.1"
+# Audio
+rodio = "0.13.0"
