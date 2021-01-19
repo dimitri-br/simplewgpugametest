@@ -19,7 +19,7 @@ impl SystemBase for PlayerMovementSystem{
             let mut move_vec = cgmath::Vector2::<f32> { x: 0.0, y: 0.0 };
             let mut movement_component = temp.get_component_mut::<PlayerMovementComponent>(PlayerMovementComponent::get_component_id()).unwrap();
             speed = movement_component.speed;
-
+            let jump = speed * 1.5;
 
             movement_component.position = trans_pos;
             move_vec.x = match input_manager.try_get_key_value(winit::event::VirtualKeyCode::Left){
@@ -102,6 +102,12 @@ impl SystemBase for PlayerMovementSystem{
 
 
             let mut temp = temp_entity.borrow_mut();
+            let phys_ref = match temp.get_component_mut::<PhysicsComponent>(PhysicsComponent::get_component_id()){
+                Ok(transform) => transform,
+                Err(_) => panic!("Error - component not found!"),
+            };
+            let body = physics.world.body(phys_ref.handle);
+
             let transform = match temp.get_component_mut::<Transform>(Transform::get_component_id()){
                 Ok(transform) => transform,
                 Err(_) => panic!("Error - component not found!"),
@@ -122,24 +128,27 @@ impl SystemBase for PlayerMovementSystem{
             transform.update_uniform_buffers(&renderer);
 
             drop(temp);
+            drop(body);
 
             let mut temp = temp_entity.borrow_mut();
             let phys_ref = match temp.get_component_mut::<PhysicsComponent>(PhysicsComponent::get_component_id()){
                 Ok(transform) => transform,
                 Err(_) => panic!("Error - component not found!"),
             };
+
+            let mut grounded = false;
+            let mut points: i32 = 0;
+
             {   
                 // Simple layered collision detection
                 let body = physics.world.body(phys_ref.handle);
                 if physics.check_collision(0, &body){
-                    move_vec += cgmath::Vector2::<f32> { x: 0.0, y: 1.0 };
+                    //TODO player-enemy collision
                 }
                 if physics.check_collision(2, &body){
-                    println!("Collided with ground!");
-                    move_vec += cgmath::Vector2::<f32> { x: 0.0, y: 1.0 };
+                    grounded = true;
                 }
             }
-            let mut points: i32 = 0;
             if reset_pos{
                 phys_ref.update_position(physics, b2::Vec2 { x: 0.0, y: 2.0 });
                 points -= 1;
@@ -152,7 +161,8 @@ impl SystemBase for PlayerMovementSystem{
             let center = *body.world_center();
             drop(body);
             let mut body = physics.world.body_mut(phys_ref.handle);
-            body.apply_linear_impulse(&b2::Vec2{ x: ((move_vec.x * speed)) - (if move_vec.x == 0.0 { vel_x } else {vel_x}), y: (move_vec.y * speed) - (if move_vec.y == 0.0 { 1.0 } else {vel_y}) }, &center, true);
+            // This ugly bit of code controls how the player moves left and right, as well as controls how the jumping works (Through checking the player is grounded)
+            body.apply_linear_impulse(&b2::Vec2{ x: ((move_vec.x * speed)) - (if move_vec.x == 0.0 { vel_x } else {vel_x}), y: (if grounded {(move_vec.y * jump) - (if move_vec.y == 0.0  { 1.0 } else {vel_y})} else {-1.0}) }, &center, true);
 
             drop(body);
             drop(temp);

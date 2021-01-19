@@ -15,30 +15,35 @@ pub struct Audio{
 impl Audio {
     pub fn new() -> Self {
         let (tx, rx) = mpsc::channel();
-        let handle = thread::spawn(move || {
-            let (stream, stream_handle) = rodio::OutputStream::try_default().unwrap();
-            let sink = Sink::try_new(&stream_handle).unwrap();
-            sink.pause();
-            while let Ok((should_play, path, volume)) =  rx.recv(){
-                // Make sure we have a valid path
-                if path != ""{
-                    let file = File::open(path).unwrap();
-                    let audio_source = rodio::Decoder::new(BufReader::new(file)).unwrap();
-                    sink.append(audio_source);
-                }
-                sink.set_volume(volume);
-                if should_play {
-                    sink.play();
-                } else {
-                    sink.pause();
+        let handle = thread::Builder::new().name("audio_thread".to_string()).spawn(move || {
+            let mut should_run = true;
+            let (stream, stream_handle) = rodio::OutputStream::try_default().expect("Error loading audio!");
+
+            if should_run{
+                let sink = Sink::try_new(&stream_handle).unwrap();
+                sink.pause();
+                while let Ok((should_play, path, volume)) =  rx.recv(){
+                    // Make sure we have a valid path
+                    if path != ""{
+                        let file = File::open(path).unwrap();
+                        let audio_source = rodio::Decoder::new(BufReader::new(file)).unwrap();
+                        sink.append(audio_source);
+                    }
+                    sink.set_volume(volume);
+                    if should_play {
+                        sink.play();
+                    } else {
+                        sink.pause();
+                    }
                 }
             }
+
         });
         log::info!("Sucessfully created new audio thread");
 
         Self {
             control_channel: tx,
-            handle: Some(handle)
+            handle: Some(handle.unwrap())
         }
     }
 

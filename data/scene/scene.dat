@@ -1,0 +1,2 @@
+// Example of entity scene - defines an entity, which will be read by the engine and processed.
+entity("Name", transform(pos(x, y, z), rot(x, y, z), scale(x, y, z)), material("tex path", color(x, y, z), layer), physics(body_type, mass, allow_sleeping), extra (eg, "pmc" for player movement));

@@ -19,28 +19,37 @@ impl Physics{
         }
     }
 
-    pub fn create_shape(&self, width: f32, height: f32) -> Box<dyn b2::Shape>{
-        log::info!("Generating new physics shape");
+    pub fn create_box_shape(&self, width: f32, height: f32) -> Box<dyn b2::Shape>{
+        log::info!("Generating new box shape");
         Box::new(b2::PolygonShape::new_box(width, height))
+    }
+
+    pub fn create_circle_shape(&self, radius: f32) -> Box<dyn b2::Shape>{
+        log::info!("Generating new circle shape");
+        let mut shape = Box::new(b2::CircleShape::new());
+        shape.set_radius(radius);
+        shape
     }
 
     pub fn create_handle(&mut self, body_def: &b2::BodyDef) -> b2::BodyHandle{
         self.world.create_body(body_def)
     }
 
-    pub fn create_body(&self, body_type: b2::BodyType, position: b2::Vec2) -> b2::BodyDef{
+    pub fn create_body(&self, body_type: b2::BodyType, position: b2::Vec2, allow_sleep: bool) -> b2::BodyDef{
         log::info!("Generating new body definition");
         b2::BodyDef {
             body_type,
             position,
+            allow_sleep,
+            fixed_rotation: false,
             ..b2::BodyDef::new()
         }
     }
 
-    pub fn bind_to_world(&mut self, body_handle: &b2::BodyHandle, shape: &Box<dyn b2::Shape>){
+    pub fn bind_to_world(&mut self, body_handle: &b2::BodyHandle, shape: &Box<dyn b2::Shape>, mass: f32, friction: f32){
         let mut fixture = b2::FixtureDef{
-            density: 1.0,
-            friction: 0.3,
+            density: mass,
+            friction,
             ..b2::FixtureDef::new()
         };
         self.world.body_mut(*body_handle).create_fixture(&**shape, &mut fixture);
@@ -55,7 +64,6 @@ impl Physics{
             let col_body = self.world.body(handle);
             let user_data = col_body.user_data().as_ref();
             if user_data == Some(&layer){
-                println!("Collided with {:?}", user_data);
                 has_collided = true;
             }
         }

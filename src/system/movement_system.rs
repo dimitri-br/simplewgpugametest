@@ -43,8 +43,12 @@ impl SystemBase for MovementSystem{
             }
 
             let mut move_dir: cgmath::Vector3::<f32> = cgmath::Vector3::<f32> { x: 0.0, y: 0.0, z: 0.0};
-            if (transform.position - self.move_dir).magnitude() > 0.25{
+            if (transform.position - self.move_dir).magnitude() > -1.0{
                 move_dir = (transform.position - self.move_dir).normalize();
+            }
+
+            if transform.position.y < -5.0{
+                move_dir.y = 0.0;
             }
             /*
                 //transform.position += move_dir * speed;

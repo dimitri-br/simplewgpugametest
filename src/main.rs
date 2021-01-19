@@ -34,7 +34,7 @@ mod audio;
 
 use renderer::renderer::Renderer;
 use renderer::vertex::Vertex;
-use renderer::texture::{Texture, DepthTexture};
+use renderer::texture::{Texture, DepthTexture, TextureMode};
 use renderer::material::{Material, MaterialUniform};
 use renderer::postprocessing::{PostProcessing, BloomUniform};
 use input_manager::input_manager::InputManager;
@@ -157,13 +157,13 @@ pub fn main() {
 
     log::info!("Logging Level: {:?}", level);
 
-    let mut vsync_enabled = "mailbox";
+    let mut vsync_enabled = "true";
 
-    vsync_enabled = match matches.value_of("vsync").unwrap_or("mailbox"){
+    vsync_enabled = match matches.value_of("vsync").unwrap_or("true"){
         "on" | "true" => "true",
         "off" | "false" => "false",
         "mail" | "mailbox" => "mailbox",
-        _ => "mailbox",
+        _ => "true",
     };
 
     let mut screenmode = "full";
@@ -319,11 +319,10 @@ pub fn main() {
     // load textures (Define the texture layout)
     let texture_layout = Texture::generate_texture_layout(&temp_renderer);
 
-
-    let smiley_texture = Rc::new(Texture::load_texture(&temp_renderer, "./data/textures/derp.png").unwrap());
-    let happy_tree_texture = Rc::new(Texture::load_texture(&temp_renderer, "./data/textures/happy-tree.png").unwrap());
-    let pepe_texture = Rc::new(Texture::load_texture(&temp_renderer, "./data/textures/pepe.png").unwrap());
-    //let white_texture = Rc::new(Texture::load_texture(&temp_renderer, "./data/textures/white.png").unwrap());
+    let white_texture = Rc::new(Texture::load_texture(&temp_renderer, "./data/textures/white.png", TextureMode::RGB).unwrap());
+    let player_tex = Rc::new(Texture::load_texture(&temp_renderer, "./data/textures/player.png", TextureMode::RGBA).unwrap());
+    let derp_texture = Rc::new(Texture::load_texture(&temp_renderer, "./data/textures/derp.png", TextureMode::RGBA).unwrap());
+    let pepe_texture = Rc::new(Texture::load_texture(&temp_renderer, "./data/textures/pepe.png", TextureMode::RGBA).unwrap());
     
     // Create transform layout
     let transform_layout = UniformUtils::create_bind_group_layout(&temp_renderer, 0, wgpu::ShaderStage::VERTEX, Some("Transform"));
@@ -343,7 +342,7 @@ pub fn main() {
     let mut components = Vec::<Box<dyn ComponentBase>>::new();
 
     // create material - lower depth is sorted higher
-    let material = Material::new(&temp_renderer, Rc::clone(&smiley_texture), cgmath::Vector3::<f32> { x: 0.0, y: 200.0, z: 200.0 }, 1.0, 0.0, 0, "main".to_string());
+    let material = Material::new(&temp_renderer, Rc::clone(&player_tex), cgmath::Vector3::<f32> { x: 0.0, y: 500.0, z: 500.0 }, 1.0, 0.0, 0, "main".to_string());
 
     // create new mesh (TODO - mesh loading) and assign material
     let mut mesh = RenderMesh::new(&temp_renderer, material);
@@ -364,7 +363,7 @@ pub fn main() {
     let (transform_group, _, _) = transform.create_uniforms(&temp_renderer);
     let transform_group = Rc::new(transform_group);
     let pmc = PlayerMovementComponent::new(15.0);
-    let phs_comp = PhysicsComponent::new(&mut physics_manager, transform.position, (1.0, 1.0), b2::BodyType::Dynamic, 1);
+    let phs_comp = PhysicsComponent::new_box(&mut physics_manager, transform.position, (0.2, 1.0), 1.0, b2::BodyType::Dynamic, 1, false);
 
 
     uniforms.push(Rc::clone(&camera_bind_group));
@@ -389,7 +388,7 @@ pub fn main() {
     let mut components = Vec::<Box<dyn ComponentBase>>::new();
 
     // create material
-    let material = Material::new(&temp_renderer, Rc::clone(&happy_tree_texture), cgmath::Vector3::<f32> { x: 1.0, y: 1.0, z: 1.0 }, 1.0, 0.0, -1, "main".to_string());
+    let material = Material::new(&temp_renderer, Rc::clone(&derp_texture), cgmath::Vector3::<f32> { x: 1.0, y: 1.0, z: 1.0 }, 1.0, 0.0, -1, "main".to_string());
 
     // create new mesh (TODO - mesh loading) and assign material
     let mut mesh = RenderMesh::new(&temp_renderer, material);
@@ -411,7 +410,7 @@ pub fn main() {
     let (transform_group, _, _) = transform.create_uniforms(&temp_renderer);
     let transform_group = Rc::new(transform_group);
 
-    let phs_comp = PhysicsComponent::new(&mut physics_manager, transform.position, (1.0, 0.8), b2::BodyType::Dynamic, 0);
+    let phs_comp = PhysicsComponent::new_circle(&mut physics_manager, transform.position, 1.0, 5.0, b2::BodyType::Dynamic, 0, false);
 
 
     uniforms.push(Rc::clone(&camera_bind_group));
@@ -457,7 +456,7 @@ pub fn main() {
     let (transform_group, _, _) = transform.create_uniforms(&temp_renderer);
     let transform_group = Rc::new(transform_group);
 
-    let phs_comp = PhysicsComponent::new(&mut physics_manager, transform.position, (1.0, 1.0), b2::BodyType::Dynamic, 0);
+    let phs_comp = PhysicsComponent::new_box(&mut physics_manager, transform.position, (1.0, 1.0), 2.0, b2::BodyType::Dynamic, 0, false);
 
 
     uniforms.push(Rc::clone(&camera_bind_group));
@@ -474,7 +473,7 @@ pub fn main() {
         entity_manager.create_entity(components, uniforms);
         let new_entity = entity_manager.find_entity(2).unwrap();
 
-        entity_manager.add_component_data::<MovementComponent>(&new_entity, Box::new(MovementComponent::new(-25.0))).unwrap();
+        entity_manager.add_component_data::<MovementComponent>(&new_entity, Box::new(MovementComponent::new(-75.0))).unwrap();
         let component = entity_manager.get_component_data::<Transform>(new_entity, Transform::get_component_id()).unwrap();
         component.position = cgmath::Vector3::<f32> { x: 2.5, y: -1.0, z: 0.0 };
         component.update_uniform_buffers(&temp_renderer);
@@ -482,7 +481,7 @@ pub fn main() {
         //drop(component);
 
         let new_entity = entity_manager.find_entity(1).unwrap();
-        entity_manager.add_component_data::<MovementComponent>(&new_entity, Box::new(MovementComponent::new(-25.0))).unwrap();
+        entity_manager.add_component_data::<MovementComponent>(&new_entity, Box::new(MovementComponent::new(-75.0))).unwrap();
     }
 
 
@@ -494,7 +493,7 @@ pub fn main() {
     let mut components = Vec::<Box<dyn ComponentBase>>::new();
 
     // create material
-    let material = Material::new(&temp_renderer, Rc::clone(&happy_tree_texture), cgmath::Vector3::<f32> { x: 1.0, y: 1.0, z: 1.0 }, 1.0, 0.0, -1, "main".to_string());
+    let material = Material::new(&temp_renderer, Rc::clone(&white_texture), cgmath::Vector3::<f32> { x: 1.0, y: 1.0, z: 1.0 }, 1.0, 0.0, -1, "main".to_string());
 
     // create new mesh (TODO - mesh loading) and assign material
     let mut mesh = RenderMesh::new(&temp_renderer, material);
@@ -516,7 +515,7 @@ pub fn main() {
     let (transform_group, _, _) = transform.create_uniforms(&temp_renderer);
     let transform_group = Rc::new(transform_group);
 
-    let phs_comp = PhysicsComponent::new(&mut physics_manager, transform.position, (20.0, 1.0), b2::BodyType::Static, 2);
+    let phs_comp = PhysicsComponent::new_box(&mut physics_manager, transform.position, (20.0, 1.0), 0.0, b2::BodyType::Static, 2, false);
 
 
     uniforms.push(Rc::clone(&camera_bind_group));
@@ -535,6 +534,90 @@ pub fn main() {
 
 
 
+    let mut uniforms = Vec::<Rc<wgpu::BindGroup>>::new();
+    let mut components = Vec::<Box<dyn ComponentBase>>::new();
+
+    // create material
+    let material = Material::new(&temp_renderer, Rc::clone(&white_texture), cgmath::Vector3::<f32> { x: 1.0, y: 1.0, z: 1.0 }, 1.0, 0.0, -1, "main".to_string());
+
+    // create new mesh (TODO - mesh loading) and assign material
+    let mut mesh = RenderMesh::new(&temp_renderer, material);
+    let (material_group, _, _) = mesh.generate_material_uniforms(&temp_renderer);
+    let material_group = Rc::new(material_group);
+
+    let translation = Translation::new(cgmath::Vector3::<f32> { x: 45.0, y: -3.0, z: 0.0});
+
+    let rotation = Rotation::new(cgmath::Quaternion::from(cgmath::Euler {
+        x: cgmath::Deg(0.0),
+        y: cgmath::Deg(0.0),
+        z: cgmath::Deg(0.0),
+    }));
+
+    let scale = NonUniformScale::new(cgmath::Vector3::<f32> { x: 20.0, y: 1.0, z: 1.0});
+
+
+    let mut transform = Transform::new(&temp_renderer, translation.value, rotation.value, scale.value);
+    let (transform_group, _, _) = transform.create_uniforms(&temp_renderer);
+    let transform_group = Rc::new(transform_group);
+
+    let phs_comp = PhysicsComponent::new_box(&mut physics_manager, transform.position, (20.0, 1.0), 0.0, b2::BodyType::Static, 2, false);
+
+
+    uniforms.push(Rc::clone(&camera_bind_group));
+    uniforms.push(Rc::clone(&material_group));
+    uniforms.push(Rc::clone(&transform_group));
+
+    components.push(Box::new(mesh));
+    components.push(Box::new(transform));
+    components.push(Box::new(phs_comp));
+
+
+    {
+        entity_manager.create_entity(components, uniforms);
+    }
+
+
+    let mut uniforms = Vec::<Rc<wgpu::BindGroup>>::new();
+    let mut components = Vec::<Box<dyn ComponentBase>>::new();
+
+    // create material
+    let material = Material::new(&temp_renderer, Rc::clone(&white_texture), cgmath::Vector3::<f32> { x: 1.0, y: 1.0, z: 1.0 }, 1.0, 0.0, -1, "main".to_string());
+
+    // create new mesh (TODO - mesh loading) and assign material
+    let mut mesh = RenderMesh::new(&temp_renderer, material);
+    let (material_group, _, _) = mesh.generate_material_uniforms(&temp_renderer);
+    let material_group = Rc::new(material_group);
+
+    let translation = Translation::new(cgmath::Vector3::<f32> { x: -45.0, y: -2.0, z: 0.0});
+
+    let rotation = Rotation::new(cgmath::Quaternion::from(cgmath::Euler {
+        x: cgmath::Deg(0.0),
+        y: cgmath::Deg(0.0),
+        z: cgmath::Deg(0.0),
+    }));
+
+    let scale = NonUniformScale::new(cgmath::Vector3::<f32> { x: 20.0, y: 1.0, z: 1.0});
+
+
+    let mut transform = Transform::new(&temp_renderer, translation.value, rotation.value, scale.value);
+    let (transform_group, _, _) = transform.create_uniforms(&temp_renderer);
+    let transform_group = Rc::new(transform_group);
+
+    let phs_comp = PhysicsComponent::new_box(&mut physics_manager, transform.position, (20.0, 1.0), 0.0, b2::BodyType::Static, 2, false);
+
+
+    uniforms.push(Rc::clone(&camera_bind_group));
+    uniforms.push(Rc::clone(&material_group));
+    uniforms.push(Rc::clone(&transform_group));
+
+    components.push(Box::new(mesh));
+    components.push(Box::new(transform));
+    components.push(Box::new(phs_comp));
+
+
+    {
+        entity_manager.create_entity(components, uniforms);
+    }
 
 
     log::info!("Entities built");

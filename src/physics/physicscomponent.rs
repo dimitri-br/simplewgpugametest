@@ -12,15 +12,27 @@ pub struct PhysicsComponent{
     pub shape: Box<dyn b2::Shape>,
     pub body: b2::BodyDef,
     pub handle: b2::BodyHandle,
+    pub body_type: b2::BodyType,
     pub layer_type: u32,
+    pub allow_sleep: bool,
 }
 
 impl PhysicsComponent{
-    pub fn new(physics: &mut Physics, position: cgmath::Vector3::<f32>, scale: (f32, f32), body_type: b2::BodyType, layer_type: LayerType) -> Self{
-        let shape = physics.create_shape(scale.0, scale.1);
-        let body = physics.create_body(body_type, b2::Vec2 { x: position.x, y: position.y });
+    pub fn new_box(physics: &mut Physics, position: cgmath::Vector3::<f32>, scale: (f32, f32), mass: f32, body_type: b2::BodyType, layer_type: LayerType, allow_sleep: bool) -> Self{
+        let shape = physics.create_box_shape(scale.0, scale.1);
+        let body = physics.create_body(body_type, b2::Vec2 { x: position.x, y: position.y }, allow_sleep);
         let handle = physics.create_handle(&body);
-        physics.bind_to_world(&handle, &shape);
+        match body_type{
+            b2::BodyType::Static => {
+                physics.bind_to_world(&handle, &shape, 0.0, 0.3);
+            },
+            b2::BodyType::Kinematic => {
+                physics.bind_to_world(&handle, &shape, mass, 0.3);
+            },
+            b2::BodyType::Dynamic => {
+                physics.bind_to_world(&handle, &shape, mass, 0.3);
+            },
+        }
         physics.world.body_mut(handle).set_user_data(Some(layer_type));
 
         Self{
@@ -28,7 +40,37 @@ impl PhysicsComponent{
             shape,
             body,
             handle,
+            body_type,
             layer_type,
+            allow_sleep,
+        }
+    }
+
+    pub fn new_circle(physics: &mut Physics, position: cgmath::Vector3::<f32>, scale: f32, mass: f32, body_type: b2::BodyType, layer_type: LayerType, allow_sleep: bool) -> Self{
+        let shape = physics.create_circle_shape(scale);
+        let body = physics.create_body(body_type, b2::Vec2 { x: position.x, y: position.y }, allow_sleep);
+        let handle = physics.create_handle(&body);
+        match body_type{
+            b2::BodyType::Static => {
+                physics.bind_to_world(&handle, &shape, 0.0, 0.3);
+            },
+            b2::BodyType::Kinematic => {
+                physics.bind_to_world(&handle, &shape, mass, 0.3);
+            },
+            b2::BodyType::Dynamic => {
+                physics.bind_to_world(&handle, &shape, mass, 0.3);
+            },
+        }
+        physics.world.body_mut(handle).set_user_data(Some(layer_type));
+
+        Self{
+            id: ID,
+            shape,
+            body,
+            handle,
+            body_type,
+            layer_type,
+            allow_sleep,
         }
     }
 
@@ -41,7 +83,17 @@ impl PhysicsComponent{
         physics.world.destroy_body(self.handle);
 
         self.handle = physics.create_handle(&self.body);
-        physics.bind_to_world(&self.handle, &self.shape);
+        match self.body_type{
+            b2::BodyType::Static => {
+                physics.bind_to_world(&self.handle, &self.shape, 0.0, 0.3);
+            },
+            b2::BodyType::Kinematic => {
+                physics.bind_to_world(&self.handle, &self.shape, 1.0, 0.3);
+            },
+            b2::BodyType::Dynamic => {
+                physics.bind_to_world(&self.handle, &self.shape, 1.0, 0.3);
+            },
+        }
         physics.world.body_mut(self.handle).set_user_data(Some(self.layer_type));
     }
 

@@ -2,6 +2,14 @@ use image::GenericImageView;
 use anyhow::*;
 use crate::{Renderer};
 
+
+pub enum TextureMode{
+    RGBA,
+    RGB,
+    BGRA,
+    BGR,
+}
+
 #[derive(std::fmt::Debug)]
 pub struct Texture {
     pub texture: wgpu::Texture,
@@ -49,37 +57,37 @@ impl Texture {
         )
     }
 
-        // Generates texture bind layout
-        pub fn generate_texture_layout_from_device(device: &wgpu::Device) -> wgpu::BindGroupLayout{
-            device.create_bind_group_layout(
-                &wgpu::BindGroupLayoutDescriptor {
-                    entries: &[
-                        wgpu::BindGroupLayoutEntry {
-                            binding: 0,
-                            visibility: wgpu::ShaderStage::FRAGMENT,
-                            ty: wgpu::BindingType::SampledTexture {
-                                multisampled: false,
-                                dimension: wgpu::TextureViewDimension::D2,
-                                component_type: wgpu::TextureComponentType::Uint,
-                            },
-                            count: None,
+    // Generates texture bind layout
+    pub fn generate_texture_layout_from_device(device: &wgpu::Device) -> wgpu::BindGroupLayout{
+        device.create_bind_group_layout(
+            &wgpu::BindGroupLayoutDescriptor {
+                entries: &[
+                    wgpu::BindGroupLayoutEntry {
+                        binding: 0,
+                        visibility: wgpu::ShaderStage::FRAGMENT,
+                        ty: wgpu::BindingType::SampledTexture {
+                            multisampled: false,
+                            dimension: wgpu::TextureViewDimension::D2,
+                            component_type: wgpu::TextureComponentType::Uint,
                         },
-                        wgpu::BindGroupLayoutEntry {
-                            binding: 1,
-                            visibility: wgpu::ShaderStage::FRAGMENT,
-                            ty: wgpu::BindingType::Sampler {
-                                comparison: false,
-                            },
-                            count: None,
+                        count: None,
+                    },
+                    wgpu::BindGroupLayoutEntry {
+                        binding: 1,
+                        visibility: wgpu::ShaderStage::FRAGMENT,
+                        ty: wgpu::BindingType::Sampler {
+                            comparison: false,
                         },
-                    ],
-                    label: Some("texture_bind_group_layout"),
-                }
-            )
-        }
+                        count: None,
+                    },
+                ],
+                label: Some("texture_bind_group_layout"),
+            }
+        )
+    }
 
 
-    pub fn load_texture(renderer_reference: &Renderer, path: &str) -> Result<Self>{
+    pub fn load_texture(renderer_reference: &Renderer, path: &str, tex_mode: TextureMode) -> Result<Self>{
         use std::fs::File;
         use std::io::{BufReader, Read};
 
@@ -93,27 +101,31 @@ impl Texture {
         buf_reader.read_to_end(&mut contents).unwrap();
 
         let img = image::load_from_memory(&contents)?;
-        Self::from_image(renderer_reference, &img, Some(path))
+        Self::from_image(renderer_reference, &img, Some(path), tex_mode)
     }
 
     pub fn from_bytes(
         renderer_reference: &Renderer,
         bytes: &[u8], 
         label: &str,
+        tex_mode: TextureMode
     ) -> Result<Self> {
         let img = image::load_from_memory(bytes)?;
-        Self::from_image(renderer_reference, &img, Some(label))
+        Self::from_image(renderer_reference, &img, Some(label), tex_mode)
     }
 
     pub fn from_image(
         renderer_reference: &Renderer,
         img: &image::DynamicImage,
         label: Option<&str>,
+        tex_mode: TextureMode
+
     ) -> Result<Self> {
         let queue = &renderer_reference.queue;
         let device = &renderer_reference.device;
+        let panic_msg = format!("Error loading texture: {:?}", label);
 
-        let rgba = img.as_rgba8().unwrap();
+        let rgba = img.to_rgba8();//.expect(&panic_msg);
         let dimensions = img.dimensions();
 
         let size = wgpu::Extent3d {
@@ -139,7 +151,7 @@ impl Texture {
                 mip_level: 0,
                 origin: wgpu::Origin3d::ZERO,
             },
-            rgba,
+            &rgba,
             wgpu::TextureDataLayout {
                 offset: 0,
                 bytes_per_row: 4 * dimensions.0,
@@ -147,6 +159,7 @@ impl Texture {
             },
             size,
         );
+
 
         let view = texture.create_view(&wgpu::TextureViewDescriptor::default());
         let sampler = device.create_sampler(
