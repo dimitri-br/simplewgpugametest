@@ -343,7 +343,7 @@ pub fn main() {
 
 
 
-    let mut uniforms = Vec::<Rc<wgpu::BindGroup>>::new();
+    /*let mut uniforms = Vec::<Rc<wgpu::BindGroup>>::new();
     let mut components = Vec::<Box<dyn ComponentBase>>::new();
 
     // create material - lower depth is sorted higher
@@ -383,7 +383,7 @@ pub fn main() {
 
     {
         entity_manager.create_entity(components, uniforms);
-    }
+    }*/
 
 
 
@@ -476,7 +476,7 @@ pub fn main() {
     {
 
         entity_manager.create_entity(components, uniforms);
-        let new_entity = entity_manager.find_entity(2).unwrap();
+        let new_entity = entity_manager.find_entity(0).unwrap();
 
         entity_manager.add_component_data::<MovementComponent>(&new_entity, Box::new(MovementComponent::new(-75.0))).unwrap();
         let component = entity_manager.get_component_data::<Transform>(new_entity, Transform::get_component_id()).unwrap();

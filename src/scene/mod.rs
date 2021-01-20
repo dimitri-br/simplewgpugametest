@@ -11,7 +11,7 @@ impl SceneLoader{
     pub fn load(path: &str, entity_manager: &mut EntityManager, physics_manager: &mut Physics, renderer_reference: &Renderer, camera_bind_group: Rc<wgpu::BindGroup>){
         let entity_defs = SceneLoader::load_component(path);
         for entity_def in entity_defs{
-            SceneLoader::parse_entity(entity_def, entity_manager, renderer_reference, Rc::clone(&camera_bind_group));
+            SceneLoader::parse_entity(entity_def, entity_manager, renderer_reference, physics_manager, Rc::clone(&camera_bind_group));
         }
     }
 
@@ -31,7 +31,7 @@ impl SceneLoader{
     }
 
     
-    fn parse_entity(def: String, entity_manager: &mut EntityManager, renderer_reference: &Renderer, camera_bind_group: Rc<wgpu::BindGroup>){
+    fn parse_entity(def: String, entity_manager: &mut EntityManager, renderer_reference: &Renderer, physics_manager: &mut Physics, camera_bind_group: Rc<wgpu::BindGroup>){
         let mut uniforms = vec!(camera_bind_group);
         let mut entity_components = Vec::<Box<dyn ComponentBase>>::new();
 
@@ -60,6 +60,7 @@ impl SceneLoader{
             let comp = split_comp[0].clone();
 
             match comp.as_str(){
+                // Base Components
                 "name" => {
                     let name: Vec<String> = split_comp[1].split(")").map(|x| x.to_string()).collect();
                     let name = name[0].clone(); 
@@ -131,7 +132,59 @@ impl SceneLoader{
                     
                 },
 
-                "physics" =>  {},
+                "physics" =>  {
+                    let phys_settings: Vec<String> = split_comp[1].split(",").map(|x| x.to_string()).collect();
+
+                    println!("{:?}", phys_settings);
+
+                    let body_type = match phys_settings[0].as_str() {
+                        "static" => {
+                            b2::BodyType::Static
+                        }
+                        "dynamic" => {
+                            b2::BodyType::Dynamic
+                        }
+                        "kinematic" => {
+                            b2::BodyType::Kinematic
+                        }
+                        _ => {
+                            b2::BodyType::Static
+                        }
+                    };
+
+                    let layer = phys_settings[4].parse::<u32>().unwrap();
+                    let mass = phys_settings[1].parse::<f32>().unwrap();
+                    let width = phys_settings[2].parse::<f32>().unwrap();
+                    let height = phys_settings[3].parse::<f32>().unwrap();
+
+                    let sleep_mode = match phys_settings[3].as_str() {
+                        "false)" => {false}
+                        "true)" => {true}
+                        _ => {true}
+                    };
+
+                    entity_components.push(Box::new(PhysicsComponent::new_box(physics_manager, position.value, (width, height), mass, body_type, layer, sleep_mode)));
+                },
+
+                // Add specific components here
+
+                "player_movement" => {
+                    let speed: Vec<String> = split_comp[1].split(")").map(|x| x.to_string()).collect();
+                    let speed = speed[0].clone(); 
+                    println!("{:?}", speed);
+                    let player_movement_comp = Box::new(PlayerMovementComponent::new(speed.parse::<f32>().unwrap()));
+                    entity_components.push(player_movement_comp);
+
+                }
+
+                "enemy_movement" => {
+                    let speed: Vec<String> = split_comp[1].split(")").map(|x| x.to_string()).collect();
+                    let speed = speed[0].clone(); 
+                    println!("{:?}", speed);
+                    let enemy_movement_comp = Box::new(MovementComponent::new(speed.parse::<f32>().unwrap()));
+                    entity_components.push(enemy_movement_comp);
+                }
+
                 _ => panic!("Not valid!"),
             }
         }
@@ -142,7 +195,6 @@ impl SceneLoader{
         entity_components.push(Box::new(transform));
 
         {
-
             entity_manager.create_entity(entity_components, uniforms);
         }
     }

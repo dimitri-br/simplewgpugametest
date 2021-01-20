@@ -1,2 +1,10 @@
 // Example of entity scene - defines an entity, which will be read by the engine and processed. Comments MUST be on their own line.
-entity[name(plane) pos(-5.0,0.0,0.0) rot(0.0,0.0,0.0) scale(10.0,1.0,1.0) material(./data/textures/white.png,color(1.0,1.0,1.0),1) physics(static,0.0,false)];
+
+// Wall-Enemy Entities
+entity[name(WallEnemy) pos(15.0,0.0,0.0) rot(.0,0.0,45.0) scale(2.0,1.0,1.0) material(./data/textures/white.png,color(1.0,1.0,1.0),1) physics(dynamic,5.0,2.0,1.0,2,false) enemy_movement(-75.0)];
+entity[name(WallEnemy) pos(5.0,0.0,0.0) rot(0.0,0.0,90.0) scale(2.0,1.0,1.0) material(./data/textures/white.png,color(1.0,1.0,1.0),1) physics(dynamic,5.0,2.0,1.0,2,false) enemy_movement(-75.0)];
+// Regular Entities
+entity[name(plane) pos(-5.0,0.0,0.0) rot(0.0,0.0,90.0) scale(2.0,1.0,1.0) material(./data/textures/white.png,color(1.0,1.0,1.0),1) physics(dynamic,5.0,2.0,1.0,2,false) enemy_movement(-75.0)];
+entity[name(plane) pos(-5.0,0.0,0.0) rot(0.0,0.0,90.0) scale(2.0,1.0,1.0) material(./data/textures/white.png,color(1.0,1.0,1.0),1) physics(dynamic,5.0,2.0,1.0,2,false) enemy_movement(-75.0)];
+// Player
+entity[name(Player) pos(0.0,0.0,0.0) rot(0.0,0.0,0.0) scale(1.0,1.0,1.0) material(./data/textures/player.png,color(0.0,1000.0,1000.0),1) physics(dynamic,1.0,0.2,1.0,0,false) player_movement(15.0)];

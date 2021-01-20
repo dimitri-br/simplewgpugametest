@@ -19,7 +19,6 @@ impl SystemBase for MovementSystem{
         let mut points = 0;
         for entity_ref in entity_manager.get_entities_with_types_mut(&[MovementComponent::get_component_id(), Transform::get_component_id(), PhysicsComponent::get_component_id()]){
 
-
             let temp_entity = Rc::new(RefCell::new(entity_ref));
             let temp = temp_entity.borrow();
             let movement_component = match temp.get_component::<MovementComponent>(MovementComponent::get_component_id()){
