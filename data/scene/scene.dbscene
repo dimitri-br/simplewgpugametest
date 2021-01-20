@@ -1,0 +1,2 @@
+// Example of entity scene - defines an entity, which will be read by the engine and processed. Comments MUST be on their own line.
+entity[name(plane) pos(-5.0,0.0,0.0) rot(0.0,0.0,0.0) scale(10.0,1.0,1.0) material(./data/textures/white.png,color(1.0,1.0,1.0),1) physics(static,0.0,false)];

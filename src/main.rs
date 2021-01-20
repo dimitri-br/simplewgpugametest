@@ -321,9 +321,6 @@ pub fn main() {
     let camera_bind_group = Rc::new(camera_bind_group);
 
 
-    SceneLoader::load("./data/scene/scene.dat", &mut entity_manager, &mut physics_manager, &temp_renderer, Rc::clone(&camera_bind_group));
-
-
     // load textures (Define the texture layout)
     let texture_layout = Texture::generate_texture_layout(&temp_renderer);
 
@@ -627,6 +624,13 @@ pub fn main() {
         entity_manager.create_entity(components, uniforms);
     }
 
+
+    println!("Entity Count: {:?}", entity_manager.entities.len());
+
+    
+    SceneLoader::load("./data/scene/scene.dbscene", &mut entity_manager, &mut physics_manager, &temp_renderer, Rc::clone(&camera_bind_group));
+
+    println!("Entity Count: {:?}", entity_manager.entities.len());
 
     log::info!("Entities built");
 

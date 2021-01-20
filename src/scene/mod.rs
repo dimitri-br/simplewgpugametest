@@ -10,10 +10,9 @@ pub struct SceneLoader{
 impl SceneLoader{
     pub fn load(path: &str, entity_manager: &mut EntityManager, physics_manager: &mut Physics, renderer_reference: &Renderer, camera_bind_group: Rc<wgpu::BindGroup>){
         let entity_defs = SceneLoader::load_component(path);
-        //for entity_def in entity_defs{
-            //SceneLoader::parse_entity(entity_def, entity_manager, renderer_reference, Rc::clone(&camera_bind_group));
-        //}
-        SceneLoader::create_entity(physics_manager, entity_manager, renderer_reference, camera_bind_group);
+        for entity_def in entity_defs{
+            SceneLoader::parse_entity(entity_def, entity_manager, renderer_reference, Rc::clone(&camera_bind_group));
+        }
     }
 
     fn load_component(path: &str) -> Vec<String>{
@@ -31,49 +30,6 @@ impl SceneLoader{
         lines
     }
 
-    fn create_entity(physics_manager: &mut Physics, entity_manager: &mut EntityManager, renderer_reference: &Renderer, camera_bind_group: Rc<wgpu::BindGroup>){
-        let mut uniforms = Vec::<Rc<wgpu::BindGroup>>::new();
-        let mut components = Vec::<Box<dyn ComponentBase>>::new();
-    
-        // create material
-        let material = Material::new(&renderer_reference, Rc::new(Texture::load_texture(&renderer_reference, "./data/textures/white.png", TextureMode::RGB).unwrap()), cgmath::Vector3::<f32> { x: 1.0, y: 1.0, z: 1.0 }, 1.0, 0.0, -1, "main".to_string());
-    
-        // create new mesh (TODO - mesh loading) and assign material
-        let mut mesh = RenderMesh::new(&renderer_reference, material);
-        let (material_group, _, _) = mesh.generate_material_uniforms(&renderer_reference);
-        let material_group = Rc::new(material_group);
-    
-        let translation = Translation::new(cgmath::Vector3::<f32> { x: 0.0, y: -5.0, z: 0.0});
-    
-        let rotation = Rotation::new(cgmath::Quaternion::from(cgmath::Euler {
-            x: cgmath::Deg(0.0),
-            y: cgmath::Deg(0.0),
-            z: cgmath::Deg(0.0),
-        }));
-    
-        let scale = NonUniformScale::new(cgmath::Vector3::<f32> { x: 20.0, y: 1.0, z: 1.0});
-    
-    
-        let mut transform = Transform::new(&renderer_reference, translation.value, rotation.value, scale.value);
-        let (transform_group, _, _) = transform.create_uniforms(&renderer_reference);
-        let transform_group = Rc::new(transform_group);
-    
-        let phs_comp = PhysicsComponent::new_box(physics_manager, transform.position, (20.0, 1.0), 0.0, b2::BodyType::Static, 2, false);
-    
-    
-        uniforms.push(Rc::clone(&camera_bind_group));
-        uniforms.push(Rc::clone(&material_group));
-        uniforms.push(Rc::clone(&transform_group));
-    
-        components.push(Box::new(mesh));
-        components.push(Box::new(transform));
-        components.push(Box::new(phs_comp));
-    
-    
-        {
-            entity_manager.create_entity(components, uniforms);
-        }
-    }
     
     fn parse_entity(def: String, entity_manager: &mut EntityManager, renderer_reference: &Renderer, camera_bind_group: Rc<wgpu::BindGroup>){
         let mut uniforms = vec!(camera_bind_group);

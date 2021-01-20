@@ -3,7 +3,7 @@ use std::collections::HashMap;
 use rayon::prelude::*;
 
 pub struct EntityManager{
-    entities: Vec::<Entity>,
+    pub entities: Vec::<Entity>,
 }
 
 impl EntityManager{
