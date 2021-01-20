@@ -16,7 +16,7 @@ impl EntityManager{
     }
 
     pub fn create_entity(&mut self, components: Vec::<Box<dyn ComponentBase>>, uniforms: Vec::<Rc<wgpu::BindGroup>>){
-        let component_count = format!("Entity created with {:?} components", components.len());
+        let component_count = format!("Entity created with {:?} components and {:?} uniforms", components.len(), uniforms.len());
         log::info!("{}", &component_count);
         let mut entity = Entity::new(components, self.entities.len());
         entity.set_uniforms(uniforms);

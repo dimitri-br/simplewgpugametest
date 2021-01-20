@@ -352,6 +352,7 @@ impl Renderer {
                         Ok(rm) => { rm }
                         Err(e) => panic!("{:?}", e)
                     };
+
                     if mesh.borrow_material().get_shader_name() == pipeline.0{
                         {
                             render_pass.set_pipeline(pipeline.1); // 2.

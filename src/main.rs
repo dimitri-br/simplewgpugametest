@@ -1,4 +1,6 @@
 //#![windows_subsystem = "windows"] // Disable console
+
+
 extern crate clap;
 extern crate num;
 use clap::{Arg, App};
@@ -31,6 +33,7 @@ mod entity;
 mod system;
 mod physics;
 mod audio;
+mod scene;
 
 use renderer::renderer::Renderer;
 use renderer::vertex::Vertex;
@@ -52,6 +55,7 @@ use system::movement_system::MovementSystem;
 use system::player_movement_system::PlayerMovementSystem;
 use system::systemmanager::SystemManager;
 use system::physics_system::PhysicsSystem;
+use scene::SceneLoader;
 use component::movement_component::MovementComponent;
 use component::player_movement_component::PlayerMovementComponent;
 use physics::physicscomponent::PhysicsComponent;
@@ -316,6 +320,10 @@ pub fn main() {
     let (camera_bind_group, camera_layout, mut cam_uniform) = camera.create_uniforms(&temp_renderer);
     let camera_bind_group = Rc::new(camera_bind_group);
 
+
+    SceneLoader::load("./data/scene/scene.dat", &mut entity_manager, &mut physics_manager, &temp_renderer, Rc::clone(&camera_bind_group));
+
+
     // load textures (Define the texture layout)
     let texture_layout = Texture::generate_texture_layout(&temp_renderer);
 
@@ -347,7 +355,7 @@ pub fn main() {
     // create new mesh (TODO - mesh loading) and assign material
     let mut mesh = RenderMesh::new(&temp_renderer, material);
     let (material_group, _, _) = mesh.generate_material_uniforms(&temp_renderer);
-    let material_group = Rc::new(material_group);
+    let material_group = material_group;
 
     let translation = Translation::new(cgmath::Vector3::<f32> { x: 0.0, y: 0.0, z: 0.0});
 
@@ -367,7 +375,7 @@ pub fn main() {
 
 
     uniforms.push(Rc::clone(&camera_bind_group));
-    uniforms.push(Rc::clone(&material_group));
+    uniforms.push(Rc::new(material_group));
     uniforms.push(Rc::clone(&transform_group));
 
     components.push(Box::new(mesh));
@@ -664,7 +672,6 @@ pub fn main() {
 
     // recreate pipeline with layouts (needs mut)
     temp_renderer.create_pipeline("main".to_string(), &layouts, wgpu::include_spirv!("./shaders/shader.vert.spv"), wgpu::include_spirv!("./shaders/shader.frag.spv"), &color_states, &[Vertex::desc()], 1, true);
-    temp_renderer.create_pipeline("invert".to_string(), &layouts, wgpu::include_spirv!("./shaders/shader.vert.spv"), wgpu::include_spirv!("./shaders/invert.frag.spv"), &color_states, &[Vertex::desc()], 1, false);
     layouts.clear();
 
     /* Screen based rendering now */
